@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="es-AR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>La Curaduría | Catálogo Técnico 2024</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "neon-green": "#10FF58",
+              "surface-bright": "#f6f6f6",
+              "primary": "#10FF58",
+              "on-primary": "#000000",
+              "background": "#ffffff",
+              "on-surface": "#000000",
+              "outline": "#000000",
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "4px",
+              "xl": "4px",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body { font-family: 'Inter', sans-serif; }
+      h1, h2, h3, nav a { font-family: 'Space Grotesk', sans-serif; }
+      .brutalist-shadow {
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      }
+      .brutalist-border {
+        border: 2px solid #000000;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar (from COMPONENTS_10) -->
+<header class="flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-[#f6f6f6] border-b-2 border-neutral-900 shadow-[4px_4px_0px_0px_rgba(45,47,47,1)]">
+<div class="text-2xl font-black tracking-tighter text-neutral-900 uppercase">
+        La Curaduría
+    </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#006b1f] border-b-2 border-neutral-900 font-bold font-['Space_Grotesk'] tracking-tight text-sm uppercase" href="#">Inicio</a>
+<a class="text-neutral-600 font-medium font-['Space_Grotesk'] tracking-tight text-sm uppercase hover:bg-[#10FF58] hover:text-black transition-colors duration-150 px-2 py-1" href="#">Productos</a>
+<a class="text-neutral-600 font-medium font-['Space_Grotesk'] tracking-tight text-sm uppercase hover:bg-[#10FF58] hover:text-black transition-colors duration-150 px-2 py-1" href="#">Colecciones</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="relative text-neutral-900 hover:scale-95 duration-100 ease-in-out transition-transform">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-neon-green text-black text-[10px] font-bold w-4 h-4 brutalist-border flex items-center justify-center">2</span>
+</button>
+<button class="text-neutral-900 hover:scale-95 duration-100 ease-in-out transition-transform">
+<img alt="User profile" class="w-8 h-8 brutalist-border rounded-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ1ucarrSKOwjyqKy6gtYaKnht_GEKDKq1Q5ri1P_RGVZmSU97fuWRU0JtufOytzhReHhtdXkS1nx1f9PhB36l9yb1QMx8I9ullCQA2yNEh24LrJUvCtPr9WP3LEzuqlMt2qPm9uMzlcC9f4eWFxnN5bmhzpfafolFqhEyZ2qeFT1uRG-BAiwDH55e1ksc0GMTEO_p_WT9yTnGa5y9ERZXbQQ6nAIrtFkz_5sNcGKjah3IaIu6ljAdsWo1puzzIvwFtwi1eniPwVxJ"/>
+</button>
+</div>
+</header>
+<main>
+<!-- Hero Banner (Minimal & Technical) -->
+<section class="relative w-full h-[500px] bg-black overflow-hidden flex items-center brutalist-border border-t-0">
+<div class="absolute inset-0 opacity-40 grayscale contrast-125">
+<img alt="Campaign" class="w-full h-full object-cover" data-alt="Technical product photography of industrial machinery and high-tech fabrics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKXyrQfyBu-EAGbcczFfD-JVcKxpu4hz7wUz0B6hMUJaQkV9UaXkBNzNXLVXQ4r12JkHSxlaJ9Ug-tT0HUbKoP11keuM060LtCwNLLg091qyNbVaAgn2AzqphornhzV9ScMv0lCovFGdxUjxoNLlfhszqStD_rc7gJXqz4nVaGubI7C1NxB1FkHG72Mxfkh-vXS08NxwR1BXEn2F7Zvb2RvX0TxD8cHB-pMTjHzmVlsfNO3ggG5UY3zncTDPjNgOUE_QohVA5j4NAc"/>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+<div class="max-w-2xl border-l-4 border-neon-green pl-8">
+<span class="inline-block px-2 py-1 bg-neon-green text-black text-[10px] font-bold tracking-[0.2em] uppercase mb-6">SYS.RUN // VER 2024.01</span>
+<h1 class="text-7xl font-black text-white tracking-tighter leading-[0.9] mb-8 uppercase italic">
+                    Laboratorio <br/> Textil.
+                </h1>
+<p class="text-white font-['Space_Grotesk'] text-sm uppercase tracking-widest mb-10 max-w-md">
+                    Especificaciones técnicas aplicadas a la estética cotidiana. Curaduría de alto rendimiento.
+                </p>
+<button class="bg-neon-green text-black px-10 py-4 font-bold uppercase tracking-widest brutalist-shadow brutalist-border hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95">
+                    [ Ver Catálogo ]
+                </button>
+</div>
+</div>
+</section>
+<!-- Filters & Search (Technical) -->
+<section class="bg-white py-8 border-b-2 border-black">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<!-- Categories -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 bg-black text-white font-bold text-xs uppercase tracking-tighter">Todos</button>
+<button class="whitespace-nowrap px-4 py-2 brutalist-border hover:bg-neon-green font-bold text-xs uppercase tracking-tighter transition-colors">Remeras</button>
+<button class="whitespace-nowrap px-4 py-2 brutalist-border hover:bg-neon-green font-bold text-xs uppercase tracking-tighter transition-colors">Pantalones</button>
+<button class="whitespace-nowrap px-4 py-2 brutalist-border hover:bg-neon-green font-bold text-xs uppercase tracking-tighter transition-colors">Accesorios</button>
+</div>
+<!-- Search & Sort -->
+<div class="flex items-center gap-4">
+<div class="relative flex-1 md:w-80">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-black text-xl" data-icon="search">search</span>
+<input class="w-full bg-white brutalist-border focus:ring-0 rounded-none py-3 pl-12 pr-4 text-xs font-bold uppercase tracking-widest" placeholder="SEARCH_ITEM..." type="text"/>
+</div>
+<div class="relative">
+<select class="appearance-none bg-white brutalist-border focus:ring-0 rounded-none py-3 pl-4 pr-10 text-xs font-bold uppercase tracking-widest cursor-pointer">
+<option>ORDENAR_POR</option>
+<option>MENOR_PRECIO</option>
+<option>MAYOR_PRECIO</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-black" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="py-16 bg-[#f6f6f6]">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Card 1 -->
+<div class="group brutalist-border bg-white p-4 brutalist-shadow transition-transform hover:-translate-y-1">
+<div class="relative aspect-[3/4] bg-neutral-100 mb-5 overflow-hidden">
+<span class="absolute top-4 left-4 z-10 bg-neon-green text-black text-[10px] font-bold px-2 py-1 uppercase tracking-widest brutalist-border">NUEVO</span>
+<img alt="Remera Premium" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close up of a premium heavy cotton t-shirt in cream color worn by a model" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj_tSL6b2CAQAHp7NloaahiqukmprftLhTQfAOE3-lgd0hX3pe-3F9K6TFV09bBUZOp7VSVv4H3fkXmLtEGLyjgIPdxopnUDRswDQzYV60RixeX75q89nhzzkk_o_W25Nfuc2XR0IEjb04lrNtXzO9D8A_oiOLmXOygKS_AQuhh9WhSGdH7hO8thFl1QBfaaT1rCIr9uB5na2Z7KObM4EhpegAZ2wKLd1bCfu1MJ-Si0hYrisXAqnRxZzV1lARMzygxrLvletBMKtO"/>
+<button class="absolute bottom-4 left-4 right-4 bg-neon-green py-3 font-bold text-black uppercase text-xs brutalist-border opacity-0 group-hover:opacity-100 transition-opacity">
+                            + AGREGAR_CARRITO
+                        </button>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-black uppercase tracking-tighter">Remera "Pura" // 01</h3>
+<div class="flex items-center text-black">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold ml-1">4.9</span>
+</div>
+</div>
+<p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-4">SPEC: Algodón 24/1 // Caída pesada</p>
+<p class="text-2xl font-black text-black">$48.000</p>
+</div>
+<!-- Card 2 -->
+<div class="group brutalist-border bg-white p-4 brutalist-shadow transition-transform hover:-translate-y-1">
+<div class="relative aspect-[3/4] bg-neutral-100 mb-5 overflow-hidden">
+<img alt="Pantalon Denim" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Minimalist denim trousers in dark indigo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADR616Myfaywu7aK2O6tL6sEv3jdtSp0PRqawmLEelk-Pyt6h0mY_XAaxy5xt11rOIDdYqxrzmSPZI80n4B3xSuAVTkzxRQHgPEtaBxIpPiTqfEiLBwcWLiHVOiOUA0VcWJRN6jK3zNHQYgd71Fm5noZvaR3OFAOgqOFmdo3GlOA8BEhY05-On_UC2mwGjlUlIAjiuLsnI5CumJvyoFiFG9kcTOzWukbzqccrtcDMBX2TdGphZd-yJ43Y2FdriP_LZvhkWZboXAzCU"/>
+<button class="absolute bottom-4 left-4 right-4 bg-neon-green py-3 font-bold text-black uppercase text-xs brutalist-border opacity-0 group-hover:opacity-100 transition-opacity">
+                            + AGREGAR_CARRITO
+                        </button>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-black uppercase tracking-tighter">Denim Recto // RAW</h3>
+<div class="flex items-center text-black">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold ml-1">4.7</span>
+</div>
+</div>
+<p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-4">SPEC: Corte recto // Indigo pesado</p>
+<p class="text-2xl font-black text-black">$82.500</p>
+</div>
+<!-- Card 3 -->
+<div class="group brutalist-border bg-white p-4 brutalist-shadow transition-transform hover:-translate-y-1">
+<div class="relative aspect-[3/4] bg-neutral-100 mb-5 overflow-hidden">
+<span class="absolute top-4 left-4 z-10 bg-neon-green text-black text-[10px] font-bold px-2 py-1 uppercase tracking-widest brutalist-border">NUEVO</span>
+<img alt="Saco de Lino" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Beige linen blazer jacket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV5u6i7OohMfKkDerKIATp74acWI00HTUBrhfigxbaFqPkNruxBENBZJPdgWyVKFtdTdiszGNXbRP4rcpOgI2wEIdVSlhkIaPOMNc5QUWwGEfGvM7i_TeBSQnBpTLiAKaE5xETn3af1SIXkjQUAcoeMPQ1vt7Bg7tO7vU7Tx_-rRMxnSYzEhoHMV-DFWWrsD5boVkXY8CMuBToy1wx0i88yuCBQYcHsKhbN5LLsmlxKTwELNc9cygD3ef9KMeJn_5J4mFTweVwujDJ"/>
+<button class="absolute bottom-4 left-4 right-4 bg-neon-green py-3 font-bold text-black uppercase text-xs brutalist-border opacity-0 group-hover:opacity-100 transition-opacity">
+                            + AGREGAR_CARRITO
+                        </button>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-black uppercase tracking-tighter">Saco "Bruma" // LINEN</h3>
+<div class="flex items-center text-black">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold ml-1">5.0</span>
+</div>
+</div>
+<p class="text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-4">SPEC: Lino puro // Estructura soft</p>
+<p class="text-2xl font-black text-black">$115.000</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (from COMPONENTS_10) -->
+<footer class="w-full px-10 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 bg-[#f6f6f6] border-t-2 border-neutral-900">
+<div class="space-y-4">
+<div class="text-[#006b1f] font-['Space_Grotesk'] text-[14px] font-black uppercase tracking-widest">
+            KINETIC LABORATORY SPEC // LC
+        </div>
+<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 max-w-sm">
+            Redefiniendo el e-commerce a través de una mirada técnica y minimalista. Fabricación nacional argentina.
+        </p>
+</div>
+<div class="flex flex-col md:items-end space-y-6">
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#10FF58] transition-colors" href="#">Soporte</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#10FF58] transition-colors" href="#">Privacidad</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#10FF58] transition-colors" href="#">Términos</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-900 underline" href="#">Instagram</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-900 underline" href="#">Twitter</a>
+</div>
+<div class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 opacity-80">
+            © 2024 SHIPFOLIO. KINETIC LABORATORY SPEC.
+        </div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso | La Curaduría</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/screens.css">
+</head>
+<body class="screen-login screen-auth-layout">
+    <header class="site-header">
+        <div class="brand">La Curaduría</div>
+        <nav class="nav-links hidden md:flex">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="#">Productos</a>
+            <a class="nav-link" href="#">Colecciones</a>
+        </nav>
+        <div class="actions">
+            <button class="cart-btn">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="cart-badge">2</span>
+            </button>
+            <a href="login.html" class="profile-link">
+                <img alt="User profile" class="profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ1ucarrSKOwjyqKy6gtYaKnht_GEKDKq1Q5ri1P_RGVZmSU97fuWRU0JtufOytzhReHhtdXkS1nx1f9PhB36l9yb1QMx8I9ullCQA2yNEh24LrJUvCtPr9WP3LEzuqlMt2qPm9uMzlcC9f4eWFxnN5bmhzpfafolFqhEyZ2qeFT1uRG-BAiwDH55e1ksc0GMTEO_p_WT9yTnGa5y9ERZXbQQ6nAIrtFkz_5sNcGKjah3IaIu6ljAdsWo1puzzIvwFtwi1eniPwVxJ">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="auth-card brutalist-border brutalist-shadow">
+            <header class="auth-header">
+                <h1 class="auth-title">Acceso_</h1>
+                <p class="auth-title" style="font-size:1.5rem; color:var(--color-neon-green); text-shadow: 2px 2px 0 #000;">STITCH.</p>
+                <p class="auth-subtitle" style="margin-top:1rem;">Ingresa tus credenciales del laboratorio para continuar.</p>
+            </header>
+
+            <form class="auth-form" action="index.html">
+                <div class="form-group">
+                    <label for="email">IDENTIFICADOR (EMAIL)</label>
+                    <input type="email" id="email" class="form-input" placeholder="usuario@sistema.local" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">CLAVE_DE_ACCESO</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+                
+                <div class="flex justify-between items-center" style="margin-top:-0.5rem; margin-bottom:0.5rem;">
+                    <label class="flex items-center gap-2" style="font-family:var(--font-label); font-size:10px; font-weight:bold; letter-spacing:0.1em; cursor:pointer;">
+                        <input type="checkbox" class="brutalist-border" style="width:1rem; height:1rem; accent-color:black;">
+                        RECORDAR_SESIÓN
+                    </label>
+                    <a href="#" class="auth-link">¿OLVIDASTE_CLAVE?</a>
+                </div>
+                
+                <button type="submit" class="brutalist-button w-full">AUTORIZAR_ACCESO</button>
+            </form>
+
+            <footer class="auth-footer">
+                <p style="font-size:0.75rem; font-weight:bold; color:var(--color-neutral-600); text-transform:uppercase; letter-spacing:0.1em;">
+                    ¿NUEVO_USUARIO? <a href="register.html" class="auth-link" style="color:black;">SOLICITAR_CREDENCIAL</a>
+                </p>
+            </footer>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="brand-info">
+            <div class="brand-title">KINETIC LABORATORY SPEC // LC</div>
+            <p class="brand-desc">Redefiniendo el e-commerce a través de una mirada técnica y minimalista. Fabricación nacional argentina.</p>
+        </div>
+        <div class="links-container">
+            <div class="footer-links">
+                <a href="#">Soporte</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#" class="underline">Instagram</a>
+                <a href="#" class="underline">Twitter</a>
+            </div>
+            <div class="copyright">
+                © 2024 SHIPFOLIO. KINETIC LABORATORY SPEC.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalle de Producto - La Curaduría</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#10FF58",
+              "on-primary": "#000000",
+              "surface": "#f6f6f6",
+              "on-surface": "#000000",
+              "outline": "#000000",
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Space Grotesk"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "0px",
+              "xl": "0px",
+              "full": "0px"
+            },
+            boxShadow: {
+              "technical": "4px 4px 0px 0px rgba(0,0,0,1)",
+              "technical-sm": "2px 2px 0px 0px rgba(0,0,0,1)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar (from COMPONENTS_10) -->
+<nav class="flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-[#f6f6f6] border-b-2 border-neutral-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="text-2xl font-black tracking-tighter text-neutral-900 uppercase">La Curaduría</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-neutral-500 font-medium hover:bg-[#10FF58] hover:text-black transition-colors duration-150 px-2 py-1" href="#">Inicio</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#006b1f] border-b-2 border-neutral-900 font-bold px-2 py-1" href="#">Productos</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-neutral-500 font-medium hover:bg-[#10FF58] hover:text-black transition-colors duration-150 px-2 py-1" href="#">Colecciones</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#10FF58] transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-neutral-900">shopping_cart</span>
+</button>
+<button class="p-2 hover:bg-[#10FF58] transition-colors duration-150 active:scale-95">
+<span class="material-symbols-outlined text-neutral-900">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-12 pb-24 px-6 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+<!-- Product Gallery (Left) -->
+<div class="space-y-4">
+<div class="aspect-[4/5] bg-white border-2 border-neutral-900 shadow-technical overflow-hidden">
+<img alt="Producto" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCABRD5GPZPezZUA7QSqljPkLn6WxldNS5XkZ4hoH7lGosWLn09KevmIYSu-rE71FI-sBkdga_X69eSk-9YWdSdfj-euUvut-XoT36EmxCgWR5RSQXBoD0H0scrKtIIYhS4d1LY1D1eBpsby76hyV9qfFWtRx0swpgmn4Ox4ksi5P66yr9oPpCJCUUHJ0qtxJK6nIiSQ2IqH5ZUda-SHA4qXYNM1FN9vTM0yEvEjhSyKjmXtW8flBOnfEhsyKdJODeCGHRIhQWO8OFu"/>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square bg-white border-2 border-neutral-900 hover:shadow-technical-sm transition-shadow cursor-pointer overflow-hidden">
+<img alt="Detalle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkPqtmHVwZl4k47rPHGccpXrWPlMFocZUZX_4oh01mmPXtYkhMEiMqyT8Gt9QPzYp5-ZfJOd_cNcUJ7O_SPiGD3cxKIpjKBeSWYEp2Sf1xMbwbhpHSlKH6mcRs9rC1Zu7JWKv8JWMRcEWlQ-mKxDRRF1acPjYNeRR8an4C-iOidLBSLIq3bHDGi9hdmamL_zJzngXXKWXxl8ug0FbcWhs59A6aaM992_yvUiA2wwhibqTZVYOjs29GZLbdKBaHw2dlNJpCmVaUEWOi"/>
+</div>
+<div class="aspect-square bg-white border-2 border-neutral-900 hover:shadow-technical-sm transition-shadow cursor-pointer overflow-hidden">
+<img alt="Detalle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTK-uewYQ05vkmWyUURNd3wUFJxpK4lUR64unX2BaQRh5Q_Fj0ZGSA_XrXryJXR2xCP-2pF7ye6CCArhLCjxWMx0vQlfDCs52YPBwAwY1PXo-DdwzicrGFcfVUqnJ9KqTe3tQndB9oBgm-J4AxAeLtrivxJbSFzg6hw0ybybiUQT6BerrLOK-yuX40zMQB2qoVXq6GmTvbfvYPB_z5cy25VzUS0H7EC66WB9N1FdB9-79eMK-NpPazXc7-c8xopjFAoYuhuoRbyKxb"/>
+</div>
+<div class="aspect-square bg-white border-2 border-neutral-900 hover:shadow-technical-sm transition-shadow cursor-pointer overflow-hidden">
+<img alt="Detalle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPHIPgU6T3JgMMQbl1pEg9ATIhBgFMR2oD7j-jXcHbheWIvuptVqV40_dO7crYJttsXpt8fu0_qrPk5ISmRrYM5wznB3YciVUGqXf5V-YeHESw4kQhXigI3w-XlWHTkjAtLIGPzjNFI4xUlbGjtMwVW4OEHezPY0Ig_MHLWFrWC-X6_lM5jfpyW4mNpoenOdDexCuMHtDREIz-4WqDwPgEDphjkjNUnj-WlmEJOsPHFoICfHXvwtwkgu9EM6SA55RVFt8n6I2qaFyO"/>
+</div>
+<div class="aspect-square bg-white border-2 border-neutral-900 hover:shadow-technical-sm transition-shadow cursor-pointer overflow-hidden">
+<img alt="Detalle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Qbsl2xuk9u1HnGGPjTB6TWaW_It9EFbNey1XYu25luk_GU7OB_wrO4eZ-ImRVHqJblU2fJLuFHsfcm-FVvDLz9Dl3RP3lg0YhXMg-y4nhB_YAXxeheKGkJ0f35cD6Dweck_t-Ex2ucG41HLsmLo3npFDj-lFuoUdrzycEBPEYvmqR-Sw_eKWV-phWbQw3gCMkqwJ8pf_lbp9CXbGxcEBsrRmSM5ieutyUEw_lgQwBPzHFvOj_LOw11L3LLPE8H_NPoXyhFdzjj6w"/>
+</div>
+</div>
+</div>
+<!-- Product Details (Right) -->
+<div class="flex flex-col gap-10">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2 block">REMERAS / COLECCIÓN NÓMADE</span>
+<h1 class="text-4xl lg:text-5xl font-black text-on-surface tracking-tighter uppercase mb-4 leading-[0.9]">Remera Nómade Oversize</h1>
+<div class="flex items-center gap-4 mb-8">
+<div class="flex bg-neutral-900 px-2 py-1 gap-1">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter">(48 reseñas verificadas)</span>
+</div>
+<p class="text-4xl font-bold text-on-surface tracking-tight">$45.000,00 ARS</p>
+</div>
+<p class="text-neutral-600 leading-relaxed max-w-lg text-sm border-l-4 border-neutral-900 pl-4">
+                Confeccionada con algodón pima premium de 220gr. Corte boxy de ingeniería avanzada para una caída estructural. Durabilidad garantizada bajo estándares de laboratorio.
+            </p>
+<!-- Size Selector -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-xs font-black uppercase tracking-widest">Elegir Talle [SKU-2024]</span>
+<button class="text-[10px] uppercase underline font-bold hover:text-primary transition-colors">Ver Guía Técnica</button>
+</div>
+<div class="flex gap-2">
+<button class="w-14 h-14 border-2 border-neutral-900 bg-neutral-900 text-primary font-bold flex items-center justify-center transition-all shadow-technical-sm">S</button>
+<button class="w-14 h-14 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-all font-bold flex items-center justify-center">M</button>
+<button class="w-14 h-14 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-all font-bold flex items-center justify-center">L</button>
+<button class="w-14 h-14 border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-all font-bold flex items-center justify-center">XL</button>
+</div>
+</div>
+<!-- Quantity and Action Buttons -->
+<div class="flex flex-col gap-4">
+<div class="flex gap-4 items-stretch">
+<div class="flex items-center border-2 border-neutral-900 bg-white">
+<button class="px-4 py-4 text-on-surface hover:bg-neutral-100 transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="w-12 text-center font-bold text-lg border-x-2 border-neutral-900 h-full flex items-center justify-center">1</span>
+<button class="px-4 py-4 text-on-surface hover:bg-neutral-100 transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<button class="flex-1 bg-[#10FF58] text-black font-black uppercase tracking-widest border-2 border-neutral-900 shadow-technical hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150 flex items-center justify-center gap-3 active:scale-95">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+                        Agregar al carrito
+                    </button>
+</div>
+<button class="w-full py-4 border-2 border-neutral-900 text-neutral-900 font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-neutral-900 hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+                    Añadir a lista de deseos
+                </button>
+</div>
+<!-- Accordions -->
+<div class="border-y-2 border-neutral-900 divide-y-2 divide-neutral-900">
+<details class="group">
+<summary class="flex justify-between items-center cursor-pointer list-none py-4 text-on-surface font-black uppercase tracking-tight text-sm">
+                        Especificaciones de Tejido
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pb-6 text-neutral-600 text-[13px] leading-relaxed uppercase tracking-tight">
+                        Corte boxy moderno // Cuello de rib reforzado // Costuras invisibles de alta tensión // Peso: 220gr/m2 // Origen: Argentina.
+                    </div>
+</details>
+<details class="group">
+<summary class="flex justify-between items-center cursor-pointer list-none py-4 text-on-surface font-black uppercase tracking-tight text-sm">
+                        Dimensiones y Talles
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pb-6 text-neutral-600 text-[13px] font-mono">
+                        S: 52cm W x 70cm L<br/>
+                        M: 54cm W x 72cm L<br/>
+                        L: 56cm W x 74cm L<br/>
+                        XL: 58cm W x 76cm L
+                    </div>
+</details>
+</div>
+</div>
+</div>
+<!-- Related Products -->
+<section class="mt-32">
+<div class="flex items-end justify-between border-b-4 border-neutral-900 pb-4 mb-12">
+<h2 class="text-3xl font-black text-on-surface tracking-tighter uppercase leading-none">Productos Relacionados</h2>
+<a class="text-xs font-bold uppercase tracking-widest border-2 border-neutral-900 px-4 py-2 hover:bg-primary transition-colors shadow-technical-sm" href="#">Ver Todos</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Related Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-white border-2 border-neutral-900 shadow-technical group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all overflow-hidden mb-6">
+<img alt="Pantalón" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuElstQ0p62UTjR8nv0a5BacSeSRv9KkLEk2nBH2yMUtqBDzKKda3mp5T9PO7DF7HO0KSD5MMAbSnY0e7rUTddD3zPFHzGxgbPtfoVWQmwxKoZP7gmJS0QINmqlwaQeJvXzuEiwYjQFzeMsA1wbaXmd3a_iDlzhvkMp4uNIH6FY-ZLP1JIFnLp_lQA7jrtJOnV7ScW5cj9SikNlxfZ3Maqgm6mZvRQgub2HMyP9IBrXSsTotoSSuQrC9JdMWa5A0VYbAjffKmZfnD_"/>
+</div>
+<h3 class="text-lg font-black text-on-surface uppercase tracking-tight">Pantalón Sastre Gris</h3>
+<p class="text-neutral-500 font-bold">$62.000,00</p>
+</div>
+<!-- Related Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-white border-2 border-neutral-900 shadow-technical group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all overflow-hidden mb-6">
+<img alt="Accesorio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-z6erIZSDPKh7d343p599kCJHoqD5rET3YxbJ1Z46iAi4PMaykRiH3zKpHBnrezB38gkjoB3Kl62kq9Vc7U8QZFxzOPJvsjJh_dPGveadHAKntvfFvpqDk-LCf7MePfuT7ZlejeJoy8ADHj0n6QI9r-ddkHB07Kby9siZSLBbhmSj8aXSVXb_uPlq3b45nLa2wXaRImsU8u8qRJcTBiFI1iXBza_kJaxvg_A2lUgbGVrM7cJPPb3pUCDY0b2KSmY2-pk1InwPGmMC"/>
+</div>
+<h3 class="text-lg font-black text-on-surface uppercase tracking-tight">Tote Bag Cuero</h3>
+<p class="text-neutral-500 font-bold">$38.500,00</p>
+</div>
+<!-- Related Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-white border-2 border-neutral-900 shadow-technical group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all overflow-hidden mb-6">
+<img alt="Campera" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVXPy0V8MuN_v858j35AzT-5BNX7nXXnylA3-0cCQZRJuwMG86rji7a9lij9GqZ8m1TOw_vW70YkWSEq-lBTIJVbDS3OSt-B96pCmoRqbG2nQEZOqZoxCWVrDtJiFJl6w674RnoceD6mU_NITS8iqplzbn_JNwJiOP6t1ps0zD7BiRdKVy_3UjBr2oYwatHgPEjoj2wdnlSkoljO1psIiW5Bv2BlUTTS3lmYlvgQAfc-srXhfLrIRZXpLN0ulpZZQr7qt-YxIxb4HR"/>
+</div>
+<h3 class="text-lg font-black text-on-surface uppercase tracking-tight">Campera Denim Raw</h3>
+<p class="text-neutral-500 font-bold">$85.000,00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (from COMPONENTS_10) -->
+<footer class="w-full px-10 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 bg-[#f6f6f6] border-t-2 border-neutral-900">
+<div class="flex flex-col gap-4">
+<div class="text-[#006b1f] font-['Space_Grotesk'] text-[12px] font-black uppercase tracking-[0.2em]">SISTEMA: SHIPFOLIO // KINETIC LAB</div>
+<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 max-w-sm">© 2024 SHIPFOLIO. KINETIC LABORATORY SPEC. CURADURÍA DE PIEZAS ESENCIALES PARA EL GUARDARROPA CONTEMPORÁNEO.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#006b1f] hover:underline" href="#">Soporte</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#006b1f] hover:underline" href="#">Privacidad</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#006b1f] hover:underline" href="#">Términos</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#006b1f] hover:underline" href="#">Instagram</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 hover:text-[#006b1f] hover:underline" href="#">Twitter</a>
+</div>
+</footer>
+</body></html>

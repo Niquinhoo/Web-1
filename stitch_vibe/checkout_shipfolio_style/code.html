@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="es-AR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | La Curaduría Digital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#10FF58",
+              "background": "#f6f6f6",
+              "surface": "#ffffff",
+              "on-surface": "#171717",
+              "outline": "#171717",
+              "secondary": "#006b1f"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0px",
+              "lg": "0px",
+              "xl": "0px",
+              "full": "0px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, button, label { font-family: 'Space Grotesk', sans-serif; }
+        .neo-brutalism {
+            box-shadow: 4px 4px 0px 0px rgba(23, 23, 23, 1);
+        }
+        .neo-brutalism-sm {
+            box-shadow: 2px 2px 0px 0px rgba(23, 23, 23, 1);
+        }
+        input, select {
+            border: 2px solid #171717 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar Components_10 integration -->
+<nav class="flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 bg-[#f6f6f6] dark:bg-neutral-900 border-b-2 border-neutral-900 dark:border-neutral-100 shadow-[4px_4px_0px_0px_rgba(45,47,47,1)]">
+<div class="text-2xl font-black tracking-tighter text-neutral-900 dark:text-white uppercase">SHIPFOLIO</div>
+<div class="hidden md:flex gap-8">
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-[#006b1f] dark:text-[#0eff58] border-b-2 border-neutral-900 dark:border-[#0eff58] font-bold" href="#">Inicio</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-neutral-600 dark:text-neutral-400 font-medium hover:bg-[#0eff58] hover:text-black transition-colors duration-150 p-1" href="#">Productos</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase text-neutral-600 dark:text-neutral-400 font-medium hover:bg-[#0eff58] hover:text-black transition-colors duration-150 p-1" href="#">Colecciones</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-neutral-900 dark:text-white hover:bg-[#0eff58] hover:text-black transition-colors p-2">shopping_cart</button>
+<img alt="User profile" class="w-8 h-8 border-2 border-neutral-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw1beORTjteJoMpeWEe3LMPBKLM5JIw3OBgeid0-W4yfIrK4KLPCbtVI2bedEUKtvus010FgzoTuV8oQrIHOlYqmMYlZIcBk5ONgoQ91i-_fz68cfeGyyEUy5jpfLHMiASwumfFeLlD_ljG6tZt9VvlO8rR5nsYe-Gdo4yELxqGKAh-YinxtJYlu_gqX0X5WUQPltN_VHikqGTO3ANpuOdZDfomZM6UbpBGz7_htff77eHsKvmw95Ie2QKymCcr_TJu3RVhliLMlAs"/>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12 md:py-20">
+<!-- Logo/Return for Focus Journey -->
+<div class="flex items-center justify-between mb-12">
+<h1 class="text-3xl font-black text-on-surface tracking-tighter uppercase italic">Checkout</h1>
+<a class="flex items-center gap-2 text-on-surface hover:bg-primary transition-colors duration-150 border-2 border-on-surface px-4 py-2 neo-brutalism-sm" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-label text-xs font-bold uppercase">Volver a la tienda</span>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Right Column: Shipping Form (Order 1 for mobile, 2 for desktop as per source flow) -->
+<section class="lg:col-span-7 order-1 lg:order-1">
+<div class="bg-surface border-2 border-on-surface p-8 lg:p-10 neo-brutalism">
+<div class="mb-10">
+<h2 class="text-2xl font-black tracking-tight mb-2 uppercase italic">Datos de envío</h2>
+<p class="text-sm font-medium border-l-4 border-primary pl-4 uppercase">Información técnica del destinatario</p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="md:col-span-2">
+<label class="block text-xs font-black uppercase mb-1" for="nombre">Nombre completo</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="nombre" placeholder="JULIAN DOMÍNGUEZ" type="text"/>
+</div>
+<!-- Email -->
+<div class="md:col-span-2">
+<label class="block text-xs font-black uppercase mb-1" for="email">Email de contacto</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="email" placeholder="HOLA@EJEMPLO.COM" type="email"/>
+</div>
+<!-- Address -->
+<div class="md:col-span-2">
+<label class="block text-xs font-black uppercase mb-1" for="direccion">Dirección fiscal/entrega</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="direccion" placeholder="CALLE Y NÚMERO (PISO/DEPTO)" type="text"/>
+</div>
+<!-- City -->
+<div>
+<label class="block text-xs font-black uppercase mb-1" for="ciudad">Localidad</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="ciudad" placeholder="SAN ISIDRO" type="text"/>
+</div>
+<!-- Province -->
+<div>
+<label class="block text-xs font-black uppercase mb-1" for="provincia">Provincia</label>
+<div class="relative">
+<select class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors appearance-none" id="provincia">
+<option value="">SELECCIONAR</option>
+<option value="caba">CABA</option>
+<option value="buenos-aires">BUENOS AIRES</option>
+<option value="cordoba">CÓRDOBA</option>
+<option value="santa-fe">SANTA FE</option>
+<option value="mendoza">MENDOZA</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- CP -->
+<div>
+<label class="block text-xs font-black uppercase mb-1" for="zip">Código Postal</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="zip" placeholder="1642" type="text"/>
+</div>
+<!-- Phone -->
+<div>
+<label class="block text-xs font-black uppercase mb-1" for="tel">Terminal Telefónica</label>
+<input class="w-full bg-white px-4 py-3 focus:bg-primary focus:ring-0 transition-colors placeholder:text-neutral-400" id="tel" placeholder="11 5555 0000" type="tel"/>
+</div>
+</div>
+<!-- Submit CTA -->
+<div class="pt-8">
+<button class="w-full bg-primary text-on-surface font-headline font-black py-5 border-2 border-on-surface neo-brutalism hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-widest text-lg" type="submit">
+                            Confirmar compra
+                        </button>
+<div class="mt-6 flex items-center justify-center gap-2">
+<span class="w-2 h-2 bg-primary animate-pulse"></span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface font-bold">
+                                Transacción segura cifrada por La Curaduría [KINETIC SPEC]
+                            </p>
+</div>
+</div>
+</form>
+</div>
+</section>
+<!-- Left Column: Order Summary -->
+<section class="lg:col-span-5 order-2 lg:order-2">
+<div class="bg-white border-2 border-on-surface p-8 sticky top-24 neo-brutalism-sm">
+<h2 class="text-xl font-black mb-8 tracking-tight uppercase italic border-b-2 border-on-surface pb-4">Sumario de orden</h2>
+<!-- Products -->
+<div class="space-y-6 mb-8">
+<!-- Product 1 -->
+<div class="flex gap-4 p-3 border border-dashed border-on-surface">
+<div class="w-20 h-24 bg-neutral-200 border border-on-surface flex-shrink-0">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Premium heavyweight cotton t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACUo7UYo2Vr9sUxnn2y0ahBZShEJGCi5tHknDwmE0cgKcydJDdaYknlsV4TLqAV8xPb1CFgxxe-sImwg2dOBFdlO7aAj4049oSuAeRbTy3Wpr7lkXSqBTJdQjzeLF9r-UG_NOikqA_GwBTkolLxgFFelAoiPe9SA10r6lyBl3fR1KUK2TQk7aUrnsDeZfV3njwFPIIbwfwfk2S4KIlyEgEDCMfF-tgj4HVCIq7oKyVwZxWC5UEpzhx6BT2uUREqNyilcHuM5a1kjjy"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-black text-xs uppercase">Remera Oversize Orgánica</h3>
+<p class="text-[10px] font-medium uppercase text-neutral-500">Talle: M | Color: Hueso</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-bold bg-on-surface text-white px-2 py-0.5">CANT: 1</span>
+<span class="font-black">$45.000</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex gap-4 p-3 border border-dashed border-on-surface">
+<div class="w-20 h-24 bg-neutral-200 border border-on-surface flex-shrink-0">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Slim fit dark denim trousers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9P9ztZTBrtEkXrzpaEQJGQY15NBb-QmDNDkYkOyjwSO7b6LJ2wQCUWRCWaA0Z6JvASCEWiMHGQX3byVl83cDkuQif59BgSy6SqQ2AsDFIMJ9HHZpycqHUfALPincdW2zgCmAP9tZlIsp347HchUdNiW8uuo5_w5WA4JcJ8w2VRW07EBts4iFVvN7E6z1RAztaYt37Juf2LaAepNMgXTAfnKlsrRPYWQj00-JH-pZeb8yoGxdfKg_MGGVuexe3plEBjsf_oN1lHvHb"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-black text-xs uppercase">Pantalón Denim Raw</h3>
+<p class="text-[10px] font-medium uppercase text-neutral-500">Talle: 42 | Color: Indigo</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-bold bg-on-surface text-white px-2 py-0.5">CANT: 1</span>
+<span class="font-black">$82.500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Costs -->
+<div class="border-t-2 border-on-surface pt-6 space-y-3">
+<div class="flex justify-between text-xs font-bold uppercase">
+<span>Subtotal</span>
+<span>$127.500</span>
+</div>
+<div class="flex justify-between text-xs font-bold uppercase">
+<span>Envío (CABA)</span>
+<span>$3.200</span>
+</div>
+<div class="flex justify-between text-xl font-black text-on-surface pt-4 border-t border-neutral-200 mt-4 bg-primary px-2 py-1">
+<span class="uppercase">Total</span>
+<span>$130.700</span>
+</div>
+</div>
+<!-- Trust Badge -->
+<div class="mt-8 p-4 border-2 border-on-surface bg-neutral-100 flex gap-3 items-center">
+<span class="material-symbols-outlined text-on-surface">verified_user</span>
+<p class="text-[10px] font-bold uppercase leading-tight">Protocolos de seguridad bancaria activos. Encriptación 256-bit.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Components_10 integration -->
+<footer class="w-full px-10 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 bg-[#f6f6f6] dark:bg-neutral-950 border-t-2 border-neutral-900 dark:border-neutral-100">
+<div class="flex flex-col gap-2">
+<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#006b1f] dark:text-[#0eff58] font-black">© 2024 SHIPFOLIO. KINETIC LABORATORY SPEC.</p>
+<p class="font-['Inter'] text-[9px] uppercase tracking-[0.2em] text-neutral-500">Curaduría Digital S.A. | Buenos Aires, Argentina</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-center">
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-900 dark:text-white underline hover:text-[#0eff58] opacity-80 hover:opacity-100 transition-opacity" href="#">Soporte</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-[#0eff58] opacity-80 hover:opacity-100 transition-opacity" href="#">Privacidad</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-[#0eff58] opacity-80 hover:opacity-100 transition-opacity" href="#">Términos</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-[#0eff58] opacity-80 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-[#0eff58] opacity-80 hover:opacity-100 transition-opacity" href="#">Twitter</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | La Curaduría</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/screens.css">
+</head>
+<body class="screen-checkout">
+    <header class="site-header">
+        <div class="brand">La Curaduría</div>
+        <nav class="nav-links hidden md:flex">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Productos</a>
+            <a class="nav-link" href="#">Colecciones</a>
+        </nav>
+        <div class="actions">
+            <button class="cart-btn">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="cart-badge" style="background:black; color:white; border-color:var(--color-neon-green)">2</span>
+            </button>
+            <a href="login.html" class="profile-link">
+                <img alt="User profile" class="profile-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ1ucarrSKOwjyqKy6gtYaKnht_GEKDKq1Q5ri1P_RGVZmSU97fuWRU0JtufOytzhReHhtdXkS1nx1f9PhB36l9yb1QMx8I9ullCQA2yNEh24LrJUvCtPr9WP3LEzuqlMt2qPm9uMzlcC9f4eWFxnN5bmhzpfafolFqhEyZ2qeFT1uRG-BAiwDH55e1ksc0GMTEO_p_WT9yTnGa5y9ERZXbQQ6nAIrtFkz_5sNcGKjah3IaIu6ljAdsWo1puzzIvwFtwi1eniPwVxJ">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="checkout-layout">
+            <!-- Form Side -->
+            <div class="checkout-form-side">
+                <div class="form-section">
+                    <h2 class="section-title">DATOS_DE_ENVÍO</h2>
+                    <form style="display:flex; flex-direction:column; gap:1.5rem;">
+                        <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+                            <div>
+                                <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">NOMBRE</label>
+                                <input type="text" class="form-input" placeholder="ID. OPERANTE">
+                            </div>
+                            <div>
+                                <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">APELLIDO</label>
+                                <input type="text" class="form-input" placeholder="SUFIJO">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">DIRECCIÓN</label>
+                            <input type="text" class="form-input" placeholder="LOCACIÓN / COORDENADAS">
+                        </div>
+                        <div class="form-group" style="display:grid; grid-template-columns:2fr 1fr; gap:1.5rem;">
+                            <div>
+                                <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">CIUDAD</label>
+                                <input type="text" class="form-input" placeholder="SECTOR">
+                            </div>
+                            <div>
+                                <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">CÓD. POSTAL</label>
+                                <input type="text" class="form-input" placeholder="0000">
+                            </div>
+                        </div>
+                        <div style="margin-top:2rem;">
+                            <h2 class="section-title">DATOS_DE_PAGO</h2>
+                            <div class="brutalist-border" style="padding:1.5rem; display:flex; flex-direction:column; gap:1.5rem;">
+                                <div>
+                                    <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">TARJETA N°</label>
+                                    <input type="text" class="form-input" placeholder="0000 0000 0000 0000">
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+                                    <div>
+                                        <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">EXPIRACIÓN</label>
+                                        <input type="text" class="form-input" placeholder="MM/YY">
+                                    </div>
+                                    <div>
+                                        <label style="font-family:var(--font-label); font-weight:bold; font-size:0.75rem; letter-spacing:0.1em; display:block; margin-bottom:0.5rem;">CÓD. SEG.</label>
+                                        <input type="text" class="form-input" placeholder="CVC">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="brutalist-button" style="margin-top:2rem; background:black; color:var(--color-neon-green)">PROCESAR_TRANSACCIÓN</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Summary Side -->
+            <div class="summary-side">
+                <h2 class="section-title">RESUMEN_ORDEN [ 2 ITEMS ]</h2>
+                
+                <div class="summary-item">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj_tSL6b2CAQAHp7NloaahiqukmprftLhTQfAOE3-lgd0hX3pe-3F9K6TFV09bBUZOp7VSVv4H3fkXmLtEGLyjgIPdxopnUDRswDQzYV60RixeX75q89nhzzkk_o_W25Nfuc2XR0IEjb04lrNtXzO9D8A_oiOLmXOygKS_AQuhh9WhSGdH7hO8thFl1QBfaaT1rCIr9uB5na2Z7KObM4EhpegAZ2wKLd1bCfu1MJ-Si0hYrisXAqnRxZzV1lARMzygxrLvletBMKtO" alt="Item" class="summary-img grayscale brutalist-border">
+                    <div class="summary-details">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-black uppercase tracking-tighter text-lg">Remera "Pura" // 01</h3>
+                            <p class="font-black">$ 48.000</p>
+                        </div>
+                        <p style="font-size:10px; font-weight:bold; font-family:var(--font-label); text-transform:uppercase; letter-spacing:0.1em; color:var(--color-neutral-500); margin-top:0.5rem;">CANT: 01 // TALLE: L</p>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADR616Myfaywu7aK2O6tL6sEv3jdtSp0PRqawmLEelk-Pyt6h0mY_XAaxy5xt11rOIDdYqxrzmSPZI80n4B3xSuAVTkzxRQHgPEtaBxIpPiTqfEiLBwcWLiHVOiOUA0VcWJRN6jK3zNHQYgd71Fm5noZvaR3OFAOgqOFmdo3GlOA8BEhY05-On_UC2mwGjlUlIAjiuLsnI5CumJvyoFiFG9kcTOzWukbzqccrtcDMBX2TdGphZd-yJ43Y2FdriP_LZvhkWZboXAzCU" alt="Item" class="summary-img grayscale brutalist-border">
+                    <div class="summary-details">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-black uppercase tracking-tighter text-lg">Denim Recto // RAW</h3>
+                            <p class="font-black">$ 82.500</p>
+                        </div>
+                        <p style="font-size:10px; font-weight:bold; font-family:var(--font-label); text-transform:uppercase; letter-spacing:0.1em; color:var(--color-neutral-500); margin-top:0.5rem;">CANT: 01 // TALLE: 42</p>
+                    </div>
+                </div>
+
+                <div class="totals">
+                    <div class="total-row">
+                        <span style="color:var(--color-neutral-600)">SUBTOTAL</span>
+                        <span>$ 130.500</span>
+                    </div>
+                    <div class="total-row">
+                        <span style="color:var(--color-neutral-600)">ENVÍO</span>
+                        <span style="color:var(--color-neon-green); text-shadow:1px 1px 0 #000;">BONIFICADO</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>TOTAL</span>
+                        <span>$ 130.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="brand-info">
+            <div class="brand-title">KINETIC LABORATORY SPEC // LC</div>
+            <p class="brand-desc">Redefiniendo el e-commerce a través de una mirada técnica y minimalista. Fabricación nacional argentina.</p>
+        </div>
+        <div class="links-container">
+            <div class="footer-links">
+                <a href="#">Soporte</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#" class="underline">Instagram</a>
+                <a href="#" class="underline">Twitter</a>
+            </div>
+            <div class="copyright">
+                © 2024 SHIPFOLIO. KINETIC LABORATORY SPEC.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
