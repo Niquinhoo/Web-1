@@ -2,19 +2,291 @@
 
 ***Nombre:** Generar estructura del Proyecto*
 
-Generamos la estructura propuesta de proyecto de la siguiente manera:
+Generé la estructura propuesta de proyecto de la siguiente manera. Voy a reutilizar mi trabajo practico de Diseño Web que tenia las mismas pautas que tiene este trabajo numero 1
+Con la ayuda de la documentacion que se brindó y la ayuda de un Agente (Plan: Claude Opus | Implementado: Codex) logré la siguiente estructura (Dejo Logs de consola en la seccion final):
+Aca esta el repositorio original: https://github.com/Niquinhoo/ecommerce-dw2025/tree/main
+Rama modificada a AtomicDesign (tiene un readme con reglas que aplicó y limitaciones que se encontró): https://github.com/Niquinhoo/ecommerce-dw2025/tree/AtomicDesign
 
 -views:
-  |- pages:
-    - cart.ejs
-    - checkout.ejs
-    - index.ejs
-    - login.ejs
-    - product.ejs
-    - register.ejs
-  |- partials:
-    - footer.ejs
-    - header.ejs
-    - sidebar.ejs
--assets:
-  |-
+    -pages:
+        -carrito:
+            -cart-page.ejs
+        -checkout:
+            -checkout-page.ejs
+        -home:
+            -home-page.ejs  
+        -informacion:
+            -account-page.ejs
+        -login:
+            -login-page.ejs
+        -productos:
+            -product-page.ejs
+        -register:
+            -register-page.ejs
+
+    -partials:
+        -atoms:
+            -breadcrumb-link.ejs
+            -breadcrumb-separator.ejs
+            -category-button.ejs
+            -email-field.ejs
+            -icon-cart.ejs
+            -logo.ejs
+            -password-field.ejs
+            -price-label.ejs
+            -primary-button.ejs
+            -quantity-button.ejs
+            -search-input.ejs
+            -secondary-button.ejs
+            -section-title.ejs
+            -social-icon-link.ejs
+            -text-field.ejs
+            -user-avatar.ejs
+        -molecules:
+            -account-info-row.ejs
+            -auth-form-fields.ejs
+            -auth-switch-link.ejs
+            -banner-card.ejs
+            -breadcrumb-trail.ejs
+            -cart-item-counter.ejs
+            -cart-item-info.ejs
+            -checkout-total-row.ejs
+            -product-card.ejs
+            -related-product-card.ejs
+            -search-bar.ejs
+            -sidebar-link-list.ejs
+            -social-links.ejs
+        -organisms:
+            -account-info-panel.ejs
+            -account-sidebar.ejs
+            -ads-banner-section.ejs
+            -auth-card.ejs
+            -cart-items-list.ejs
+            -cart-summary-box.ejs
+            -category-nav.ejs
+            -checkout-summary-card.ejs
+            -featured-products-grid.ejs
+            -product-detail-hero.ejs
+            -purchase-history-table.ejs
+            -related-products-section.ejs
+            -site-footer.ejs
+            -site-header.ejs
+            -upcoming-products-grid.ejs
+        -templates:
+            -account-template.ejs
+            -auth-template.ejs
+            -cart-template.ejs
+            -checkout-template.ejs
+            -product-detail-template.ejs
+            -storefront-template.ejs
+        footer.ejs
+        header.ejs
+        sideBar.ejs
+    index.ejs
+-styles:
+
+
+
+log consola:
+PS C:\Users\nicot\Desktop\Web-1-STP1> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  d-----          1/4/2026     19:30                agentic
+  d-----          1/4/2026     19:30                agentic-styles
+  d-----          3/4/2026     23:38                documentacion
+  d-----          2/4/2026     20:53                node_modules
+  d-----          1/4/2026     19:30                stitch
+  d-----          3/4/2026     23:47                views
+  -a----          3/4/2026     23:36             87 .gitignore
+  -a----          1/4/2026     19:27              0 app.js
+  -a----          3/4/2026     23:46           9780 files.txt
+  -a----          2/4/2026     20:53         305679 package-lock.json
+  -a----          2/4/2026     20:53            335 package.json
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1> cd views
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  d-----          3/4/2026     23:47                pages
+  d-----          3/4/2026     23:47                partials
+  -a----          3/4/2026     23:47              0 index.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views> cd pages
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\pages> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\pages
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  d-----          3/4/2026     23:47                carrito
+  d-----          3/4/2026     23:47                checkout
+  d-----          3/4/2026     23:47                informacion
+  d-----          3/4/2026     23:47                login
+  d-----          3/4/2026     23:47                productos
+  d-----          3/4/2026     23:47                register
+  -a----          3/4/2026     23:47              0 account-page.ejs
+  -a----          3/4/2026     23:47              0 cart-page.ejs
+  -a----          1/4/2026     19:27              0 cart.ejs
+  -a----          3/4/2026     23:47              0 checkout-page.ejs
+  -a----          1/4/2026     19:27              0 checkout.ejs
+  -a----          3/4/2026     23:47              0 home-page.ejs
+  -a----          1/4/2026     19:27              0 index.ejs
+  -a----          3/4/2026     23:47              0 login-page.ejs
+  -a----          1/4/2026     19:27              0 login.ejs
+  -a----          3/4/2026     23:47              0 product-chocotorta-page.ejs
+  -a----          3/4/2026     23:47              0 product-coca-page.ejs
+  -a----          3/4/2026     23:47              0 product-hamburguesa-page.ejs
+  -a----          3/4/2026     23:47              0 product-pizza-page.ejs
+  -a----          3/4/2026     23:47              0 product-whisky-page.ejs
+  -a----          1/4/2026     19:27              0 product.ejs
+  -a----          3/4/2026     23:47              0 register-page.ejs
+  -a----          1/4/2026     19:27              0 register.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\pages> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views> cd partials
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\partials
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  d-----          3/4/2026     23:47                atoms
+  d-----          3/4/2026     23:47                molecules
+  d-----          3/4/2026     23:47                organisms
+  d-----          3/4/2026     23:47                templates
+  -a----          1/4/2026     19:27              0 footer.ejs
+  -a----          1/4/2026     19:27              0 header.ejs
+  -a----          1/4/2026     19:27              0 sideBar.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> cd atoms
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\atoms> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\partials\atoms
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  -a----          3/4/2026     23:47              0 breadcrumb-link.ejs
+  -a----          3/4/2026     23:47              0 breadcrumb-separator.ejs
+  -a----          3/4/2026     23:47              0 category-button.ejs
+  -a----          3/4/2026     23:47              0 email-field.ejs
+  -a----          3/4/2026     23:47              0 icon-cart.ejs
+  -a----          3/4/2026     23:47              0 logo.ejs
+  -a----          3/4/2026     23:47              0 password-field.ejs
+  -a----          3/4/2026     23:47              0 price-label.ejs
+  -a----          3/4/2026     23:47              0 primary-button.ejs
+  -a----          3/4/2026     23:47              0 quantity-button.ejs
+  -a----          3/4/2026     23:47              0 search-input.ejs
+  -a----          3/4/2026     23:47              0 secondary-button.ejs
+  -a----          3/4/2026     23:47              0 section-title.ejs
+  -a----          3/4/2026     23:47              0 social-icon-link.ejs
+  -a----          3/4/2026     23:47              0 text-field.ejs
+  -a----          3/4/2026     23:47              0 user-avatar.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\atoms> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> cd molecules
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\molecules> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\partials\molecules
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  -a----          3/4/2026     23:47              0 account-info-row.ejs
+  -a----          3/4/2026     23:47              0 auth-form-fields.ejs
+  -a----          3/4/2026     23:47              0 auth-switch-link.ejs
+  -a----          3/4/2026     23:47              0 banner-card.ejs
+  -a----          3/4/2026     23:47              0 breadcrumb-trail.ejs
+  -a----          3/4/2026     23:47              0 cart-item-counter.ejs
+  -a----          3/4/2026     23:47              0 cart-item-info.ejs
+  -a----          3/4/2026     23:47              0 checkout-total-row.ejs
+  -a----          3/4/2026     23:47              0 product-card.ejs
+  -a----          3/4/2026     23:47              0 related-product-card.ejs
+  -a----          3/4/2026     23:47              0 search-bar.ejs
+  -a----          3/4/2026     23:47              0 sidebar-link-list.ejs
+  -a----          3/4/2026     23:47              0 social-links.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\molecules> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> cd organisms
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\organisms> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\partials\organisms
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  -a----          3/4/2026     23:47              0 account-info-panel.ejs
+  -a----          3/4/2026     23:47              0 account-sidebar.ejs
+  -a----          3/4/2026     23:47              0 ads-banner-section.ejs
+  -a----          3/4/2026     23:47              0 auth-card.ejs
+  -a----          3/4/2026     23:47              0 cart-items-list.ejs
+  -a----          3/4/2026     23:47              0 cart-summary-box.ejs
+  -a----          3/4/2026     23:47              0 category-nav.ejs
+  -a----          3/4/2026     23:47              0 checkout-summary-card.ejs
+  -a----          3/4/2026     23:47              0 featured-products-grid.ejs
+  -a----          3/4/2026     23:47              0 product-detail-hero.ejs
+  -a----          3/4/2026     23:47              0 purchase-history-table.ejs
+  -a----          3/4/2026     23:47              0 related-products-section.ejs
+  -a----          3/4/2026     23:47              0 site-footer.ejs
+  -a----          3/4/2026     23:47              0 site-header.ejs
+  -a----          3/4/2026     23:47              0 upcoming-products-grid.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\organisms> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> cd templates
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\templates> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\views\partials\templates
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  -a----          3/4/2026     23:47              0 account-template.ejs
+  -a----          3/4/2026     23:47              0 auth-template.ejs
+  -a----          3/4/2026     23:47              0 cart-template.ejs
+  -a----          3/4/2026     23:47              0 checkout-template.ejs
+  -a----          3/4/2026     23:47              0 product-detail-template.ejs
+  -a----          3/4/2026     23:47              0 storefront-template.ejs
+
+
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials\templates> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views\partials> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1\views> cd ..
+  PS C:\Users\nicot\Desktop\Web-1-STP1> cd styles
+  PS C:\Users\nicot\Desktop\Web-1-STP1\styles> dir
+
+
+      Directorio: C:\Users\nicot\Desktop\Web-1-STP1\styles
+
+
+  Mode                 LastWriteTime         Length Name
+  ----                 -------------         ------ ----
+  d-----          4/4/2026     00:04                modules
+  -a----          1/4/2026     18:06           1415 checkout.css
+  -a----          1/4/2026     18:06           1618 register-login.css
+  -a----          2/4/2026     16:37            561 style-main.css
+
