@@ -1,0 +1,20 @@
+***Código:** #main-s1-us1*
+
+***Nombre:** Generar estructura del Proyecto*
+
+Generamos la estructura propuesta de proyecto de la siguiente manera:
+
+-views:
+  |- pages:
+    - cart.ejs
+    - checkout.ejs
+    - index.ejs
+    - login.ejs
+    - product.ejs
+    - register.ejs
+  |- partials:
+    - footer.ejs
+    - header.ejs
+    - sidebar.ejs
+-assets:
+  |-
