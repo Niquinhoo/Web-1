@@ -1,0 +1,13 @@
+***Código:** #main-s1-us2*
+
+***Nombre:** Definir Rutas*
+Defini las rutas por pagina main que el usuario va a tener de recorrido, no voy a tener más rutas disponibles por los requerimientos del trabajo, si es necesario, conseguí la modularidad necesaria para poder hacerlo de tal manera que tengo que modificar pocas lineas de codigo para añadir features
+
+- routes:
+    - account.js
+    - cart.js
+    - checkout.js
+    - index.js
+    - login.js
+    - productos.js
+    - register.js
