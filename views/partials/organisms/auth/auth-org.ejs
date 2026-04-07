@@ -15,7 +15,7 @@
     <form action="<%= locals.action %>" method="POST" class="m-auth-form">
         
         <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/log-reg-input.ejs', { 
+            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
                 type: 'text', 
                 name: 'name', 
                 placeholder: 'Tu nombre completo',
@@ -23,22 +23,40 @@
             }) %>
         <% } %>
 
-        <%- include('../../atoms/log-reg/log-reg-input.ejs', { 
-            type: 'email', 
-            name: 'email', 
-            placeholder: 'Tu email',
-            autocomplete: 'email'
-        }) %>
-
-        <%- include('../../atoms/log-reg/log-reg-input.ejs', { 
-            type: 'password', 
-            name: 'password', 
-            placeholder: locals.isRegister ? 'Tu nueva contraseña' : 'Tu contraseña',
-            autocomplete: locals.isRegister ? 'new-password' : 'current-password'
-        }) %>
+        <% if (locals.isRegister) { %>
+            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
+                type: 'email', 
+                name: 'email', 
+                placeholder: 'Tu email',
+                autocomplete: 'email'
+            }) %>
+        <% } else { %>
+            <%- include('../../atoms/log-reg/login/logInput.ejs', { 
+                type: 'email', 
+                name: 'email', 
+                placeholder: 'Tu email',
+                autocomplete: 'email'
+            }) %>
+        <% } %>
 
         <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/log-reg-input.ejs', { 
+            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
+                type: 'password', 
+                name: 'password', 
+                placeholder: 'Tu nueva contraseña',
+                autocomplete: 'new-password'
+            }) %>
+        <% } else { %>
+            <%- include('../../atoms/log-reg/login/logInput.ejs', { 
+                type: 'password', 
+                name: 'password', 
+                placeholder: 'Tu contraseña',
+                autocomplete: 'current-password'
+            }) %>
+        <% } %>
+
+        <% if (locals.isRegister) { %>
+            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
                 type: 'password', 
                 name: 'confirm_password', 
                 placeholder: 'Repite tu contraseña',
@@ -46,15 +64,29 @@
             }) %>
         <% } %>
 
-        <%- include('../../atoms/log-reg/log-reg-button.ejs', { 
-            buttonText: locals.btnText 
-        }) %>
+        <% if (locals.isRegister) { %>
+            <%- include('../../atoms/log-reg/register/regButton.ejs', { 
+                buttonText: locals.btnText 
+            }) %>
+        <% } else { %>
+            <%- include('../../atoms/log-reg/login/logButton.ejs', { 
+                buttonText: locals.btnText 
+            }) %>
+        <% } %>
         
     </form>
 <br>
-    <%- include('../../atoms/log-reg/log-reg-link.ejs', { 
-        message: locals.navMessage, 
-        linkText: locals.navLinkText, 
-        url: locals.navUrl 
-    }) %>
+    <% if (locals.isRegister) { %>
+        <%- include('../../atoms/log-reg/register/regLink.ejs', { 
+            message: locals.navMessage, 
+            linkText: locals.navLinkText, 
+            url: locals.navUrl 
+        }) %>
+    <% } else { %>
+        <%- include('../../atoms/log-reg/login/logLink.ejs', { 
+            message: locals.navMessage, 
+            linkText: locals.navLinkText, 
+            url: locals.navUrl 
+        }) %>
+    <% } %>
 </div>
