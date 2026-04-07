@@ -1,0 +1,9 @@
+***Código:** #main-s1-us5*
+
+***Nombre:** Construir página de inicio*
+
+Tome la propuesta y la reversioné a un estilo más limpio y moderno, con una paleta de colores más suave y una tipografía más legible. 
+La version que hice a principios del año pasado no estaba del todo lograda y era medio confuso
+Pero ahora (con ayuda del agente para la estetica) pude lograr un resultado mucho más limpio y agradable para el usuario
+Agrege la pagina a las rutas del login de forma hardcodeada para esta fase de testing y no perder el flujo, además le asigné su propia ruta en /home
+se puede ver el router y como importa los productos dentro de routes/index.router.js
