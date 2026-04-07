@@ -1,0 +1,4 @@
+<a href="/category/<%= name.toLowerCase() %>" class="category-item <%= type === 'main' ? 'category-main' : 'category-other' %>">
+    <%- include('../../atoms/home/category-icon', { icon: icon }) %>
+    <%- include('../../atoms/home/category-text', { text: name }) %>
+</a>

@@ -1,0 +1,12 @@
+.category-text {
+    font-family: var(--font-primary, 'Outfit', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary, #666);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}

@@ -24,13 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // --- IMPORTACIÓN DE RUTAS ---
-const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
-const registerRouter = require('./routes/register');
-const cartRouter = require('./routes/cart');
-const checkoutRouter = require('./routes/checkout');
-const accountRouter = require('./routes/account');
-const productosRouter = require('./routes/productos');
+const indexRouter = require('./routes/index.router');
+const loginRouter = require('./routes/login.router');
+const registerRouter = require('./routes/register.router');
+const cartRouter = require('./routes/cart.router');
+const checkoutRouter = require('./routes/checkout.router');
+const accountRouter = require('./routes/account.router');
+const productosRouter = require('./routes/productos.router');
 
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 

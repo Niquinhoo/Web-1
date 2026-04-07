@@ -1,8 +1,5 @@
 <article class="product-card">
     <div class="product-card-head">
-        <% if (locals.badge) { %>
-            <%- include('../../atoms/home/badge', { text: badge.text, type: badge.type }) %>
-        <% } %>
         <%- include('../../atoms/home/product-image', { src: product.src, alt: product.title }) %>
     </div>
     <div class="product-card-body">

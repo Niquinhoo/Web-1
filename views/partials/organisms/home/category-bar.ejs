@@ -1,0 +1,11 @@
+<section class="category-bar-section">
+    <nav class="category-bar">
+        <div class="category-list">
+            <% if (locals.categorias && categorias.length > 0) { %>
+                <% categorias.forEach(categoria => { %>
+                    <%- include('../../molecules/home/category-item', categoria) %>
+                <% }) %>
+            <% } %>
+        </div>
+    </nav>
+</section>

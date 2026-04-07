@@ -1,5 +1,6 @@
 <%- include('../../partials/templates/home-layout', {
     components: [
+        { path: '../../partials/organisms/home/category-bar', props: { categorias: categorias } },
         { path: '../../partials/organisms/home/hero-section', props: { ads: publicidades } },
         { path: '../../partials/organisms/home/product-grid', props: { title: 'Nuestras Hamburguesas y Pizzas', products: productos } }
     ]

@@ -1,0 +1,37 @@
+.category-bar-section {
+    width: 100%;
+    /* removed solid background so it appears floating */
+    background-color: transparent;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center; /* center the floating bar container */
+}
+
+.category-bar {
+    max-width: 1000px;
+    width: fit-content;
+    background-color: var(--color-background, #ffffff);
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    overflow-x: auto;
+    border-radius: 50px; /* high border radius for floating pill aesthetic */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* floating soft shadow */
+    border: 1px solid rgba(0, 0, 0, 0.03); /* subtle border to isolate it */
+    
+    /* Hide scrollbar for clean aesthetic */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.category-list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* Removed padding-bottom to ensure perfect vertical centering within the pill */
+}
