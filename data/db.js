@@ -71,4 +71,10 @@ const categorias = [
     { name: 'Otros', icon: '📦', type: 'other' }
 ];
 
-module.exports = { productos, publicidades, categorias };
+const carrito = [
+    { productId: '1', quantity: 2 },
+    { productId: '2', quantity: 1 },
+    { productId: '3', quantity: 3 }
+];
+
+module.exports = { productos, publicidades, categorias, carrito };

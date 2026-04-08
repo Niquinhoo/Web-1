@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { productos, publicidades, categorias } = require('../data/db');
+const { publicidades, categorias } = require('../data/db');
+const { getAllProducts } = require('../services/product.service');
 
 router.get('/', (req, res) => {
+    const productos = getAllProducts();
+
     res.render('pages/home/home-page', { productos, publicidades, categorias });
 });
 

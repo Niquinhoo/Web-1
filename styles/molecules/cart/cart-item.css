@@ -41,7 +41,27 @@
     color: var(--text-primary);
 }
 
+.item-meta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--brand-primary);
+}
+
+.item-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 52ch;
+}
+
 .item-quantity {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.item-unit-price {
     font-size: 0.95rem;
     color: var(--text-secondary);
 }
@@ -49,12 +69,23 @@
 .cart-item-price-wrapper {
     text-align: right;
     margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 110px;
 }
 
 .item-price {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--brand-dark);
+}
+
+.item-price-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
 }
 
 .cart-item-remove {

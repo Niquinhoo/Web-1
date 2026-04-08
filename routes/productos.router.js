@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { productos, categorias } = require('../data/db');
+const { categorias } = require('../data/db');
+const {
+    getProductById,
+    getRelatedProducts,
+    getRandomProducts
+} = require('../services/product.service');
 
 router.get('/', (req, res) => {
     res.redirect('/');
@@ -8,14 +13,13 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id;
-    const producto = productos.find(p => p.id === id);
+    const producto = getProductById(id);
 
     if (producto) {
-        const relatedProducts = productos.filter(p => p.category === producto.category && p.id !== id);
+        const relatedProducts = getRelatedProducts(producto);
         res.render('pages/product/product-detail-page', { producto, relatedProducts, categorias });
     } else {
-        // shuffle and slice for suggested products
-        const randomProducts = [...productos].sort(() => 0.5 - Math.random()).slice(0, 4);
+        const randomProducts = getRandomProducts(4);
         res.render('pages/product/product-not-found-page', { randomProducts, categorias });
     }
 });
