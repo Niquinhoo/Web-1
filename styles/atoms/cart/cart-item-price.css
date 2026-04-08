@@ -1,1 +1,5 @@
-.cart-item-price { font-size: 1rem; font-weight: 700; color: var(--primary-color, #e63946); }
+.cart-item-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color, #0ca134);
+}

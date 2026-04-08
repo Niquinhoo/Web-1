@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    position: relative; /* Fix for absolute positioning inside the nav */
 }
 
 .navbar-logo {
@@ -50,10 +51,6 @@
 @media (max-width: 900px) {
     .navbar-container {
         gap: 1rem;
-    }
-    
-    .search-bar {
-        display: none; /* Ocultar en tablets/móviles para mostrar un ícono después */
     }
 }
 

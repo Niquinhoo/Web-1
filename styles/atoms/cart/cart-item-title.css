@@ -1,1 +1,6 @@
-.cart-item-title { font-size: 1.1rem; font-weight: 600; color: var(--text-color, #333); margin: 0; }
+.cart-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color, #333);
+    margin: 0;
+}

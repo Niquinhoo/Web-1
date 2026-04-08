@@ -5,7 +5,6 @@ const productos = [
         description: 'Doble medallón de 120g de carne seleccionada, queso cheddar derretido, panceta crocante y nuestra salsa secreta en pan brioche artesanal.',
         price: 1200,
         src: '/assets/productos/hamburguesasmash.png',
-        badge: { text: 'Más vendido', type: 'offer' },
         category: 'Alimentos'
     },
     {
@@ -14,7 +13,6 @@ const productos = [
         description: 'Masa madre de fermentación lenta, salsa de tomates italianos, muzzarella fior di latte, ajo, y hojas de albahaca fresca.',
         price: 1500,
         src: '/assets/productos/pizzanapo.png',
-        badge: { text: 'Especial', type: 'new' },
         category: 'Alimentos'
     },
     {
@@ -31,7 +29,6 @@ const productos = [
         description: 'El clásico argentino. Capas de galletitas de chocolate humedecidas en café, intercaladas con la más suave mezcla de dulce de leche y queso crema.',
         price: 600,
         src: '/assets/productos/chocotorta.png',
-        badge: { text: 'Delicia', type: 'new' },
         category: 'Alimentos'
     },
     {
@@ -40,7 +37,6 @@ const productos = [
         description: 'Whiskey de malta escocés con 12 años de añejamiento. Notas de roble, vainilla y un final suavemente ahumado.',
         price: 4500,
         src: '/assets/productos/whiskey.png',
-        badge: { text: 'Black Label', type: 'coming-soon' },
         category: 'Bebidas'
     }
 ];
@@ -72,7 +68,7 @@ const categorias = [
 ];
 
 const carrito = [
-    { productId: '1', quantity: 2 },
+    { productId: '1', quantity: 5 },
     { productId: '2', quantity: 1 },
     { productId: '3', quantity: 3 }
 ];

@@ -1,1 +1,12 @@
-.discount-input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; flex-grow: 1; outline: none; } .discount-input:focus { border-color: var(--primary-color, #e63946); }
+.discount-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    flex-grow: 1;
+    outline: none;
+}
+
+.discount-input:focus {
+    border-color: var(--primary-color, #e63946);
+}

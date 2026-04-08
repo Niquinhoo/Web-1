@@ -1,0 +1,10 @@
+***Código:** #main-s1-us7*
+
+***Nombre:** Construir página de carrito*
+
+Ahora con el carrito basicamente hice un stack de todo, sume estetica propia para el carrito basadas en la estructura
+que tengo en el repositorio de AtomicDesign, le tuve que crear su router y su service para poder manejar data real
+y no solamente pasarle hardcodeado los precios, con esto evito tener que ajustar nuevamente el carrito y tener escalabilidad cuando tenga posibilidad de tener un backend
+Unifiqué el checkout dentro del /cart porque no me gusta el tener que realizar toda una estructura atomica nuevamente para algo que se puede stackear en el carrito
+Queda igual o más limpio y es más facil de hacer, lo que si quedará pendiente si esto escala, es tener una pagina de checkout con areference a un metodo de pago real como mercadopago, tarjetas, etc   
+Igualmente tendré que hacer un checkout aparte pero ya tengo un pequeño box que yo lo tomo como checkout
