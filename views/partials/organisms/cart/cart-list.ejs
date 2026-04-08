@@ -1,4 +1,4 @@
-<div class="cart-list">
+<section class="cart-list" aria-label="Productos del carrito">
     <% if (items && items.length > 0) { %>
         <% items.forEach(item => { %>
             <%- include('../../molecules/cart/cart-item', { item: item }) %>
@@ -8,4 +8,4 @@
             <p>Tu carrito está vacío.</p>
         </div>
     <% } %>
-</div>
+</section>

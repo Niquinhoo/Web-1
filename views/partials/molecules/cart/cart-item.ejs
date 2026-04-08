@@ -1,16 +1,18 @@
 <article class="cart-item">
     <div class="cart-item-image">
-        <img src="<%= item.src %>" alt="<%= item.title %>">
+        <%- include('../../atoms/cart/cart-item-image', {
+            image: item.src,
+            title: item.title
+        }) %>
     </div>
     <div class="cart-item-info">
-        <h3 class="item-title"><%= item.title %></h3>
+        <%- include('../../atoms/cart/cart-item-title', { title: item.title }) %>
         <p class="item-meta"><%= item.category %></p>
-        <p class="item-description"><%= item.description %></p>
-        <p class="item-quantity">Cantidad: <%= item.quantity %></p>
         <p class="item-unit-price">Precio unitario: $<%= item.unitPrice %></p>
+        <%- include('../../molecules/cart/cart-item-actions', { quantity: item.quantity }) %>
     </div>
     <div class="cart-item-price-wrapper">
-        <span class="item-price">$<%= item.subtotal %></span>
+        <%- include('../../atoms/cart/cart-item-price', { price: '$' + item.subtotal }) %>
         <span class="item-price-label">Subtotal</span>
     </div>
     <button class="cart-item-remove" aria-label="Eliminar producto" title="Eliminar">&times;</button>
