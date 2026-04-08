@@ -1,0 +1,1 @@
+.checkout-btn { background-color: var(--primary-color, #e63946); color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; width: 100%; transition: background-color 0.2s; } .checkout-btn:hover { background-color: var(--primary-hover, #d62828); }

@@ -19,4 +19,27 @@
 
 /* Templates */
 @import url('templates/auth-layout.css');
+@import url('templates/cart-layout.css');
+
+/* Cart Atoms */
+@import url('atoms/cart/cart-item-image.css');
+@import url('atoms/cart/cart-item-title.css');
+@import url('atoms/cart/cart-item-price.css');
+@import url('atoms/cart/quantity-btn.css');
+@import url('atoms/cart/quantity-counter.css');
+@import url('atoms/cart/discount-input.css');
+@import url('atoms/cart/checkout-btn.css');
+@import url('atoms/cart/back-btn.css');
+@import url('atoms/cart/search-input.css');
+
+/* Cart Molecules */
+@import url('molecules/cart/search-bar.css');
+@import url('molecules/cart/cart-item.css');
+@import url('molecules/cart/cart-item-actions.css');
+@import url('molecules/cart/discount-form.css');
+
+/* Cart Organisms */
+@import url('organisms/cart/cart-header.css');
+@import url('organisms/cart/cart-list.css');
+@import url('organisms/cart/cart-summary.css');
 

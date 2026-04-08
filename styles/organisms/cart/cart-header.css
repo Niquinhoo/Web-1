@@ -1,0 +1,1 @@
+.cart-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } .store-name { font-size: 1.5rem; font-weight: bold; color: var(--primary-color, #e63946); }
