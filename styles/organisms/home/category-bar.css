@@ -1,11 +1,10 @@
 .category-bar-section {
     width: 100%;
-    /* removed solid background so it appears floating */
     background-color: transparent;
     padding: 2rem 1rem;
     margin-bottom: 2rem;
     display: flex;
-    justify-content: center; /* center the floating bar container */
+    justify-content: center;
 }
 
 .category-bar {
@@ -15,13 +14,11 @@
     margin: 0 auto;
     padding: 1rem 2rem;
     overflow-x: auto;
-    border-radius: 50px; /* high border radius for floating pill aesthetic */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* floating soft shadow */
-    border: 1px solid rgba(0, 0, 0, 0.03); /* subtle border to isolate it */
-    
-    /* Hide scrollbar for clean aesthetic */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .category-bar::-webkit-scrollbar {
@@ -34,4 +31,59 @@
     flex-wrap: nowrap;
     align-items: center;
     /* Removed padding-bottom to ensure perfect vertical centering within the pill */
+}
+
+/* Expand button base styles */
+.category-expand-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .category-bar {
+        border-radius: 20px;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        background: rgba(255, 255, 255, 0.95);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-bar.expanded {
+        box-shadow: 0 20px 40px -12px rgba(33, 181, 148, 0.2);
+        border-color: var(--brand-green, #21b594);
+        background: rgba(255, 255, 255, 0.98);
+    }
+
+    .category-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem 0.5rem;
+        width: 100%;
+        max-height: 85px; /* Fits exactly the first row */
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .category-bar.expanded .category-list {
+        max-height: 400px; /* Big enough to fit all 3 rows */
+    }
+
+    /* Override min-width on mobile to prevent overflow */
+    .category-list .category-item {
+        min-width: 0;
+        padding: 0.25rem;
+    }
+
+    .category-expand-btn {
+        display: flex;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
 }

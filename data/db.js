@@ -64,7 +64,8 @@ const categorias = [
     { name: 'Juegos', icon: '🎮', type: 'other' },
     { name: 'Automotor', icon: '🚗', type: 'other' },
     { name: 'Hogar', icon: '🏠', type: 'other' },
-    { name: 'Otros', icon: '📦', type: 'other' }
+    { name: 'Otros', icon: '📦', type: 'other' },
+    { name: 'Proximamente', icon: '❓', type: 'other' }
 ];
 
 const carrito = [

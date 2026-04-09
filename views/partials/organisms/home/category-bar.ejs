@@ -7,5 +7,29 @@
                 <% }) %>
             <% } %>
         </div>
+        <button class="category-expand-btn category-item" onclick="toggleCategories()" type="button">
+            <div class="category-icon category-icon-plus">+</div>
+            <div class="category-text category-text-more">Ver más</div>
+        </button>
     </nav>
 </section>
+
+<script>
+    function toggleCategories() {
+        const bar = document.querySelector('.category-bar');
+        const list = document.querySelector('.category-list');
+        const btnPlus = document.querySelector('.category-icon-plus');
+        const btnText = document.querySelector('.category-text-more');
+        
+        if (bar.classList.contains('expanded')) {
+            bar.classList.remove('expanded');
+            btnPlus.innerHTML = '+';
+            btnText.innerHTML = 'Ver más';
+        } else {
+            bar.classList.add('expanded');
+            btnPlus.innerHTML = '-';
+            btnText.innerHTML = 'Ocultar';
+        }
+    }
+</script>
+

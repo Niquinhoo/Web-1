@@ -40,7 +40,7 @@
 </head>
 <body class="home-layout">
     <%- include('../organisms/home/navbar') %>
-    
+
     <main class="main-content">
         <% if (locals.components) { %>
             <% components.forEach(comp => { %>
@@ -48,6 +48,8 @@
             <% }) %>
         <% } %>
     </main>
+
+    <%- include('../organisms/home/category-bar') %>
     
     <%- include('../organisms/footer.ejs') %>
 </body>
