@@ -1,0 +1,53 @@
+# Integración Mobile - Documentación del Proyecto
+
+Esta documentación detalla cómo se ha implementado la adaptabilidad móvil (Responsiveness) en la aplicación, asegurando una experiencia óptima en diversos dispositivos y tamaños de pantalla.
+
+## 1. Estrategia de Diseño Responsivo
+
+La aplicación sigue una estrategia de **Diseño Adaptativo** utilizando Media Queries de CSS integradas directamente en la arquitectura de **Atomic Design**. En lugar de tener un archivo CSS único para móvil, la responsabilidad de la adaptación se distribuye en cada componente (átomos, moléculas, organismos).
+
+### Meta Viewport
+Para asegurar el correcto renderizado y escalado en dispositivos móviles, se ha incluido la siguiente etiqueta meta en los archivos de layout/template (`home-layout.ejs`, `product-layout.ejs`, `cart-layout.ejs`, `auth-temp.ejs`):
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+## 2. Breakpoints Principales
+
+Se utilizan los siguientes puntos de interrupción estándar para adaptar la interfaz:
+
+- **600px - 640px (Mobile):** Ajustes para teléfonos inteligentes en modo vertical.
+- **768px (Tablet):** Transición entre diseños de columna única y diseños multi-columna.
+- **900px (Desktop Low/Tablet Landscape):** Optimización para pantallas medianas y portátiles pequeños.
+
+## 3. Implementaciones Clave por Componente
+
+### Navegación y Header (`organisms/home/navbar.css`)
+- En pantallas menores a **900px**, el menú de navegación se adapta para optimizar el espacio.
+- A los **640px**, se simplifican los elementos de navegación para facilitar el uso táctil.
+
+### Grilla de Productos (`organisms/home/product-grid.css`)
+- La visualización de productos utiliza CSS Grid que se ajusta automáticamente.
+- En móviles (**640px**), la cantidad de columnas se reduce para que las tarjetas de producto mantengan un tamaño legible y fácil de interactuar.
+
+### Detalle de Producto (`organisms/product/product-detail.css`)
+- Se utiliza un cambio de flujo de `flex-direction: column` en móvil a un diseño de dos columnas en tablets/desktop (**768px**).
+- La galería de imágenes (`product-gallery.css`) y la información del producto (`product-info.css`) ajustan sus anchos y márgenes para aprovechar el ancho total de la pantalla en dispositivos pequeños.
+
+### Carrito de Compras (`organisms/cart/`)
+- El contenedor del carrito (`cart-container.css`) ajusta su padding y estructura a los **900px**.
+- La lista de items (`cart-list.css`) y los items individuales (`cart-item.css`) se reestructuran a los **600px** para evitar el desbordamiento horizontal, apilando la información de precio y cantidad de manera vertical.
+
+## 4. Estructura de Archivos
+La lógica responsive se encuentra distribuida en los siguientes archivos clave:
+- `styles/organisms/home/navbar.css`
+- `styles/organisms/home/product-grid.css`
+- `styles/organisms/product/product-detail.css`
+- `styles/organisms/cart/cart-container.css`
+- `styles/molecules/cart/cart-item.css`
+
+## 5. Mejores Prácticas Aplicadas
+- **Unidades Flexibles:** Uso de porcentajes y unidades relativas para asegurar que los componentes fluyan correctamente.
+- **Touch-Friendly:** Ajuste de tamaños de botones y zonas interactivas en resoluciones bajas.
+- **Carga de Imágenes:** Las imágenes se adaptan al ancho del contenedor para evitar scroll horizontal.
