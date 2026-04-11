@@ -2,3 +2,32 @@
 
 ***Nombre:** Definir enlaces y esquema de navegación*
 
+Realizé el flujo de rutas que fue sugerido desde la cátedera. Solamente me falta agregar el checkout que va a ser de las ultimas
+integraciones que realizaré, de momento le pedí a Claude que me diagrame como quedó el esquema de rutas en el proyecto:
+El esquema lógico de navegación y sus correspondientes escenarios se cumplen en su totalidad. Esto es gracias a la correcta interconexión de las rutas de Express y a los enlaces dispuestos a lo largo de las vistas de EJS, de la siguiente manera:
+
+**Contenido generado por Inteligencia Artificial**
+
+1. **🏠Home a 📦Product**:
+   En el listado de productos dentro de la vista *Home*, cada componente de tarjeta (`partials/molecules/home/product-card.ejs`) cuenta con una etiqueta de anclaje directa hacia el detalle del producto: `href="/producto/<%= product.id %>"`.
+
+2. **🏠Home a 🛒Cart**:
+   La vista principal incorpora una barra de navegación general (`navbar.ejs`). En ella existe un enlace hacia `/cart`, el cual siempre se encuentra visible para visualizar el estado de la compra.
+
+3. **🏠Home a 🔑Login** y **🏠Home a ➕Register**:
+   Existen botones y textos de navegación desde la barra general y el encabezado (`header.ejs`) que facilitan acceder en cualquier momento tanto a `/login` ("Mi Cuenta") como a `/register`.
+
+4. **📦Product a 🛒Cart**:
+   Al compartir la página de detalle (`product-detail-page.ejs`) la plantilla madre (`product-layout.ejs`), esta vuelve a renderizar el *navbar* o la cabecera que incluye siempre el acceso al carrito (`/cart`).
+
+5. **🛒Cart a 💵Checkout**:
+   Específicamente en los componentes que conforman la página del carrito, el botón de cierre cuenta con la directiva precisa (`partials/atoms/cart/checkout-btn.ejs`) para dirigir al proceso de pago en la ruta `/checkout`.
+
+6. **🔑Login a 🏠 Home**:
+   El inicio de sesión exitoso se encuentra resuelto de manera afirmativa en la ruta respectiva de Express (`routes/login.router.js`), en donde toda operación válida `POST` devuelve una respuesta de redirección hacia la página de inicio: `res.redirect('/home')`.
+
+7. **🔑Login a ➕Register** (y de manera inversa):
+   Los componentes de los formularios de autenticación (`partials/templates/auth-temp.ejs` / `login-page.ejs`) inyectan dinámicamente un llamado a la acción para redirigir al flujo contrario a través de un link. Es decir, desde Login se incita a ir a `/register` con un enlace, y desde el formulario de registro hacia `/login`.
+
+8. **➕Register a 🏠Home**:
+   Al verificar este flujo, la ruta (`routes/register.router.js`) estaba redirigiendo nuevamente hacia `/login`. Esto representaba un error frente a lo planificado en el *navigation tree*. Este inconveniente **ya ha sido resuelto y corregido**, y ahora la redirección apunta debidamente al inicio tras el alta: `res.redirect('/home')`.
