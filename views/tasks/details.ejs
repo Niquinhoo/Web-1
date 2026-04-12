@@ -2,12 +2,20 @@
 
 <main class="container">
   <div class="back-nav">
-    <a href="/tasks" class="btn-back">← Volver a la lista</a>
+    <a href="/tasks" class="btn-back">
+      <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back</span>
+      Volver a la lista
+    </a>
   </div>
 
   <div class="detail-card">
     <div class="detail-header">
-      <h1><%= task.title %></h1>
+      <div>
+        <span class="label-eyebrow">
+          <span class="file-badge">TAREA #<%= task.id %></span>
+        </span>
+        <h1><%= task.title %></h1>
+      </div>
       <div class="difficulty-badge large">
         <span class="label">Dificultad:</span>
         <% for(let i = 1; i <= 3; i++) { %>
@@ -17,12 +25,15 @@
     </div>
 
     <div class="detail-body">
-      <h2>Descripción</h2>
+      <h2>
+        <span class="material-symbols-outlined" style="font-size:0.95rem;vertical-align:middle;margin-right:4px;">description</span>
+        Descripción
+      </h2>
       <p class="task-description"><%= task.description %></p>
     </div>
 
     <div class="detail-footer">
-      <span class="task-id">Tarea #<%= task.id %></span>
+      <span class="task-id">tasks.model.js · id: <%= task.id %></span>
     </div>
   </div>
 </main>

@@ -2,8 +2,12 @@
 
 <main class="container">
   <div class="page-header">
-    <h1>📋 Lista de Tareas</h1>
-    <p class="subtitle">Organizá tu aprendizaje paso a paso</p>
+    <span class="label-eyebrow">
+      <span class="material-symbols-outlined" style="font-size:0.9rem;vertical-align:middle;">checklist</span>
+      Todas las tareas
+    </span>
+    <h1>Lista de Tareas</h1>
+    <p class="subtitle">Hacé clic en una tarea para ver su detalle</p>
   </div>
 
   <ul class="task-list">
@@ -15,12 +19,12 @@
             <span class="task-description"><%= t.description %></span>
           </div>
           <div class="task-meta">
-            <span class="difficulty-badge">
+            <div class="difficulty-badge">
               <% for(let i = 1; i <= 3; i++) { %>
                 <span class="star <%= i <= t.difficulty ? 'filled' : '' %>">★</span>
               <% } %>
-            </span>
-            <span class="arrow">→</span>
+            </div>
+            <span class="material-symbols-outlined arrow">arrow_forward</span>
           </div>
         </a>
       </li>

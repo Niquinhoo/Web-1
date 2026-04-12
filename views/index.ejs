@@ -2,15 +2,79 @@
 
 <main class="container">
   <div class="hero">
-    <div class="hero-content">
+    <div>
+      <span class="label-eyebrow">Trabajo Práctico · MVC</span>
       <h1 class="hero-title">Bienvenido a<br><span class="accent">Task Manager</span></h1>
-      <p class="hero-subtitle">Una aplicación de lista de tareas construida con el patrón <strong>MVC</strong> usando Express y EJS.</p>
-      <a href="/tasks" class="btn-primary">Ver todas las tareas →</a>
+      <p class="hero-subtitle">
+        Una aplicación de lista de tareas construida sobre el patrón <strong>MVC</strong>
+        usando Node.js, Express y EJS como motor de plantillas.
+      </p>
+      <a href="/tasks" class="btn-primary">
+        <span class="material-symbols-outlined" style="font-size:1.1rem;">checklist</span>
+        Ver todas las tareas
+      </a>
     </div>
-    <div class="hero-badge">
-      <div class="badge-item">M <span>Modelo</span></div>
-      <div class="badge-item">V <span>Vista</span></div>
-      <div class="badge-item">C <span>Controlador</span></div>
+
+    <!-- MVC badge row -->
+    <div class="mvc-badges">
+      <div class="mvc-badge">
+        <div class="mvc-badge-letter">M</div>
+        <div class="mvc-badge-info">
+          <span class="mvc-badge-name">Modelo</span>
+          <span class="mvc-badge-role">Datos y lógica</span>
+        </div>
+      </div>
+      <div class="mvc-badge">
+        <div class="mvc-badge-letter">V</div>
+        <div class="mvc-badge-info">
+          <span class="mvc-badge-name">Vista</span>
+          <span class="mvc-badge-role">Plantillas EJS</span>
+        </div>
+      </div>
+      <div class="mvc-badge">
+        <div class="mvc-badge-letter">C</div>
+        <div class="mvc-badge-info">
+          <span class="mvc-badge-name">Controlador</span>
+          <span class="mvc-badge-role">Lógica de rutas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow steps -->
+    <div>
+      <span class="label-eyebrow">Flujo de una solicitud</span>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <span class="material-symbols-outlined step-icon">language</span>
+          <span class="step-title">Navegador</span>
+          <span class="step-desc">GET /tasks</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <span class="material-symbols-outlined step-icon">alt_route</span>
+          <span class="step-title">Ruta</span>
+          <span class="step-desc">Express enruta la petición</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <span class="material-symbols-outlined step-icon">settings_input_component</span>
+          <span class="step-title">Controlador</span>
+          <span class="step-desc">Pide datos al modelo</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <span class="material-symbols-outlined step-icon">database</span>
+          <span class="step-title">Modelo</span>
+          <span class="step-desc">Devuelve los datos</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">5</div>
+          <span class="material-symbols-outlined step-icon">visibility</span>
+          <span class="step-title">Vista EJS</span>
+          <span class="step-desc">Renderiza el HTML final</span>
+        </div>
+      </div>
     </div>
   </div>
 </main>
