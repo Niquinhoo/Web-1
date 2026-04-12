@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<main class="container">
+  <div class="page-header">
+    <h1>📋 Lista de Tareas</h1>
+    <p class="subtitle">Organizá tu aprendizaje paso a paso</p>
+  </div>
+
+  <ul class="task-list">
+    <% tasks.forEach(t => { %>
+      <li class="task-card difficulty-<%= t.difficulty %>">
+        <a href="/tasks/<%= t.id %>" class="task-link">
+          <div class="task-info">
+            <span class="task-title"><%= t.title %></span>
+            <span class="task-description"><%= t.description %></span>
+          </div>
+          <div class="task-meta">
+            <span class="difficulty-badge">
+              <% for(let i = 1; i <= 3; i++) { %>
+                <span class="star <%= i <= t.difficulty ? 'filled' : '' %>">★</span>
+              <% } %>
+            </span>
+            <span class="arrow">→</span>
+          </div>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</main>
+
+<%- include('../partials/footer') %>

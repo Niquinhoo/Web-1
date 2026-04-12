@@ -1,0 +1,12 @@
+<%- include('./partials/header') %>
+
+<main class="container">
+  <div class="error-page">
+    <div class="error-code">404</div>
+    <h1>Página no encontrada</h1>
+    <p><%= message || "El recurso que buscás no existe." %></p>
+    <a href="/tasks" class="btn-primary">← Volver al inicio</a>
+  </div>
+</main>
+
+<%- include('./partials/footer') %>
