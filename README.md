@@ -13,20 +13,20 @@ graph TD
 
 | Rama | Proyecto | Descripción | Tecnologías |
 | :--- | :--- | :--- | :--- |
-| `master` | Índice | Documentación general del repositorio. | Markdown |
-| `MVC-Web-1` | Task Manager | Aplicación de gestión de tareas aplicando el patrón MVC. | Express, EJS, Node.js |
-| `Web-1-STP1` | E-commerce | Plataforma de comercio electrónico con arquitectura Atomic Design. | Express, EJS, CSS (Modular), Atomic Design |
+| [`master`](https://github.com/Niquinhoo/Web-1/tree/master) | Índice | Documentación general del repositorio. | Markdown |
+| [`MVC-Web-1`](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) | Task Manager | Aplicación de gestión de tareas aplicando el patrón MVC. | Express, EJS, Node.js |
+| [`Web-1-STP1`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) | E-commerce | Plataforma de comercio electrónico con arquitectura Atomic Design. | Express, EJS, CSS (Modular), Atomic Design |
 
 ---
 
 ## 🚀 Proyectos Distribuidos
 
-### 1. Gestor de Tareas (Rama: `MVC-Web-1`)
+### 1. [Gestor de Tareas](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) (Rama: `MVC-Web-1`)
 Una implementación limpia del patrón **Modelo-Vista-Controlador**. 
 - **Estructura:** Separación clara entre lógica de datos (`models`), lógica de negocio (`controllers`) y presentación (`views`).
 - **Funcionalidad:** Listado y detalle de tareas pendientes.
 
-### 2. E-commerce Premium (Rama: `Web-1-STP1`)
+### 2. [E-commerce Premium](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) (Rama: `Web-1-STP1`)
 Un proyecto avanzado que utiliza **Atomic Design** para una interfaz altamente modular y escalable.
 - **Arquitectura:** Componentes divididos en Átomos, Moléculas, Organismos y Plantillas.
 - **Características:** 
