@@ -19,5 +19,9 @@
 
     <%- include('../organisms/footer.ejs') %>
 
+    <% if (locals.pageScript) { %>
+        <script src="<%= locals.pageScript %>"></script>
+    <% } %>
+
 </body>
 </html>

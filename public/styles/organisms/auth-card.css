@@ -22,3 +22,12 @@
     gap: 15px; 
 }
 
+.auth-alert {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background-color: #fff4e5;
+    color: #8a4b08;
+    text-align: left;
+    font-size: 0.9rem;
+}

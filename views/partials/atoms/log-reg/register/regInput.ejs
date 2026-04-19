@@ -1,10 +1,30 @@
-<input 
-    type="<%= locals.type || 'text' %>" 
-    class="log-reg-input"
-    id="<%= locals.id || locals.name %>" 
-    name="<%= locals.name || 'field' %>"
-    placeholder="<%= locals.placeholder || 'Escribe aquí...' %>"
-    value="<%= locals.value || '' %>"
-    autocomplete="<%= locals.autocomplete || 'on' %>"
-    <% if (locals.required !== false) { %> required <% } %>
->
+<%
+    const inputId = locals.id || locals.name;
+    const errorId = `${inputId}-error`;
+%>
+
+<div class="form-field">
+    <% if (locals.label) { %>
+        <label class="log-reg-label" for="<%= inputId %>"><%= locals.label %></label>
+    <% } %>
+
+    <input
+        type="<%= locals.type || 'text' %>"
+        class="log-reg-input<%= locals.error ? ' is-invalid' : '' %>"
+        id="<%= inputId %>"
+        name="<%= locals.name || 'field' %>"
+        placeholder="<%= locals.placeholder || 'Escribe aqui...' %>"
+        value="<%= locals.value || '' %>"
+        autocomplete="<%= locals.autocomplete || 'on' %>"
+        data-field="<%= locals.name || 'field' %>"
+        aria-invalid="<%= locals.error ? 'true' : 'false' %>"
+        aria-describedby="<%= errorId %>"
+        <% if (locals.required !== false) { %>required<% } %>
+        <% if (locals.minlength) { %>minlength="<%= locals.minlength %>"<% } %>
+    >
+
+    <%- include('./field-error.ejs', {
+        id: errorId,
+        message: locals.error || ''
+    }) %>
+</div>

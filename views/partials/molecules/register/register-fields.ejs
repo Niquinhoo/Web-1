@@ -1,0 +1,49 @@
+<%- include('../../atoms/log-reg/register/regInput.ejs', {
+    type: 'text',
+    name: 'firstName',
+    label: 'Nombre',
+    placeholder: 'Tu nombre',
+    autocomplete: 'given-name',
+    value: locals.values.firstName || '',
+    error: locals.errors.firstName
+}) %>
+
+<%- include('../../atoms/log-reg/register/regInput.ejs', {
+    type: 'text',
+    name: 'lastName',
+    label: 'Apellido',
+    placeholder: 'Tu apellido',
+    autocomplete: 'family-name',
+    value: locals.values.lastName || '',
+    error: locals.errors.lastName
+}) %>
+
+<%- include('../../atoms/log-reg/register/regInput.ejs', {
+    type: 'email',
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Tu email',
+    autocomplete: 'email',
+    value: locals.values.email || '',
+    error: locals.errors.email
+}) %>
+
+<%- include('../../atoms/log-reg/register/regInput.ejs', {
+    type: 'password',
+    name: 'password',
+    label: 'Contrasena',
+    placeholder: 'Crea una contrasena segura',
+    autocomplete: 'new-password',
+    minlength: 8,
+    error: locals.errors.password
+}) %>
+
+<%- include('../../atoms/log-reg/register/regInput.ejs', {
+    type: 'password',
+    name: 'confirmPassword',
+    label: 'Repetir contrasena',
+    placeholder: 'Repite tu contrasena',
+    autocomplete: 'new-password',
+    minlength: 8,
+    error: locals.errors.confirmPassword
+}) %>

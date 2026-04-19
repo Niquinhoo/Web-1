@@ -18,6 +18,7 @@ app.use('/styles', express.static('./public/styles'));
 
 // Servimos la carpeta 'assets' para que las imágenes puedan cargar
 app.use('/assets', express.static('./assets'));
+app.use('/scripts', express.static('./public/scripts'));
 
 // Middleware para procesar datos de formularios (POST)
 app.use(express.urlencoded({ extended: false }));

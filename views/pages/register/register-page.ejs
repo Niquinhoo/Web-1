@@ -1,13 +1,17 @@
-<%- include('../../partials/templates/auth-temp.ejs', { 
+<%- include('../../partials/templates/auth-temp.ejs', {
     pageTitle: 'Crear una cuenta - Pediloo',
     authMolecule: '../../partials/molecules/register/regModal.ejs',
+    pageScript: '/scripts/register-validation.js',
     authProps: {
-        isRegister: true, 
-        title: '¡Registrate!', 
-        action: '/register', 
-        btnText: 'Crear mi cuenta', 
-        navMessage: '¿Ya tienes cuenta?', 
-        navLinkText: 'Inicia Sesión', 
-        navUrl: '/login' 
+        isRegister: true,
+        title: 'Registrate',
+        action: '/register',
+        btnText: 'Crear mi cuenta',
+        navMessage: 'Ya tienes cuenta?',
+        navLinkText: 'Inicia sesion',
+        navUrl: '/login',
+        errors: locals.errors || {},
+        generalErrors: locals.generalErrors || [],
+        values: locals.values || {}
     }
 }) %>

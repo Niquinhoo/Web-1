@@ -1,92 +1,58 @@
-<%# 
-  Propiedades esperadas:
-  - isRegister: boolean (true para registro, false para login)
-  - title: string (Ej: "¡Registrate!")
-  - action: string (URL del form, ej: "/auth/login")
-  - btnText: string (Texto del botón)
-  - navMessage: string (Texto previo al link)
-  - navLinkText: string (Texto del link)
-  - navUrl: string (URL del link)
-%>
-
 <div class="o-auth-card">
     <h1 class="a-auth-title"><%= locals.title %></h1>
 
-    <form action="<%= locals.action %>" method="POST" class="m-auth-form">
-        
-        <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
-                type: 'text', 
-                name: 'name', 
-                placeholder: 'Tu nombre completo',
-                autocomplete: 'name'
-            }) %>
-        <% } %>
+    <% if (locals.isRegister && locals.generalErrors && locals.generalErrors.length) { %>
+        <div class="auth-alert" role="alert">
+            <% locals.generalErrors.forEach((message) => { %>
+                <p><%= message %></p>
+            <% }) %>
+        </div>
+    <% } %>
 
+    <form action="<%= locals.action %>" method="POST" class="m-auth-form" <% if (locals.isRegister) { %>novalidate data-register-form="true"<% } %>>
         <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
-                type: 'email', 
-                name: 'email', 
+            <%- include('../../molecules/register/register-fields.ejs', {
+                values: locals.values || {},
+                errors: locals.errors || {}
+            }) %>
+        <% } else { %>
+            <%- include('../../atoms/log-reg/login/logInput.ejs', {
+                type: 'email',
+                name: 'email',
                 placeholder: 'Tu email',
                 autocomplete: 'email'
             }) %>
-        <% } else { %>
-            <%- include('../../atoms/log-reg/login/logInput.ejs', { 
-                type: 'email', 
-                name: 'email', 
-                placeholder: 'Tu email',
-                autocomplete: 'email'
-            }) %>
-        <% } %>
 
-        <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
-                type: 'password', 
-                name: 'password', 
-                placeholder: 'Tu nueva contraseña',
-                autocomplete: 'new-password'
-            }) %>
-        <% } else { %>
-            <%- include('../../atoms/log-reg/login/logInput.ejs', { 
-                type: 'password', 
-                name: 'password', 
-                placeholder: 'Tu contraseña',
+            <%- include('../../atoms/log-reg/login/logInput.ejs', {
+                type: 'password',
+                name: 'password',
+                placeholder: 'Tu contrasena',
                 autocomplete: 'current-password'
             }) %>
         <% } %>
 
         <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/register/regInput.ejs', { 
-                type: 'password', 
-                name: 'confirm_password', 
-                placeholder: 'Repite tu contraseña',
-                autocomplete: 'new-password'
-            }) %>
-        <% } %>
-
-        <% if (locals.isRegister) { %>
-            <%- include('../../atoms/log-reg/register/regButton.ejs', { 
-                buttonText: locals.btnText 
+            <%- include('../../atoms/log-reg/register/regButton.ejs', {
+                buttonText: locals.btnText
             }) %>
         <% } else { %>
-            <%- include('../../atoms/log-reg/login/logButton.ejs', { 
-                buttonText: locals.btnText 
+            <%- include('../../atoms/log-reg/login/logButton.ejs', {
+                buttonText: locals.btnText
             }) %>
         <% } %>
-        
     </form>
-<br>
+
     <% if (locals.isRegister) { %>
-        <%- include('../../atoms/log-reg/register/regLink.ejs', { 
-            message: locals.navMessage, 
-            linkText: locals.navLinkText, 
-            url: locals.navUrl 
+        <%- include('../../atoms/log-reg/register/regLink.ejs', {
+            message: locals.navMessage,
+            linkText: locals.navLinkText,
+            url: locals.navUrl
         }) %>
     <% } else { %>
-        <%- include('../../atoms/log-reg/login/logLink.ejs', { 
-            message: locals.navMessage, 
-            linkText: locals.navLinkText, 
-            url: locals.navUrl 
+        <%- include('../../atoms/log-reg/login/logLink.ejs', {
+            message: locals.navMessage,
+            linkText: locals.navLinkText,
+            url: locals.navUrl
         }) %>
     <% } %>
 </div>
