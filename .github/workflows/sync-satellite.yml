@@ -1,0 +1,38 @@
+name: Sync Branch to Satellite Repo
+
+on:
+  push:
+    branches:
+      - 'Web-1-*'
+      - 'MVC-Web-1'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Push to Satellite Repo
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          REPO_NAME="${{ github.ref_name }}"
+          USER="Niquinhoo"
+          
+          if [ -z "$SYNC_TOKEN" ]; then
+            echo "ERROR: SYNC_TOKEN está vacío. Asegúrate de haberlo configurado en Settings > Secrets."
+            exit 1
+          fi
+          
+          echo "Sincronizando rama $REPO_NAME con el repositorio $REPO_NAME..."
+          
+          # Configurar URL con el token de forma explícita
+          DEST_URL="https://$USER:$SYNC_TOKEN@github.com/$USER/$REPO_NAME.git"
+          
+          # Agregar el remoto y empujar
+          git remote add satellite "$DEST_URL"
+          git push satellite "${{ github.ref_name }}:${{ github.ref_name }}" --force
