@@ -52,10 +52,10 @@ app.use('/account', accountRouter);
 // Rutas de Productos
 app.use('/producto', productosRouter);
 
-// Fallback: Redirige cualquier ruta no definida (404) a la página de Login
+// Fallback: Manejador de error 404 (Páginas no encontradas)
 app.use((req, res) => {
-    console.log(`Ruta no encontrada: ${req.originalUrl}. Redirigiendo a /login`);
-    res.redirect('/login');
+    console.log(`Ruta no encontrada: ${req.originalUrl}. Renderizando 404`);
+    res.status(404).render('pages/404/404-page');
 });
 
 // --- INICIO DEL SERVIDOR ---
