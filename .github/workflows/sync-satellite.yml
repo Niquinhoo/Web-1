@@ -1,4 +1,4 @@
-name: Sync Branch to Satellite Repo
+name: Sync Two-Way
 
 on:
   push:
@@ -16,23 +16,32 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Push to Satellite Repo
+      - name: Sync Between Repos
         env:
           SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
         run: |
-          REPO_NAME="${{ github.ref_name }}"
-          USER="Niquinhoo"
+          CURRENT_REPO="${{ github.event.repository.name }}"
+          USER="${{ github.repository_owner }}"
+          BRANCH_NAME="${{ github.ref_name }}"
           
           if [ -z "$SYNC_TOKEN" ]; then
             echo "ERROR: SYNC_TOKEN está vacío. Asegúrate de haberlo configurado en Settings > Secrets."
             exit 1
           fi
           
-          echo "Sincronizando rama $REPO_NAME con el repositorio $REPO_NAME..."
+          if [ "$CURRENT_REPO" == "Web-1" ]; then
+            # Pushing from Main to Satellite
+            DEST_REPO="$BRANCH_NAME"
+            echo "Sincronizando desde main (Web-1) al satélite ($DEST_REPO)..."
+          else
+            # Pushing from Satellite to Main
+            DEST_REPO="Web-1"
+            echo "Sincronizando desde satélite ($CURRENT_REPO) al repositorio principal ($DEST_REPO)..."
+          fi
           
-          # Configurar URL con el token de forma explícita
-          DEST_URL="https://$USER:$SYNC_TOKEN@github.com/$USER/$REPO_NAME.git"
+          # Configurar URL con token embebido
+          DEST_URL="https://$USER:$SYNC_TOKEN@github.com/$USER/$DEST_REPO.git"
           
-          # Agregar el remoto y empujar
-          git remote add satellite "$DEST_URL"
-          git push satellite "${{ github.ref_name }}:${{ github.ref_name }}" --force
+          # Añadir remoto y empujar
+          git remote add destination "$DEST_URL"
+          git push destination "$BRANCH_NAME:$BRANCH_NAME" --force
