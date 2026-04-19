@@ -1,0 +1,31 @@
+name: Sync Branch to Satellite Repo
+
+on:
+  push:
+    branches:
+      - 'Web-1-*'
+      - 'MVC-Web-1'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Satellite Repo
+        run: |
+          REPO_NAME="${{ github.ref_name }}"
+          USER="Niquinhoo"
+          TOKEN="${{ secrets.SYNC_TOKEN }}"
+          
+          echo "Sincronizando rama $REPO_NAME con el repositorio $REPO_NAME..."
+          
+          # Configurar URL con el token
+          DEST_URL="https://$TOKEN@github.com/$USER/$REPO_NAME.git"
+          
+          # Empujar la rama actual al repositorio con el mismo nombre
+          git remote add satellite "$DEST_URL"
+          git push satellite "${{ github.ref_name }}:${{ github.ref_name }}" --force
