@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // Servimos la carpeta 'styles' para que los archivos HTML/EJS puedan acceder a los CSS
-app.use('/styles', express.static('./styles'));
+app.use('/styles', express.static('./public/styles'));
 
 // Servimos la carpeta 'assets' para que las imágenes puedan cargar
 app.use('/assets', express.static('./assets'));

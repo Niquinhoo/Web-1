@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getCartDetail } = require('../services/cart.service');
+const { getCartDetail } = require('../controllers/cartController');
 
 router.get('/', (req, res) => {
     const cartDetail = getCartDetail();

@@ -1,5 +1,5 @@
-const { carrito } = require('../data/db');
-const { getProductById } = require('./product.service');
+const { carrito } = require('../models/productModel');
+const { getProductById } = require('./productController');
 
 function buildCartItem(cartLine) {
     const product = getProductById(cartLine.productId);

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { publicidades, categorias } = require('../data/db');
-const { getAllProducts } = require('../services/product.service');
+const { publicidades, categorias } = require('../models/productModel');
+const { getAllProducts } = require('../controllers/productController');
 
 router.get('/', (req, res) => {
     const productos = getAllProducts();

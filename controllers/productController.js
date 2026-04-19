@@ -1,4 +1,4 @@
-const { productos } = require('../data/db');
+const { productos } = require('../models/productModel');
 
 function getAllProducts() {
     return productos;

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { categorias } = require('../data/db');
+const { categorias } = require('../models/productModel');
 const {
     getProductById,
     getRelatedProducts,
     getRandomProducts
-} = require('../services/product.service');
+} = require('../controllers/productController');
 
 router.get('/', (req, res) => {
     res.redirect('/');
