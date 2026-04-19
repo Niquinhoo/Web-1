@@ -1,91 +1,55 @@
-## User Story #1 – Reordenar Proyecto
+## User Story #1 - Reordenar Proyecto
 
-<aside>
-🤝
-
-Es recomendable trabajar esta story de forma colaborativa, usando las rutas como subtareas o pasos necesarios para completarla.
-
-</aside>
-
-**Código:** `#main-s2-us1`
+**Codigo:** `#main-s2-us1`
 
 **Nombre:** Reordenar estructura del proyecto y las rutas de los recursos
 
 ### Detalle
 
-Necesitamos reorganizar nuestra app usando la estructura propuesta por el modelo MVC, porque nuestra idea original de estructura no nos permite separar los conceptos de forma adecuada. Con las nuevas formas propuestas estaremos respetando las buenas prácticas.
+La aplicacion necesitaba una reorganizacion para acercarse a una arquitectura MVC y separar mejor responsabilidades entre datos, logica de negocio, renderizado y ruteo. La meta de esta historia no era solo mover archivos, sino dejar una base mas mantenible para seguir creciendo.
 
-<aside>
-⚠️
+### Estado actual del proyecto
 
-No es obligatorio respetar las estructuras propuestas si surgen ideas superadoras.
+El proyecto quedo organizado con una estructura base compatible con MVC:
 
-</aside>
+- `app.js` como punto de entrada del servidor
+- `models/` para datos mockeados
+- `controllers/` para logica de productos y carrito
+- `routes/` para endpoints Express
+- `views/` para vistas EJS
+- `public/` para estilos publicos
+- `assets/` para imagenes y recursos estaticos
 
-- Estructura propuesta 1
-    
-    📁 public
-    
-    📁 src
-    
-        📁 models
-    
-            📄productModel.js
-    
-        📁 controllers
-    
-            📄productController.js
-    
-        📁 views
-    
-            📄products.ejs
-    
-        📁 routes
-    
-            📄productRoute.js
-    
-    ⏯️ app.js
-    
-    ⚙️ package.json
-    
-    📁 assets
-    
-- Estructura propuesta 2
-    
-    📁 public
-    
-    📁 models
-    
-        📄productModel.js
-    
-    📁 controllers
-    
-        📄productController.js
-    
-    📁 views
-    
-        📄products.ejs
-    
-    📁 routes
-    
-        📄productRoute.js
-    
-    ⏯️ server.js
-    
-    ⚙️ package.json
-    
-    📁 assets
+Dentro de `views/` y `public/styles/`, la interfaz tambien evoluciono hacia una organizacion inspirada en **Atomic Design**, separando `atoms`, `molecules`, `organisms` y `templates`. Ese criterio ya se aplica en home, producto, carrito, login, register, 404, account y checkout.
 
----
+### Cumplimiento real de la US1
 
-### ✅ Solución y Cumplimiento de la US1
+La historia se considera **cumplida de forma parcial y funcional**, porque la reorganizacion principal si se hizo, aunque todavia conviven rutas con distinto nivel de madurez dentro del patron MVC.
 
-Se determinó utilizar e implementar la **Estructura propuesta 2**, ya que nos provee una organización clásica del patrón MVC en la ruta base, ideal para esta fase del sprint. A continuación, el detalle de por qué y cómo logramos el objetivo de la User Story:
+**Cambios implementados:**
 
-**Acciones implementadas para respetar el modelo MVC:**
-1. **Modelos (M de MVC):** Creamos la carpeta `/models` y migramos los datos estáticos desde `data/db.js` hacia su nuevo archivo `/models/productModel.js`. De esta manera, centralizamos la responsabilidad de nuestros datos (nuestro *Modelo* para categorías, publicidad, productos y carrito).
-2. **Controladores (C de MVC):** Creamos la carpeta `/controllers`. Renombramos la antigua semántica de la carpeta "services" y movimos su funcionalidad a `/controllers/productController.js` y `/controllers/cartController.js`. Estos actuaron como enlace, extrayendo la información del modelo y validándola para ser expuesta.
-3. **Vistas e Interfaz (V de MVC):** Las vistas ya estaban ubicadas en `/views`. Refinamos la capa estática del proyecto creando un directorio `/public` para alojar los estilos (`/public/styles`), un factor importante para organizar de manera segura qué sirve Express hacia el usuario final.
-4. **Rutas (Routes):** Mantuviemos los endpoints en `/routes/` configurados pero arreglamos todos los puntos internos de integración (`requires`) para que las rutas ahora llamen a nuestros *Controladores* recientemente creados, quienes a su vez interactúan directamente con nuestros *Modelos*.
+1. **Modelo de datos centralizado**
+   Se consolidaron los datos estaticos del proyecto en `models/productModel.js`, donde hoy viven productos, categorias, publicidades y carrito. Esto permite evitar datos dispersos dentro de las rutas o las vistas.
 
-*(Esta estructuración permite cumplir perfectamente con **separar los conceptos de forma adecuada**, base esencial de una arquitectura escalable bajo la metodología MVC).*
+2. **Controladores incorporados**
+   Se agregaron controladores especificos en `controllers/productController.js` y `controllers/cartController.js`. Estos encapsulan logica de consulta, detalle, relacionados, sugerencias aleatorias y armado del carrito.
+
+3. **Rutas separadas**
+   Las rutas quedaron distribuidas en `routes/` y `app.js` se encarga de conectarlas. Esto mejora la legibilidad y evita concentrar toda la navegacion en un unico archivo.
+
+4. **Capa de vistas y recursos estaticos ordenada**
+   Las vistas permanecen en `views/` y los estilos se sirven desde `public/styles`, mientras que las imagenes siguen en `assets/`. Esta division deja mas claro que Express expone como contenido publico.
+
+5. **Profundizacion de la estructura visual**
+   Ademas del orden MVC, se consolidaron nuevas pantallas bajo la logica de Atomic Design. `account-page.ejs` y `checkout-page.ejs` dejaron de ser vistas aisladas y ahora delegan en templates propios (`account-layout` y `checkout-layout`), que a su vez componen organismos, moleculas y atomos reutilizables.
+
+### Observaciones importantes
+
+- No todo el proyecto usa una separacion MVC estricta todavia.
+- `index.router.js` y `productos.router.js` todavia consumen parte de la informacion del modelo de forma directa, aunque ya delegan logica puntual en controladores.
+- `login`, `register`, `account` y `checkout` siguen sin una capa completa de controlador ni persistencia real, aunque `account` y `checkout` ya tienen una estructura visual consistente con Atomic Design.
+- Por eso, la documentacion correcta para esta historia no es "cumplimiento perfecto de MVC", sino una **migracion parcial y consistente hacia MVC**.
+
+### Conclusion
+
+La US1 representa bien el proyecto si se documenta como una **reorganizacion estructural exitosa** y no como una adopcion completa del patron MVC. La base del proyecto ya esta ordenada para trabajar con ese enfoque, pero todavia hay partes que pueden profundizarse en futuros sprints.

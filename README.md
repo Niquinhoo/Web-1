@@ -198,9 +198,9 @@ Esto impacta especialmente en:
 
 - El proyecto usa datos mockeados; no hay base de datos ni autenticacion real.
 - `login` y `register` simulan el flujo mediante redireccion.
-- `checkout.router.js` intenta renderizar `pages/checkout-page`.
-- `account.router.js` intenta renderizar `pages/account-page`.
-- Esas vistas no aparecen actualmente en el arbol del proyecto, por lo que esas rutas parecen estar pendientes de implementacion.
+- `checkout.router.js` renderiza `pages/checkout/checkout-page`.
+- `account.router.js` renderiza `pages/account/account-page`.
+- Ambas rutas ya cuentan con vistas propias y estructura basada en Atomic Design.
 - En `package.json` no hay scripts de arranque definidos; hoy la forma directa de correr la app es `node app.js` o `npx nodemon app.js`.
 
 ## Resumen

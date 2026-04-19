@@ -1,0 +1,20 @@
+.account-action-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f4fbf8 100%);
+    border: 1px solid rgba(33, 181, 148, 0.16);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.account-action-card h2 {
+    margin-bottom: 0.65rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    color: var(--brand-dark);
+}
+
+.account-action-card p {
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}

@@ -1,0 +1,11 @@
+.checkout-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        linear-gradient(180deg, #f4fbf8 0%, #f8f9fa 42%, #f8f9fa 100%);
+}
+
+.checkout-layout .main-content {
+    flex: 1;
+}

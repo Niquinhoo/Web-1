@@ -1,0 +1,114 @@
+.checkout-overview {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.5rem 0 4rem;
+}
+
+.checkout-overview__hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 2rem;
+    background:
+        radial-gradient(circle at top left, rgba(33, 181, 148, 0.18), transparent 28%),
+        linear-gradient(135deg, #ffffff 0%, #f4fbf8 100%);
+    border: 1px solid rgba(33, 181, 148, 0.12);
+    box-shadow: var(--shadow);
+}
+
+.checkout-overview__eyebrow {
+    margin-bottom: 0.75rem;
+    color: var(--brand-green);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.checkout-overview__hero h1 {
+    margin-bottom: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    color: var(--brand-dark);
+}
+
+.checkout-overview__hero p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.checkout-overview__highlights {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.checkout-overview__highlight {
+    padding: 1rem 1.1rem;
+    border-radius: 1.15rem;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.checkout-overview__highlight-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.checkout-overview__content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.checkout-overview__steps {
+    display: grid;
+    gap: 1rem;
+}
+
+.checkout-overview__summary {
+    align-self: start;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 1.75rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(45, 45, 45, 0.08);
+}
+
+.checkout-overview__summary h2 {
+    margin-bottom: 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    color: var(--brand-dark);
+}
+
+.checkout-overview__summary-list {
+    margin-bottom: 1.1rem;
+}
+
+.checkout-overview__total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.checkout-overview__total strong {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    color: var(--brand-dark);
+}
+
+@media (max-width: 900px) {
+    .checkout-overview__hero,
+    .checkout-overview__content {
+        grid-template-columns: 1fr;
+    }
+}

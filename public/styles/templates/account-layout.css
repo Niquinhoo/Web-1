@@ -1,0 +1,11 @@
+.account-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:
+        linear-gradient(180deg, #f6fbf8 0%, #f8f9fa 40%, #f8f9fa 100%);
+}
+
+.account-layout .main-content {
+    flex: 1;
+}

@@ -1,0 +1,25 @@
+<section class="account-overview">
+    <div class="account-overview__hero">
+        <div class="account-overview__identity">
+            <%- include('../../atoms/account/account-badge', { content: account.plan }) %>
+            <h1>Hola, <%= account.name %></h1>
+            <p>Gestiona tu actividad, consulta el estado de tus pedidos y deja listo tu perfil para comprar mas rapido.</p>
+            <div class="account-overview__meta">
+                <span><strong>Email:</strong> <%= account.email %></span>
+                <span><strong>Estado:</strong> Perfil activo</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-overview__stats">
+        <% account.stats.forEach((stat) => { %>
+            <%- include('../../molecules/account/account-stat-card', { stat: stat }) %>
+        <% }) %>
+    </div>
+
+    <div class="account-overview__actions">
+        <% account.actions.forEach((action) => { %>
+            <%- include('../../molecules/account/account-action-card', { action: action }) %>
+        <% }) %>
+    </div>
+</section>

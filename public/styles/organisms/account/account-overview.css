@@ -1,0 +1,58 @@
+.account-overview {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.5rem 0 4rem;
+}
+
+.account-overview__hero {
+    padding: 2rem;
+    border-radius: 2rem;
+    background:
+        radial-gradient(circle at top right, rgba(33, 181, 148, 0.22), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eefaf6 100%);
+    border: 1px solid rgba(33, 181, 148, 0.12);
+    box-shadow: var(--shadow);
+}
+
+.account-overview__identity h1 {
+    margin: 0.9rem 0 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--brand-dark);
+}
+
+.account-overview__identity p {
+    max-width: 60ch;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.account-overview__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    margin-top: 1.25rem;
+    color: var(--text-primary);
+}
+
+.account-overview__stats,
+.account-overview__actions {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.account-overview__stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.account-overview__actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+    .account-overview__stats,
+    .account-overview__actions {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,23 @@
+.checkout-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.35rem;
+    background: var(--white);
+    border: 1px solid rgba(45, 45, 45, 0.08);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.checkout-step__body h2 {
+    margin-bottom: 0.45rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    color: var(--brand-dark);
+}
+
+.checkout-step__body p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}

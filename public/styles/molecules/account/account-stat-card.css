@@ -1,0 +1,14 @@
+.account-stat-card {
+    background: var(--white);
+    border: 1px solid rgba(45, 45, 45, 0.08);
+    border-radius: 1.5rem;
+    padding: 1.4rem;
+    box-shadow: var(--shadow);
+}
+
+.account-stat-card__label {
+    display: block;
+    margin-bottom: 0.85rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}

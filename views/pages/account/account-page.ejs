@@ -1,0 +1,17 @@
+<%- include('../../partials/templates/account-layout', {
+    account: {
+        name: 'Nico',
+        email: 'nico@pediloo.app',
+        plan: 'Cuenta Cliente',
+        stats: [
+            { label: 'Pedidos realizados', value: '12' },
+            { label: 'Favoritos guardados', value: '8' },
+            { label: 'Cupones activos', value: '3' }
+        ],
+        actions: [
+            { title: 'Ver mis pedidos', description: 'Revisa el estado de tus compras y repetilas en segundos.', href: '/cart' },
+            { title: 'Actualizar mis datos', description: 'Mantene tu perfil y direccion listos para el proximo pedido.', href: '/register' },
+            { title: 'Seguir explorando', description: 'Volve al catalogo principal y descubri nuevas opciones.', href: '/home' }
+        ]
+    }
+}) %>

@@ -1,0 +1,14 @@
+.step-badge {
+    width: 3rem;
+    height: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #21b594, #159a7d);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    box-shadow: 0 12px 24px rgba(33, 181, 148, 0.22);
+}

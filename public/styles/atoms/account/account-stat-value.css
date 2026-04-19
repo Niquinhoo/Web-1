@@ -1,0 +1,7 @@
+.account-stat-value {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.25rem;
+    line-height: 1;
+    color: var(--brand-dark);
+}

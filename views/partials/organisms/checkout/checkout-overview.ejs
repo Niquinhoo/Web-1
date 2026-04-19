@@ -1,0 +1,48 @@
+<section class="checkout-overview">
+    <div class="checkout-overview__hero">
+        <div>
+            <p class="checkout-overview__eyebrow">Checkout listo para confirmar</p>
+            <h1>Estamos a un paso de enviarte tu pedido.</h1>
+            <p>Revisa los datos clave de entrega y pago antes de finalizar la compra.</p>
+        </div>
+
+        <div class="checkout-overview__highlights">
+            <div class="checkout-overview__highlight">
+                <span class="checkout-overview__highlight-label">Entrega estimada</span>
+                <strong><%= checkout.eta %></strong>
+            </div>
+            <div class="checkout-overview__highlight">
+                <span class="checkout-overview__highlight-label">Pago</span>
+                <strong><%= checkout.paymentMethod %></strong>
+            </div>
+            <div class="checkout-overview__highlight">
+                <span class="checkout-overview__highlight-label">Direccion</span>
+                <strong><%= checkout.address %></strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-overview__content">
+        <div class="checkout-overview__steps">
+            <% checkout.steps.forEach((step) => { %>
+                <%- include('../../molecules/checkout/checkout-step', { step: step }) %>
+            <% }) %>
+        </div>
+
+        <aside class="checkout-overview__summary">
+            <h2>Resumen</h2>
+            <div class="checkout-overview__summary-list">
+                <% checkout.summary.forEach((row) => { %>
+                    <%- include('../../molecules/checkout/summary-row', { row: row }) %>
+                <% }) %>
+            </div>
+
+            <div class="checkout-overview__total">
+                <span>Total</span>
+                <strong><%= checkout.total %></strong>
+            </div>
+
+            <a class="action-button" href="/cart">Volver al carrito</a>
+        </aside>
+    </div>
+</section>
