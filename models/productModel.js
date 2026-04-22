@@ -68,10 +68,4 @@ const categorias = [
     { name: 'Proximamente', icon: '❓', type: 'other' }
 ];
 
-const carrito = [
-    { productId: '1', quantity: 5 },
-    { productId: '2', quantity: 1 },
-    { productId: '3', quantity: 3 }
-];
-
-module.exports = { productos, publicidades, categorias, carrito };
+module.exports = { productos, publicidades, categorias };

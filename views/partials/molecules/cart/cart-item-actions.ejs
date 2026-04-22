@@ -1,11 +1,15 @@
 <div class="cart-item-actions">
-    <%- include('../../atoms/cart/quantity-btn', {
-        action: 'Reducir cantidad',
-        text: '-'
-    }) %>
+    <form action="/cart/items/<%= productId %>/decrease" method="POST">
+        <%- include('../../atoms/cart/quantity-btn', {
+            action: 'Reducir cantidad',
+            text: '-'
+        }) %>
+    </form>
     <%- include('../../atoms/cart/quantity-counter', { quantity: quantity }) %>
-    <%- include('../../atoms/cart/quantity-btn', {
-        action: 'Aumentar cantidad',
-        text: '+'
-    }) %>
+    <form action="/cart/items/<%= productId %>/increase" method="POST">
+        <%- include('../../atoms/cart/quantity-btn', {
+            action: 'Aumentar cantidad',
+            text: '+'
+        }) %>
+    </form>
 </div>

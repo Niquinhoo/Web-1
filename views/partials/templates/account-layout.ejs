@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="/styles/templates/account-layout.css">
 </head>
 <body class="account-layout">
-    <%- include('../organisms/home/navbar') %>
+    <%- include('../organisms/home/navbar', {
+        cartItemCount: typeof cartItemCount !== 'undefined' ? cartItemCount : 0
+    }) %>
 
     <main class="main-content">
         <%- include('../organisms/account/account-overview', { account: account }) %>

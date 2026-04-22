@@ -1,5 +1,6 @@
 // Importamos express para crear el servidor web
 const express = require('express');
+const session = require('express-session');
 
 // Inicializamos la aplicación
 const app = express();
@@ -23,6 +24,20 @@ app.use('/scripts', express.static('./public/scripts'));
 // Middleware para procesar datos de formularios (POST)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+    secret: 'web-1-cart-session',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true
+    }
+}));
+app.use((req, res, next) => {
+    const cart = Array.isArray(req.session.cart) ? req.session.cart : [];
+
+    res.locals.cartItemCount = cart.reduce((total, item) => total + (Number(item.quantity) || 0), 0);
+    next();
+});
 
 // --- IMPORTACIÓN DE RUTAS ---
 const indexRouter = require('./routes/index.router');
@@ -64,4 +79,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-

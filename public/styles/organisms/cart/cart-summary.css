@@ -58,6 +58,12 @@
     gap: 1rem;
 }
 
+.summary-empty-text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
 @media (max-width: 900px) {
     .cart-summary {
         position: static;

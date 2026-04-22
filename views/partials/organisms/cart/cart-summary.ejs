@@ -3,24 +3,33 @@
     <div class="summary-badge">
         <span><%= summary.totalItems %> producto(s)</span>
     </div>
-    <%- include('../../molecules/cart/discount-form') %>
-    <div class="summary-totals">
-        <div class="summary-row">
-            <span>Subtotal</span>
-            <span>$<%= summary.subtotal %></span>
+    <% if (summary.totalItems > 0) { %>
+        <%- include('../../molecules/cart/discount-form') %>
+        <div class="summary-totals">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$<%= summary.subtotal %></span>
+            </div>
+            <div class="summary-row">
+                <span>Envio</span>
+                <span>Gratis</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>$<%= summary.total %></span>
+            </div>
         </div>
-        <div class="summary-row">
-            <span>Envio</span>
-            <span>Gratis</span>
-        </div>
-        <div class="summary-divider"></div>
-        <div class="summary-row total">
-            <span>Total</span>
-            <span>$<%= summary.total %></span>
-        </div>
-    </div>
+    <% } else { %>
+        <p class="summary-empty-text">Agrega productos para ver el total de tu compra.</p>
+    <% } %>
     <div class="summary-actions">
-        <%- include('../../atoms/cart/action-btn', { label: 'Continuar Compra', kind: 'primary' }) %>
+        <% if (summary.totalItems > 0) { %>
+            <%- include('../../atoms/cart/action-btn', { label: 'Continuar Compra', kind: 'primary' }) %>
+            <form action="/cart/clear" method="POST">
+                <%- include('../../atoms/cart/action-btn', { label: 'Vaciar carrito', kind: 'secondary' }) %>
+            </form>
+        <% } %>
         <%- include('../../atoms/cart/action-btn', { label: 'Volver a la tienda', kind: 'secondary', url: '/home' }) %>
     </div>
 </aside>

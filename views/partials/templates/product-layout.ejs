@@ -40,7 +40,9 @@
     <link rel="stylesheet" href="/styles/templates/product-layout.css">
 </head>
 <body class="product-layout">
-    <%- include('../organisms/home/navbar') %>
+    <%- include('../organisms/home/navbar', {
+        cartItemCount: typeof cartItemCount !== 'undefined' ? cartItemCount : 0
+    }) %>
     
     <main class="main-content">
         <% if (locals.components) { %>

@@ -3,6 +3,9 @@
     <%- include('../../atoms/product/product-description', { description: producto.description }) %>
     <div class="purchase-action">
         <%- include('../../atoms/home/product-price', { price: producto.price }) %>
-        <%- include('../../atoms/home/action-button', { text: 'Agregar al Carrito', classList: 'btn-lg btn-primary' }) %>
+        <form action="/cart/items" method="POST">
+            <input type="hidden" name="productId" value="<%= producto.id %>">
+            <%- include('../../atoms/home/action-button', { text: 'Agregar al Carrito', classList: 'btn-lg btn-primary' }) %>
+        </form>
     </div>
 </div>

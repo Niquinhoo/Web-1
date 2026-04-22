@@ -1,5 +1,12 @@
-const { carrito } = require('../models/productModel');
 const { getProductById } = require('./productController');
+
+function ensureCart(session) {
+    if (!Array.isArray(session.cart)) {
+        session.cart = [];
+    }
+
+    return session.cart;
+}
 
 function buildCartItem(cartLine) {
     const product = getProductById(cartLine.productId);
@@ -24,7 +31,11 @@ function buildCartItem(cartLine) {
 }
 
 function getCartDetail() {
-    const items = carrito
+    return getCartDetailFromSession([]);
+}
+
+function getCartDetailFromSession(sessionCart) {
+    const items = sessionCart
         .map(buildCartItem)
         .filter(Boolean);
 
@@ -41,6 +52,57 @@ function getCartDetail() {
     };
 }
 
+function addProductToCart(session, productId) {
+    const cart = ensureCart(session);
+    const product = getProductById(productId);
+
+    if (!product) {
+        return false;
+    }
+
+    const existingItem = cart.find((item) => item.productId === String(productId));
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ productId: String(productId), quantity: 1 });
+    }
+
+    return true;
+}
+
+function updateProductQuantity(session, productId, delta) {
+    const cart = ensureCart(session);
+    const itemIndex = cart.findIndex((item) => item.productId === String(productId));
+
+    if (itemIndex === -1) {
+        return false;
+    }
+
+    cart[itemIndex].quantity += delta;
+
+    if (cart[itemIndex].quantity <= 0) {
+        cart.splice(itemIndex, 1);
+    }
+
+    return true;
+}
+
+function removeProductFromCart(session, productId) {
+    const cart = ensureCart(session);
+    session.cart = cart.filter((item) => item.productId !== String(productId));
+}
+
+function clearCart(session) {
+    session.cart = [];
+}
+
 module.exports = {
-    getCartDetail
+    ensureCart,
+    getCartDetail,
+    getCartDetailFromSession,
+    addProductToCart,
+    updateProductQuantity,
+    removeProductFromCart,
+    clearCart
 };

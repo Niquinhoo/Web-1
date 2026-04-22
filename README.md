@@ -6,6 +6,7 @@ Aplicacion web server-side construida con Node.js, Express y EJS. El proyecto mo
 
 - Node.js
 - Express `5.2.1`
+- Express Session para persistencia temporal del carrito
 - EJS `5.0.1`
 - Nodemon `3.1.14` como dependencia de desarrollo/ejecucion local
 - CSS plano organizado por capas (`base`, `atoms`, `molecules`, `organisms`, `templates`)
@@ -47,7 +48,7 @@ El flujo principal del proyecto hoy funciona asi:
 4. La ruta de detalle busca el producto por id:
    - Si existe, renderiza la pagina de detalle con productos relacionados.
    - Si no existe, renderiza una vista de producto no encontrado y muestra sugerencias aleatorias.
-5. La ruta `/cart` arma el carrito a partir de datos mockeados en memoria, calcula subtotales/totales con `services/cart.service.js` y renderiza la vista del carrito.
+5. La ruta `/cart` arma el carrito a partir de `req.session.cart`, combina esas lineas con los productos mock y calcula subtotales/totales en `controllers/cartController.js`.
 6. `/login` y `/register` muestran formularios server-side. Sus `POST` hoy no persisten datos: solo registran informacion en consola y redirigen a `/home`.
 7. Cualquier ruta no definida redirige a `/login`.
 
@@ -83,23 +84,23 @@ Los datos estan centralizados en `data/db.js` y hoy son estaticos:
 - `productos`
 - `publicidades`
 - `categorias`
-- `carrito`
-
 No hay base de datos ni persistencia real. Todo el contenido se resuelve en memoria.
 
-### 4. Servicios
+### 4. Controladores
 
-La capa `services/` encapsula la logica de lectura y transformacion de datos:
+La capa `controllers/` encapsula la logica de lectura y transformacion de datos:
 
-- `product.service.js`
+- `productController.js`
   - obtiene todos los productos
   - busca un producto por id
   - calcula relacionados por categoria
   - arma sugerencias aleatorias
-- `cart.service.js`
+- `cartController.js`
+  - inicializa el carrito en sesion
   - cruza lineas del carrito con productos
   - calcula cantidad, precio unitario y subtotal
   - arma el resumen final del carrito
+  - permite agregar, modificar y vaciar el carrito
 
 ### 5. Renderizado de vistas
 
@@ -124,8 +125,9 @@ Ejemplos concretos:
 .
 |-- app.js
 |-- package.json
-|-- data/
-|   `-- db.js
+|-- controllers/
+|   |-- productController.js
+|   `-- cartController.js
 |-- routes/
 |   |-- index.router.js
 |   |-- productos.router.js
@@ -134,9 +136,8 @@ Ejemplos concretos:
 |   |-- register.router.js
 |   |-- checkout.router.js
 |   `-- account.router.js
-|-- services/
-|   |-- product.service.js
-|   `-- cart.service.js
+|-- models/
+|   `-- productModel.js
 |-- views/
 |   |-- pages/
 |   |-- partials/
@@ -161,8 +162,8 @@ Ejemplos concretos:
 ## Como se relacionan las carpetas
 
 - `routes/` recibe la request y decide que vista renderizar.
-- `services/` prepara la informacion que necesita la interfaz.
-- `data/` actua como fuente de datos mock.
+- `controllers/` prepara la informacion que necesita la interfaz.
+- `models/` actua como fuente de datos mock.
 - `views/` define la estructura HTML con EJS.
 - `styles/` define la presentacion visual, tambien separada por Atomic Design.
 - `assets/` contiene imagenes, logos y recursos visuales.
@@ -175,7 +176,7 @@ Ejemplos concretos:
 /register -> POST /register -> /home
 /home -> listado de productos -> /producto/:id
 /producto/:id -> detalle + relacionados
-/cart -> carrito con resumen
+/cart -> carrito en sesion con resumen y edicion de cantidades
 * -> cualquier ruta no definida -> /login
 ```
 

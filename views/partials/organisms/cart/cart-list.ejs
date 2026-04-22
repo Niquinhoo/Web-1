@@ -6,6 +6,11 @@
     <% } else { %>
         <div class="empty-cart-message">
             <p>Tu carrito está vacío.</p>
+            <%- include('../../atoms/cart/action-btn', {
+                label: 'Volver al inicio',
+                kind: 'secondary',
+                url: '/home'
+            }) %>
         </div>
     <% } %>
 </section>

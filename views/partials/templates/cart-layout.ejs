@@ -1,5 +1,7 @@
 <div class="cart-layout">
-    <%- include('../organisms/home/navbar') %>
+    <%- include('../organisms/home/navbar', {
+        cartItemCount: typeof cartItemCount !== 'undefined' ? cartItemCount : 0
+    }) %>
 
     <main class="main-content">
         <%- include('../organisms/cart/cart-container', {

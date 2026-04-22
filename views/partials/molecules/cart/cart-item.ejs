@@ -9,11 +9,16 @@
         <%- include('../../atoms/cart/cart-item-title', { title: item.title }) %>
         <p class="item-meta"><%= item.category %></p>
         <p class="item-unit-price">Precio unitario: $<%= item.unitPrice %></p>
-        <%- include('../../molecules/cart/cart-item-actions', { quantity: item.quantity }) %>
+        <%- include('../../molecules/cart/cart-item-actions', {
+            quantity: item.quantity,
+            productId: item.productId
+        }) %>
     </div>
     <div class="cart-item-price-wrapper">
         <%- include('../../atoms/cart/cart-item-price', { price: '$' + item.subtotal }) %>
         <span class="item-price-label">Subtotal</span>
     </div>
-    <button class="cart-item-remove" aria-label="Eliminar producto" title="Eliminar">&times;</button>
+    <form action="/cart/items/<%= item.productId %>/remove" method="POST">
+        <button type="submit" class="cart-item-remove" aria-label="Eliminar producto" title="Eliminar">&times;</button>
+    </form>
 </article>

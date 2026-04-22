@@ -12,7 +12,7 @@
                 link: '/cart', 
                 icon: '🛒', 
                 label: 'Carrito', 
-                badge: '3' 
+                badge: cartItemCount > 0 ? String(cartItemCount) : null 
             }) %>
             <%- include('../../molecules/home/nav-item', { 
                 link: '/login', 
