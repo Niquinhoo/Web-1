@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pediloo - Checkout</title>
+    <title>Pediloo - Checkout Temporal</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,16 +13,11 @@
     <link rel="stylesheet" href="/styles/base/variables.css">
     <link rel="stylesheet" href="/styles/base/typography.css">
 
-    <link rel="stylesheet" href="/styles/atoms/checkout/step-badge.css">
-    <link rel="stylesheet" href="/styles/atoms/checkout/summary-value.css">
     <link rel="stylesheet" href="/styles/atoms/home/action-button.css">
-
-    <link rel="stylesheet" href="/styles/molecules/checkout/checkout-step.css">
-    <link rel="stylesheet" href="/styles/molecules/checkout/summary-row.css">
     <link rel="stylesheet" href="/styles/molecules/home/search-bar.css">
     <link rel="stylesheet" href="/styles/molecules/home/nav-item.css">
 
-    <link rel="stylesheet" href="/styles/organisms/checkout/checkout-overview.css">
+    <link rel="stylesheet" href="/styles/organisms/checkout/checkout-temporary.css">
     <link rel="stylesheet" href="/styles/organisms/home/navbar.css">
     <link rel="stylesheet" href="/styles/organisms/footer.css">
 
@@ -34,7 +29,7 @@
     }) %>
 
     <main class="main-content">
-        <%- include('../organisms/checkout/checkout-overview', { checkout: checkout }) %>
+        <%- include('../organisms/checkout/checkout-temporary') %>
     </main>
 
     <%- include('../organisms/footer.ejs') %>
