@@ -67,6 +67,7 @@ app.use('/account', accountRouter);
 
 // Rutas de Productos
 app.use('/producto', productosRouter);
+app.use('/products', productosRouter);
 
 // Fallback: Manejador de error 404 (Páginas no encontradas)
 app.use((req, res) => {

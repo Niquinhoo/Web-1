@@ -1,11 +1,11 @@
 <article class="product-card">
-    <a href="/producto/<%= product.id %>" class="product-card-link">
+    <a href="/products/<%= product.id %>" class="product-card-link">
         <div class="product-card-head">
             <%- include('../../atoms/home/product-image', { src: product.src, alt: product.title }) %>
         </div>
     </a>
     <div class="product-card-body">
-        <a href="/producto/<%= product.id %>" class="product-card-link">
+        <a href="/products/<%= product.id %>" class="product-card-link">
             <%- include('../../atoms/home/product-title', { title: product.title }) %>
         </a>
         <div class="product-card-footer">

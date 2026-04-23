@@ -1,7 +1,8 @@
 <%- include('../../partials/templates/home-layout', {
     components: [
         { path: '../../partials/organisms/home/hero-section', props: { ads: publicidades } },
-        { path: '../../partials/organisms/home/product-grid', props: { title: 'Nuestras Hamburguesas y Pizzas', products: productos } }
+        { path: '../../partials/organisms/home/product-grid', props: { title: 'Te puede interesar', products: suggestedProducts } },
+        { path: '../../partials/organisms/home/product-grid', props: { title: 'Los mas pedidos', products: topOrderedProducts } }
     ],
     categorias: categorias
 }) %>
