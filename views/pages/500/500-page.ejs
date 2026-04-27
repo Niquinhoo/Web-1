@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error interno - Pediloo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles/base/reset.css">
+    <link rel="stylesheet" href="/styles/base/variables.css">
+    <link rel="stylesheet" href="/styles/base/typography.css">
+    <link rel="stylesheet" href="/styles/templates/error-layout.css">
+
+    <link rel="stylesheet" href="/styles/organisms/home/navbar.css">
+    <link rel="stylesheet" href="/styles/organisms/footer.css">
+    <link rel="stylesheet" href="/styles/molecules/home/nav-item.css">
+</head>
+<body class="error-layout">
+    <%- include('../../partials/organisms/home/navbar') %>
+
+    <main class="error-container">
+        <div class="error-content">
+            <h1>500</h1>
+            <h2>Ocurrió un error interno</h2>
+            <p>Tuvimos un problema inesperado. Probá nuevamente en unos minutos.</p>
+            <a href="/" class="btn-primary">Volver al inicio</a>
+        </div>
+    </main>
+
+    <%- include('../../partials/organisms/footer.ejs') %>
+</body>
+</html>

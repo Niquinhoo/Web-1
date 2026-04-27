@@ -60,6 +60,13 @@ function addProductToCart(session, productId) {
         return false;
     }
 
+    const productStock = Number(product.stock);
+    const isOutOfStock = Number.isFinite(productStock) && productStock <= 0;
+
+    if (isOutOfStock) {
+        return false;
+    }
+
     const existingItem = cart.find((item) => item.productId === String(productId));
 
     if (existingItem) {

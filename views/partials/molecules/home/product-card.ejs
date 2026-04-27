@@ -1,6 +1,12 @@
 <article class="product-card">
+    <% const isOutOfStock = Number(product.stock) === 0; %>
     <a href="/products/<%= product.id %>" class="product-card-link">
         <div class="product-card-head">
+            <% if (isOutOfStock) { %>
+                <div class="stock-badge-wrapper">
+                    <%- include('../../atoms/home/badge', { text: 'Sin stock', type: 'out-of-stock' }) %>
+                </div>
+            <% } %>
             <%- include('../../atoms/home/product-image', { src: product.src, alt: product.title }) %>
         </div>
     </a>
@@ -10,9 +16,14 @@
         </a>
         <div class="product-card-footer">
             <%- include('../../atoms/home/product-price', { price: product.price }) %>
-            <!-- <%- include('../../atoms/home/action-button', { text: 'Agregar', classList: 'btn-sm' }) %> 
-             boton pagar
-             --> 
+            <form action="/cart/items" method="POST" class="product-card-action">
+                <input type="hidden" name="productId" value="<%= product.id %>">
+                <%- include('../../atoms/home/action-button', {
+                    text: 'Agregar',
+                    classList: 'btn-sm',
+                    disabled: isOutOfStock
+                }) %>
+            </form>
         </div>
     </div>
 </article>

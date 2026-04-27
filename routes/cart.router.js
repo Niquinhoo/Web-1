@@ -23,7 +23,11 @@ router.get('/', (req, res) => {
 router.post('/items', (req, res) => {
     const { productId } = req.body;
 
-    addProductToCart(req.session, productId);
+    const wasAdded = addProductToCart(req.session, productId);
+
+    if (!wasAdded) {
+        return res.redirect('/cart');
+    }
 
     res.redirect('/cart');
 });

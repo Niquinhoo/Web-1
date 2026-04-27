@@ -78,6 +78,17 @@ app.use((req, res) => {
     res.status(404).render('pages/404/404-page');
 });
 
+// Manejador global de errores internos (500)
+app.use((error, req, res, next) => {
+    console.error(`[500] Error interno en ${req.method} ${req.originalUrl}:`, error.message);
+
+    if (res.headersSent) {
+        return next(error);
+    }
+
+    return res.status(500).render('pages/500/500-page');
+});
+
 // --- INICIO DEL SERVIDOR ---
 // Ponemos a escuchar a la aplicación en el puerto asignado
 app.listen(PORT, () => {
