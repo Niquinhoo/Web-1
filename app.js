@@ -47,6 +47,7 @@ const cartRouter = require('./routes/cart.router');
 const checkoutRouter = require('./routes/checkout.router');
 const accountRouter = require('./routes/account.router');
 const productosRouter = require('./routes/productos.router');
+const categoriesRouter = require('./routes/categories.router');
 
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 
@@ -68,6 +69,8 @@ app.use('/account', accountRouter);
 // Rutas de Productos
 app.use('/producto', productosRouter);
 app.use('/products', productosRouter);
+app.use('/categories', categoriesRouter);
+app.use('/category', categoriesRouter);
 
 // Fallback: Manejador de error 404 (Páginas no encontradas)
 app.use((req, res) => {

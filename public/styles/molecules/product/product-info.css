@@ -12,6 +12,13 @@
     margin: 0;
 }
 
+.product-info .product-category {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #475569;
+}
+
 .product-info .purchase-action {
     display: flex;
     flex-direction: column;

@@ -36,6 +36,13 @@
     gap: 2rem;
 }
 
+.product-grid-empty {
+    margin: 0;
+    padding: 1rem 0 0.25rem;
+    color: #475569;
+    font-weight: 500;
+}
+
 @media (max-width: 640px) {
     .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

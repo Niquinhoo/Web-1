@@ -1,15 +1,15 @@
 <%- include('../../partials/templates/product-layout', {
     components: [
         { path: '../../partials/organisms/home/category-bar', props: { categorias: categorias } },
-        { path: '../../partials/organisms/product/product-detail', props: { producto: producto } },
         {
             path: '../../partials/organisms/home/product-grid',
             props: {
-                title: 'Productos Relacionados',
-                products: relatedProducts,
-                emptyMessage: 'No hay productos relacionados disponibles.',
+                title: 'Categoria: ' + categoryName,
+                products: products,
+                emptyMessage: 'No hay productos disponibles para esta categoria.',
                 showViewAll: false
             }
         }
     ]
 }) %>
+

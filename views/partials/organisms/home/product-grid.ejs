@@ -1,12 +1,19 @@
 <section class="product-grid-section">
     <div class="section-header">
         <h2 class="section-title"><%= title %></h2>
-        <a href="#" class="view-all-link">Ver todos ➔</a>
+        <% if (typeof showViewAll === 'undefined' || showViewAll) { %>
+            <a href="#" class="view-all-link">Ver todos -></a>
+        <% } %>
     </div>
-    
-    <div class="product-grid">
-        <% products.forEach(product => { %>
-            <%- include('../../molecules/home/product-card', { product: product, badge: product.badge }) %>
-        <% }) %>
-    </div>
+
+    <% if (Array.isArray(products) && products.length > 0) { %>
+        <div class="product-grid">
+            <% products.forEach(product => { %>
+                <%- include('../../molecules/home/product-card', { product: product, badge: product.badge }) %>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <p class="product-grid-empty"><%= emptyMessage || 'No hay productos para mostrar.' %></p>
+    <% } %>
 </section>
+

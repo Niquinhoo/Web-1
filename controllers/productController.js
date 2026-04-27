@@ -34,8 +34,14 @@ function getProductById(productId) {
 }
 
 function getRelatedProducts(product) {
+    if (!product || !product.category) {
+        return [];
+    }
+
     return productos
         .filter((item) => item.category === product.category && item.id !== product.id)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 4)
         .map(withFallbackImage);
 }
 
@@ -45,11 +51,32 @@ function getRandomProducts(limit = 4) {
         .slice(0, limit);
 }
 
+function normalizeCategoryValue(category) {
+    return String(category || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function getProductsByCategory(category) {
+    const normalizedCategory = normalizeCategoryValue(category);
+
+    if (!normalizedCategory) {
+        return [];
+    }
+
+    return productos
+        .filter((item) => normalizeCategoryValue(item.category) === normalizedCategory)
+        .map(withFallbackImage);
+}
+
 module.exports = {
     getAllProducts,
     getSuggestedProducts,
     getTopOrderedProducts,
     getProductById,
     getRelatedProducts,
-    getRandomProducts
+    getRandomProducts,
+    getProductsByCategory
 };

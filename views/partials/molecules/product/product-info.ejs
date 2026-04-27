@@ -1,5 +1,6 @@
 <div class="product-info">
     <%- include('../../atoms/home/product-title', { title: producto.title, tag: 'h1' }) %>
+    <p class="product-category">Categoria: <%= producto.category %></p>
     <%- include('../../atoms/product/product-description', { description: producto.description }) %>
     <div class="purchase-action">
         <%- include('../../atoms/home/product-price', { price: producto.price }) %>

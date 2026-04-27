@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
         });
     } else {
         const randomProducts = getRandomProducts(4);
-        res.render('pages/product/product-not-found-page', {
+        res.status(404).render('pages/product/product-not-found-page', {
             randomProducts,
             categorias,
             cartItemCount
