@@ -9,13 +9,14 @@ graph TD
     A[Repo: Web-1] --> B(master: Indice y Documentación)
     A --> C(MVC-Web-1: Gestor de Tareas MVC)
     A --> D(Web-1-STP1: E-commerce Atomic Design)
+    A --> E(Web-1-STP2: E-commerce MVC & Carrito)
 ```
-
 | Rama | Proyecto | Descripción | Tecnologías |
 | :--- | :--- | :--- | :--- |
 | [`master`](https://github.com/Niquinhoo/Web-1/tree/master) | Índice | Documentación general del repositorio. | Markdown |
 | [`MVC-Web-1`](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) | Task Manager | Aplicación de gestión de tareas aplicando el patrón MVC. | Express, EJS, Node.js |
 | [`Web-1-STP1`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) | E-commerce | Plataforma de comercio electrónico con arquitectura Atomic Design. | Express, EJS, CSS (Modular), Atomic Design |
+| [`Web-1-STP2`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP2) | E-commerce (S2) | Refactorización a MVC/SSR con gestión de carrito y checkout. | Express, EJS, Sessions |
 
 ---
 
@@ -35,6 +36,15 @@ Un proyecto avanzado que utiliza **Atomic Design** para una interfaz altamente m
     - Catálogo dinámico de productos y categorías.
     - Documentación basada en User Stories.
 
+### 3. [E-commerce MVC & Carrito](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP2) (Rama: `Web-1-STP2`)
+Este proyecto es la evolución del STP1, migrando a una arquitectura de capas y añadiendo funcionalidades críticas de negocio.
+- **Arquitectura:** Refactorización de componentes Atomic Design a una estructura de carpetas `routes`, `controllers`, `services` y `views`.
+- **Características:** 
+    - Manejo de carrito de compras persistente en la sesión del servidor.
+    - Flujo de checkout y confirmación de compra.
+    - Manejo global de errores (404, 500, 400).
+    - Buscador funcional y filtros por categorías dinámicos.
+
 ---
 
 ## 🛠️ Cómo navegar por los proyectos
@@ -42,7 +52,10 @@ Un proyecto avanzado que utiliza **Atomic Design** para una interfaz altamente m
 Para ver el código de un proyecto específico, cambia de rama en tu terminal o en la interfaz de GitHub:
 
 ```bash
-# Para ver el E-commerce
+# Para ver el E-commerce (Sprint 2)
+git checkout Web-1-STP2
+
+# Para ver el E-commerce (Sprint 1)
 git checkout Web-1-STP1
 
 # Para ver el Gestor de Tareas
