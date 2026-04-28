@@ -1,5 +1,5 @@
 <%- include('../../layouts/main', {
-    pageTitle: 'Pediloo - Categoria',
+    pageTitle: 'Pediloo - Busqueda',
     bodyClass: 'product-layout',
     extraStyles: [
         '/styles/atoms/home/product-title.css',
@@ -7,18 +7,13 @@
         '/styles/atoms/home/product-image.css',
         '/styles/atoms/home/action-button.css',
         '/styles/atoms/home/badge.css',
-        '/styles/atoms/home/category-icon.css',
-        '/styles/atoms/home/category-text.css',
         '/styles/molecules/home/product-card.css',
-        '/styles/molecules/home/category-item.css',
         '/styles/organisms/home/product-grid.css',
-        '/styles/organisms/home/category-bar.css',
         '/styles/templates/product-layout.css'
     ],
-    contentPartial: '../partials/pages/category-content',
+    contentPartial: '../partials/pages/search-results-content',
     contentProps: {
-        categorias: categorias,
-        categoryName: categoryName,
+        query: query,
         products: products
     }
 }) %>

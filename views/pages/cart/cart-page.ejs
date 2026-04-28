@@ -1,45 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pediloo - Tu Carrito</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="/styles/base/reset.css">
-    <link rel="stylesheet" href="/styles/base/variables.css">
-    <link rel="stylesheet" href="/styles/base/typography.css">
-
-    <link rel="stylesheet" href="/styles/organisms/footer.css">
-
-    <link rel="stylesheet" href="/styles/atoms/cart/action-btn.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/cart-item-image.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/cart-item-price.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/cart-item-title.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/discount-input.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/quantity-btn.css">
-    <link rel="stylesheet" href="/styles/atoms/cart/quantity-counter.css">
-
-    <link rel="stylesheet" href="/styles/molecules/cart/cart-item.css">
-    <link rel="stylesheet" href="/styles/molecules/cart/cart-item-actions.css">
-    <link rel="stylesheet" href="/styles/molecules/cart/discount-form.css">
-
-    <link rel="stylesheet" href="/styles/organisms/cart/cart-container.css">
-    <link rel="stylesheet" href="/styles/atoms/home/action-button.css">
-    <link rel="stylesheet" href="/styles/molecules/home/search-bar.css">
-    <link rel="stylesheet" href="/styles/molecules/home/nav-item.css">
-    <link rel="stylesheet" href="/styles/organisms/home/navbar.css">
-    <link rel="stylesheet" href="/styles/organisms/cart/cart-list.css">
-    <link rel="stylesheet" href="/styles/organisms/cart/cart-summary.css">
-    <link rel="stylesheet" href="/styles/templates/cart-layout.css">
-</head>
-<body>
-    <%- include('../../partials/templates/cart-layout', {
-        items: cartItems,
-        summary: cartSummary
-    }) %>
-</body>
-</html>
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Tu Carrito',
+    bodyClass: 'cart-layout',
+    extraStyles: [
+        '/styles/atoms/cart/action-btn.css',
+        '/styles/atoms/cart/cart-item-image.css',
+        '/styles/atoms/cart/cart-item-price.css',
+        '/styles/atoms/cart/cart-item-title.css',
+        '/styles/atoms/cart/discount-input.css',
+        '/styles/atoms/cart/quantity-btn.css',
+        '/styles/atoms/cart/quantity-counter.css',
+        '/styles/molecules/cart/cart-item.css',
+        '/styles/molecules/cart/cart-item-actions.css',
+        '/styles/molecules/cart/discount-form.css',
+        '/styles/organisms/cart/cart-container.css',
+        '/styles/organisms/cart/cart-list.css',
+        '/styles/organisms/cart/cart-summary.css',
+        '/styles/templates/cart-layout.css'
+    ],
+    contentPartial: '../partials/pages/cart-content',
+    contentProps: {
+        cartItems: cartItems,
+        cartSummary: cartSummary
+    }
+}) %>

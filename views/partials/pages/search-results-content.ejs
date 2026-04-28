@@ -1,0 +1,8 @@
+<%- include('../organisms/home/product-grid', {
+    title: query ? ('Resultados para: "' + query + '"') : 'Buscador de productos',
+    products: products,
+    emptyMessage: query
+        ? 'No encontramos productos que coincidan con tu busqueda.'
+        : 'Escribi algo en el buscador para ver resultados.',
+    showViewAll: false
+}) %>

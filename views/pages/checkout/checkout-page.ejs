@@ -1,1 +1,10 @@
-<%- include('../../partials/templates/checkout-layout') %>
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Checkout Temporal',
+    bodyClass: 'checkout-layout',
+    extraStyles: [
+        '/styles/atoms/home/action-button.css',
+        '/styles/organisms/checkout/checkout-temporary.css',
+        '/styles/templates/checkout-layout.css'
+    ],
+    contentPartial: '../partials/pages/checkout-content'
+}) %>

@@ -1,7 +1,7 @@
 <button
     type="<%= typeof buttonType !== 'undefined' ? buttonType : 'submit' %>"
     class="action-button <%= classList || '' %>"
-    <%= disabled ? 'disabled aria-disabled="true"' : '' %>
+    <%= (typeof disabled !== 'undefined' && disabled) ? 'disabled aria-disabled="true"' : '' %>
 >
     <%= text %>
 </button>

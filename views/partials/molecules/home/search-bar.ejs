@@ -1,7 +1,18 @@
-<div class="search-bar">
+﻿<form action="/search" method="GET" class="search-bar">
     <div class="search-wrapper">
         <label for="main-search" class="search-icon">🔍</label>
-        <input type="text" id="main-search" placeholder="¿Qué vas a comer hoy?" class="search-input">
-        <%- include('../../atoms/home/action-button', { text: 'Buscar', classList: 'search-btn' }) %>
+        <input
+            type="text"
+            id="main-search"
+            name="query"
+            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+            placeholder="¿Qué vas a comer hoy?"
+            class="search-input"
+        >
+        <%- include('../../atoms/home/action-button', {
+            text: 'Buscar',
+            classList: 'search-btn',
+            buttonType: 'submit'
+        }) %>
     </div>
-</div>
+</form>

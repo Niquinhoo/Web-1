@@ -1,0 +1,19 @@
+<section class="products-toolbar">
+    <h1 class="products-toolbar-title">Productos</h1>
+    <form action="/products" method="GET" class="products-sort-form">
+        <label for="sort-select">Ordenar por precio:</label>
+        <select id="sort-select" name="sort">
+            <option value="" <%= !sort ? 'selected' : '' %>>Sin orden</option>
+            <option value="asc" <%= sort === 'asc' ? 'selected' : '' %>>Menor a mayor</option>
+            <option value="desc" <%= sort === 'desc' ? 'selected' : '' %>>Mayor a menor</option>
+        </select>
+        <button type="submit" class="action-button btn-sm">Aplicar</button>
+    </form>
+</section>
+
+<%- include('../organisms/home/product-grid', {
+    title: 'Catalogo completo',
+    products: products,
+    emptyMessage: 'No hay productos disponibles.',
+    showViewAll: false
+}) %>

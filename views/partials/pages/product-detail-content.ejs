@@ -1,0 +1,8 @@
+<%- include('../organisms/home/category-bar', { categorias: categorias }) %>
+<%- include('../organisms/product/product-detail', { producto: producto }) %>
+<%- include('../organisms/home/product-grid', {
+    title: 'Productos Relacionados',
+    products: relatedProducts,
+    emptyMessage: 'No hay productos relacionados disponibles.',
+    showViewAll: false
+}) %>

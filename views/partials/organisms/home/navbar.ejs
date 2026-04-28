@@ -6,7 +6,9 @@
             <span class="logo-text">Pediloo</span>
         </a>
         
-        <%- include('../../molecules/home/search-bar') %>
+        <%- include('../../molecules/home/search-bar', {
+            searchQuery: typeof searchQuery !== 'undefined' ? searchQuery : ''
+        }) %>
         
         <div class="navbar-actions">
             <%- include('../../molecules/home/nav-item', { 

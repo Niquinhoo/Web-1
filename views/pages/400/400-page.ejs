@@ -1,0 +1,13 @@
+<%- include('../../layouts/main', {
+    pageTitle: 'Solicitud invalida - Pediloo',
+    bodyClass: 'error-layout',
+    extraStyles: [
+        '/styles/templates/error-layout.css'
+    ],
+    contentPartial: '../partials/pages/error-content',
+    contentProps: {
+        errorCode: '400',
+        errorTitle: 'Solicitud invalida',
+        errorMessage: 'El identificador del producto no tiene un formato valido.'
+    }
+}) %>
