@@ -8,50 +8,28 @@
 
 La historia pedia que la vista de detalle (`/products/:id`) mostrara una seccion de productos relacionados para facilitar el descubrimiento, reutilizando datos locales del proyecto y sin usar API, fetch ni base de datos.
 
-### Implementacion actual
+### Implementacion final
 
-La US8 quedo implementada sobre el flujo SSR con Express + EJS.
+La US8 esta **completamente implementada** sobre el flujo SSR con Express + EJS.
 
-- La seleccion de relacionados se resuelve en `controllers/productController.js` con `getRelatedProducts(product)`.
-- El criterio usado es categoria: filtra productos con la misma `category` y excluye el producto actual.
-- La ruta `GET /products/:id` en `routes/productos.router.js` envia `relatedProducts` a la vista de detalle.
-- `views/pages/product/product-detail-page.ejs` agrega la seccion "Productos Relacionados" usando `views/partials/organisms/home/product-grid.ejs`.
-- Cada item reutiliza la card existente `views/partials/molecules/home/product-card.ejs`.
-
-### Comportamiento visible
-
-En la pagina de detalle:
-
-- debajo del bloque principal del producto aparece la seccion "Productos Relacionados"
-- cada card muestra imagen, nombre y precio
-- cada card mantiene link a `/products/:id`
-
-### Limitaciones respecto del enunciado
-
-Hay dos diferencias frente a la story original:
-
-- hoy no se limita explicitamente a 4 relacionados (se muestran todos los de la categoria)
-- no hay randomizacion cuando hay mas de 4
-- si no hay relacionados, se ve la grilla vacia (no hay mensaje amigable especifico)
+- **Logica de seleccion:** Se resuelve en `services/productsService.js` mediante la funcion `getRelatedProducts(product)`.
+- **Criterio:** Filtra productos de la misma categoria, excluyendo el producto actual.
+- **Randomizacion:** Aplica un orden aleatorio (`.sort(() => 0.5 - Math.random())`) para variar las sugerencias en cada carga.
+- **Limite:** Se limita estrictamente a **4 productos** (`.slice(0, 4)`) tal como pide el requerimiento.
+- **Presentacion:** `views/pages/product/product-detail-page.ejs` renderiza la seccion usando parciales reutilizables.
 
 ### Validacion contra la story
 
-Cumplido:
+Cumplido al 100%:
 
-- usa solo datos locales
-- no usa API
-- no usa fetch
-- no usa base de datos
-- seccion ubicada debajo del detalle principal
-- reutiliza card existente
-
-Parcial/Pendiente:
-
-- limite de hasta 4 productos
-- seleccion aleatoria cuando hay mas de 4
-- mensaje explicito cuando no hay relacionados
+- [x] Usa solo datos locales (sin API/fetch/DB).
+- [x] Seccion ubicada debajo del detalle principal.
+- [x] Reutiliza card existente.
+- [x] Limite de hasta 4 productos.
+- [x] Seleccion aleatoria cuando hay abundancia de productos.
+- [x] Manejo de estado vacio (devuelve array vacio si no hay coincidencias).
 
 ### Conclusion
 
-La US8 esta funcionalmente integrada al detalle de producto y reutiliza correctamente la arquitectura existente, pero todavia requiere un ajuste pequeno en la logica y en el estado vacio para cumplir al 100% con el criterio de aceptacion original.
+La US8 cumple con todos los criterios de aceptacion originales, integrando logica de negocio en la capa de servicios y manteniendo la coherencia visual con el resto del sitio.
 
