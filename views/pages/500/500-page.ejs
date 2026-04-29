@@ -1,0 +1,13 @@
+﻿<%- include('../../layouts/main', {
+    pageTitle: 'Error interno - Pediloo',
+    bodyClass: 'error-layout',
+    extraStyles: [
+        '/styles/templates/error-layout.css'
+    ],
+    contentPartial: '../partials/pages/error-content',
+    contentProps: {
+        errorCode: '500',
+        errorTitle: 'Ocurrio un error interno',
+        errorMessage: 'Tuvimos un problema inesperado. Proba nuevamente en unos minutos.'
+    }
+}) %>

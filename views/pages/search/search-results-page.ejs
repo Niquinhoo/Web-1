@@ -1,0 +1,19 @@
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Busqueda',
+    bodyClass: 'product-layout',
+    extraStyles: [
+        '/styles/atoms/home/product-title.css',
+        '/styles/atoms/home/product-price.css',
+        '/styles/atoms/home/product-image.css',
+        '/styles/atoms/home/action-button.css',
+        '/styles/atoms/home/badge.css',
+        '/styles/molecules/home/product-card.css',
+        '/styles/organisms/home/product-grid.css',
+        '/styles/templates/product-layout.css'
+    ],
+    contentPartial: '../partials/pages/search-results-content',
+    contentProps: {
+        query: query,
+        products: products
+    }
+}) %>

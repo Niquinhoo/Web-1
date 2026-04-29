@@ -22,3 +22,8 @@
     background-color: #f39c12;
     color: #ffffff;
 }
+
+.badge.out-of-stock {
+    background-color: #9ca3af;
+    color: #ffffff;
+}

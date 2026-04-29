@@ -1,7 +1,27 @@
-<%- include('../../partials/templates/home-layout', {
-    components: [
-        { path: '../../partials/organisms/home/hero-section', props: { ads: publicidades } },
-        { path: '../../partials/organisms/home/product-grid', props: { title: 'Nuestras Hamburguesas y Pizzas', products: productos } }
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Tu comida favorita, en minutos',
+    bodyClass: 'home-layout',
+    extraStyles: [
+        '/styles/atoms/home/product-title.css',
+        '/styles/atoms/home/product-price.css',
+        '/styles/atoms/home/product-image.css',
+        '/styles/atoms/home/action-button.css',
+        '/styles/atoms/home/badge.css',
+        '/styles/atoms/home/category-icon.css',
+        '/styles/atoms/home/category-text.css',
+        '/styles/molecules/home/product-card.css',
+        '/styles/molecules/home/ad-banner.css',
+        '/styles/molecules/home/category-item.css',
+        '/styles/organisms/home/hero-section.css',
+        '/styles/organisms/home/product-grid.css',
+        '/styles/organisms/home/category-bar.css',
+        '/styles/templates/home-layout.css'
     ],
-    categorias: categorias
+    contentPartial: '../partials/pages/home-content',
+    contentProps: {
+        publicidades: publicidades,
+        suggestedProducts: suggestedProducts,
+        topOrderedProducts: topOrderedProducts,
+        categorias: categorias
+    }
 }) %>

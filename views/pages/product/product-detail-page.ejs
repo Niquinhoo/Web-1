@@ -1,7 +1,30 @@
-<%- include('../../partials/templates/product-layout', {
-    components: [
-        { path: '../../partials/organisms/home/category-bar', props: { categorias: categorias } },
-        { path: '../../partials/organisms/product/product-detail', props: { producto: producto } },
-        { path: '../../partials/organisms/home/product-grid', props: { title: 'Productos Relacionados', products: relatedProducts } }
-    ]
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Detalle de Producto',
+    bodyClass: 'product-layout',
+    extraStyles: [
+        '/styles/atoms/home/product-title.css',
+        '/styles/atoms/home/product-price.css',
+        '/styles/atoms/home/product-image.css',
+        '/styles/atoms/home/action-button.css',
+        '/styles/atoms/home/badge.css',
+        '/styles/atoms/home/category-icon.css',
+        '/styles/atoms/home/category-text.css',
+        '/styles/atoms/product/product-description.css',
+        '/styles/atoms/product/back-button.css',
+        '/styles/molecules/home/product-card.css',
+        '/styles/molecules/home/category-item.css',
+        '/styles/molecules/product/product-info.css',
+        '/styles/molecules/product/product-gallery.css',
+        '/styles/organisms/home/product-grid.css',
+        '/styles/organisms/home/category-bar.css',
+        '/styles/organisms/product/product-detail.css',
+        '/styles/organisms/product/product-not-found.css',
+        '/styles/templates/product-layout.css'
+    ],
+    contentPartial: '../partials/pages/product-detail-content',
+    contentProps: {
+        categorias: categorias,
+        producto: producto,
+        relatedProducts: relatedProducts
+    }
 }) %>

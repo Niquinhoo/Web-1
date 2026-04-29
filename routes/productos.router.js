@@ -4,7 +4,9 @@ const { categorias } = require('../models/productModel');
 const {
     getProductById,
     getRelatedProducts,
-    getRandomProducts
+    getRandomProducts,
+    normalizeId,
+    getProductsSortedByPrice
 } = require('../controllers/productController');
 
 function getCartItemCount(session) {
@@ -14,30 +16,45 @@ function getCartItemCount(session) {
 }
 
 router.get('/', (req, res) => {
-    res.redirect('/');
+    const { sort } = req.query;
+    const products = getProductsSortedByPrice(sort);
+    const normalizedSort = String(sort || '').toLowerCase();
+
+    res.render('pages/product/products-list-page', {
+        products,
+        sort: normalizedSort === 'asc' || normalizedSort === 'desc' ? normalizedSort : '',
+        cartItemCount: getCartItemCount(req.session)
+    });
 });
 
 router.get('/:id', (req, res) => {
-    const id = req.params.id;
-    const producto = getProductById(id);
+    const normalizedId = normalizeId(req.params.id);
     const cartItemCount = getCartItemCount(req.session);
+
+    if (!normalizedId) {
+        return res.status(400).render('pages/400/400-page', {
+            cartItemCount
+        });
+    }
+
+    const producto = getProductById(normalizedId);
 
     if (producto) {
         const relatedProducts = getRelatedProducts(producto);
-        res.render('pages/product/product-detail-page', {
+        return res.render('pages/product/product-detail-page', {
             producto,
             relatedProducts,
             categorias,
             cartItemCount
         });
-    } else {
-        const randomProducts = getRandomProducts(4);
-        res.render('pages/product/product-not-found-page', {
-            randomProducts,
-            categorias,
-            cartItemCount
-        });
     }
+
+    const randomProducts = getRandomProducts(4);
+    return res.status(404).render('pages/product/product-not-found-page', {
+        randomProducts,
+        categorias,
+        cartItemCount
+    });
 });
 
 module.exports = router;

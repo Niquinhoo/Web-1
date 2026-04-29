@@ -5,7 +5,8 @@ const productos = [
         description: 'Doble medallón de 120g de carne seleccionada, queso cheddar derretido, panceta crocante y nuestra salsa secreta en pan brioche artesanal.',
         price: 1200,
         src: '/assets/productos/hamburguesasmash.png',
-        category: 'Alimentos'
+        category: 'Alimentos',
+        isTopSeller: true
     },
     {
         id: '2',
@@ -13,7 +14,8 @@ const productos = [
         description: 'Masa madre de fermentación lenta, salsa de tomates italianos, muzzarella fior di latte, ajo, y hojas de albahaca fresca.',
         price: 1500,
         src: '/assets/productos/pizzanapo.png',
-        category: 'Alimentos'
+        category: 'Alimentos',
+        isTopSeller: true
     },
     {
         id: '3',
@@ -29,7 +31,8 @@ const productos = [
         description: 'El clásico argentino. Capas de galletitas de chocolate humedecidas en café, intercaladas con la más suave mezcla de dulce de leche y queso crema.',
         price: 600,
         src: '/assets/productos/chocotorta.png',
-        category: 'Alimentos'
+        category: 'Alimentos',
+        isTopSeller: true
     },
     {
         id: '5',

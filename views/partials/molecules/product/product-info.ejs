@@ -1,11 +1,20 @@
 <div class="product-info">
+    <% const isOutOfStock = Number(producto.stock) === 0; %>
     <%- include('../../atoms/home/product-title', { title: producto.title, tag: 'h1' }) %>
+    <p class="product-category">Categoria: <%= producto.category %></p>
+    <% if (isOutOfStock) { %>
+        <%- include('../../atoms/home/badge', { text: 'Sin stock', type: 'out-of-stock' }) %>
+    <% } %>
     <%- include('../../atoms/product/product-description', { description: producto.description }) %>
     <div class="purchase-action">
         <%- include('../../atoms/home/product-price', { price: producto.price }) %>
         <form action="/cart/items" method="POST">
             <input type="hidden" name="productId" value="<%= producto.id %>">
-            <%- include('../../atoms/home/action-button', { text: 'Agregar al Carrito', classList: 'btn-lg btn-primary' }) %>
+            <%- include('../../atoms/home/action-button', {
+                text: 'Agregar al Carrito',
+                classList: 'btn-lg btn-primary',
+                disabled: isOutOfStock
+            }) %>
         </form>
     </div>
 </div>

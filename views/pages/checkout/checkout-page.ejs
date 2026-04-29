@@ -1,18 +1,10 @@
-<%- include('../../partials/templates/checkout-layout', {
-    checkout: {
-        eta: '20-30 min',
-        paymentMethod: 'Tarjeta terminada en 4242',
-        address: 'Av. Siempre Viva 742',
-        steps: [
-            { number: '1', title: 'Confirmar carrito', description: 'Revisa productos, cantidades y promociones aplicadas.' },
-            { number: '2', title: 'Elegir entrega', description: 'Define direccion, franja horaria y observaciones para el pedido.' },
-            { number: '3', title: 'Pagar y seguir', description: 'Confirma el medio de pago y finaliza la compra con seguridad.' }
-        ],
-        summary: [
-            { label: 'Subtotal', value: '$ 8.100' },
-            { label: 'Envio', value: '$ 900' },
-            { label: 'Descuento', value: '- $ 500' }
-        ],
-        total: '$ 8.500'
-    }
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Checkout Temporal',
+    bodyClass: 'checkout-layout',
+    extraStyles: [
+        '/styles/atoms/home/action-button.css',
+        '/styles/organisms/checkout/checkout-temporary.css',
+        '/styles/templates/checkout-layout.css'
+    ],
+    contentPartial: '../partials/pages/checkout-content'
 }) %>

@@ -1,7 +1,24 @@
-<%- include('../../partials/templates/product-layout', {
-    components: [
-        { path: '../../partials/organisms/home/category-bar', props: { categorias: categorias } },
-        { path: '../../partials/organisms/product/product-not-found', props: {} },
-        { path: '../../partials/organisms/home/product-grid', props: { title: 'Productos Sugeridos', products: randomProducts } }
-    ]
+<%- include('../../layouts/main', {
+    pageTitle: 'Pediloo - Producto no encontrado',
+    bodyClass: 'product-layout',
+    extraStyles: [
+        '/styles/atoms/home/product-title.css',
+        '/styles/atoms/home/product-price.css',
+        '/styles/atoms/home/product-image.css',
+        '/styles/atoms/home/action-button.css',
+        '/styles/atoms/home/badge.css',
+        '/styles/atoms/home/category-icon.css',
+        '/styles/atoms/home/category-text.css',
+        '/styles/molecules/home/product-card.css',
+        '/styles/molecules/home/category-item.css',
+        '/styles/organisms/home/product-grid.css',
+        '/styles/organisms/home/category-bar.css',
+        '/styles/organisms/product/product-not-found.css',
+        '/styles/templates/product-layout.css'
+    ],
+    contentPartial: '../partials/pages/product-not-found-content',
+    contentProps: {
+        categorias: categorias,
+        randomProducts: randomProducts
+    }
 }) %>

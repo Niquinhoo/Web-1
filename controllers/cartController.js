@@ -1,100 +1,31 @@
-const { getProductById } = require('./productController');
+const cartService = require('../services/cartService');
 
 function ensureCart(session) {
-    if (!Array.isArray(session.cart)) {
-        session.cart = [];
-    }
-
-    return session.cart;
-}
-
-function buildCartItem(cartLine) {
-    const product = getProductById(cartLine.productId);
-
-    if (!product) {
-        return null;
-    }
-
-    const quantity = Number(cartLine.quantity) || 0;
-    const unitPrice = product.price;
-
-    return {
-        productId: product.id,
-        title: product.title,
-        description: product.description,
-        category: product.category,
-        src: product.src,
-        quantity,
-        unitPrice,
-        subtotal: unitPrice * quantity
-    };
+    return cartService.ensureCart(session);
 }
 
 function getCartDetail() {
-    return getCartDetailFromSession([]);
+    return cartService.getCartDetail();
 }
 
 function getCartDetailFromSession(sessionCart) {
-    const items = sessionCart
-        .map(buildCartItem)
-        .filter(Boolean);
-
-    const subtotal = items.reduce((acc, item) => acc + item.subtotal, 0);
-    const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-
-    return {
-        items,
-        summary: {
-            subtotal,
-            total: subtotal,
-            totalItems
-        }
-    };
+    return cartService.getCartDetailFromSession(sessionCart);
 }
 
 function addProductToCart(session, productId) {
-    const cart = ensureCart(session);
-    const product = getProductById(productId);
-
-    if (!product) {
-        return false;
-    }
-
-    const existingItem = cart.find((item) => item.productId === String(productId));
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ productId: String(productId), quantity: 1 });
-    }
-
-    return true;
+    return cartService.addProductToCart(session, productId);
 }
 
 function updateProductQuantity(session, productId, delta) {
-    const cart = ensureCart(session);
-    const itemIndex = cart.findIndex((item) => item.productId === String(productId));
-
-    if (itemIndex === -1) {
-        return false;
-    }
-
-    cart[itemIndex].quantity += delta;
-
-    if (cart[itemIndex].quantity <= 0) {
-        cart.splice(itemIndex, 1);
-    }
-
-    return true;
+    return cartService.updateProductQuantity(session, productId, delta);
 }
 
 function removeProductFromCart(session, productId) {
-    const cart = ensureCart(session);
-    session.cart = cart.filter((item) => item.productId !== String(productId));
+    return cartService.removeProductFromCart(session, productId);
 }
 
 function clearCart(session) {
-    session.cart = [];
+    return cartService.clearCart(session);
 }
 
 module.exports = {

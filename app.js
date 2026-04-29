@@ -47,6 +47,8 @@ const cartRouter = require('./routes/cart.router');
 const checkoutRouter = require('./routes/checkout.router');
 const accountRouter = require('./routes/account.router');
 const productosRouter = require('./routes/productos.router');
+const categoriesRouter = require('./routes/categories.router');
+const searchRouter = require('./routes/search.router');
 
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 
@@ -67,11 +69,26 @@ app.use('/account', accountRouter);
 
 // Rutas de Productos
 app.use('/producto', productosRouter);
+app.use('/products', productosRouter);
+app.use('/categories', categoriesRouter);
+app.use('/category', categoriesRouter);
+app.use('/search', searchRouter);
 
 // Fallback: Manejador de error 404 (Páginas no encontradas)
 app.use((req, res) => {
     console.log(`Ruta no encontrada: ${req.originalUrl}. Renderizando 404`);
     res.status(404).render('pages/404/404-page');
+});
+
+// Manejador global de errores internos (500)
+app.use((error, req, res, next) => {
+    console.error(`[500] Error interno en ${req.method} ${req.originalUrl}:`, error.message);
+
+    if (res.headersSent) {
+        return next(error);
+    }
+
+    return res.status(500).render('pages/500/500-page');
 });
 
 // --- INICIO DEL SERVIDOR ---

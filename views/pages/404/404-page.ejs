@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada - Pediloo</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/styles/base/reset.css">
-    <link rel="stylesheet" href="/styles/base/variables.css">
-    <link rel="stylesheet" href="/styles/base/typography.css">
-    <link rel="stylesheet" href="/styles/templates/error-layout.css">
-    
-    <link rel="stylesheet" href="/styles/organisms/home/navbar.css">
-    <link rel="stylesheet" href="/styles/organisms/footer.css">
-    <link rel="stylesheet" href="/styles/molecules/home/nav-item.css">
-</head>
-<body class="error-layout">
-    <%- include('../../partials/organisms/home/navbar') %>
-
-    <main class="error-container">
-        <div class="error-content">
-            <h1>404</h1>
-            <h2>¡Ups! Página no encontrada</h2>
-            <p>Parece que la página que estás buscando no existe o fue movida.</p>
-            <a href="/" class="btn-primary">Volver al inicio</a>
-        </div>
-    </main>
-
-    <%- include('../../partials/organisms/footer.ejs') %>
-</body>
-</html>
+﻿<%- include('../../layouts/main', {
+    pageTitle: 'Pagina no encontrada - Pediloo',
+    bodyClass: 'error-layout',
+    extraStyles: [
+        '/styles/templates/error-layout.css'
+    ],
+    contentPartial: '../partials/pages/error-content',
+    contentProps: {
+        errorCode: '404',
+        errorTitle: 'Ups! Pagina no encontrada',
+        errorMessage: 'Parece que la pagina que estas buscando no existe o fue movida.'
+    }
+}) %>

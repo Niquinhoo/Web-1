@@ -1,0 +1,7 @@
+<%- include('../organisms/home/category-bar', { categorias: categorias }) %>
+<%- include('../organisms/home/product-grid', {
+    title: 'Categoria: ' + categoryName,
+    products: products,
+    emptyMessage: 'No hay productos disponibles para esta categoria.',
+    showViewAll: false
+}) %>

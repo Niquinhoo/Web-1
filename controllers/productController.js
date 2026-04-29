@@ -1,26 +1,54 @@
-const { productos } = require('../models/productModel');
+const productsService = require('../services/productsService');
 
 function getAllProducts() {
-    return productos;
+    return productsService.getAllProducts();
+}
+
+function getSuggestedProducts(limit = 5) {
+    return productsService.getSuggestedProducts(limit);
+}
+
+function getTopOrderedProducts(limit = 10) {
+    return productsService.getTopOrderedProducts(limit);
 }
 
 function getProductById(productId) {
-    return productos.find((product) => product.id === String(productId));
+    return productsService.getProductById(productId);
 }
 
 function getRelatedProducts(product) {
-    return productos.filter((item) => item.category === product.category && item.id !== product.id);
+    return productsService.getRelatedProducts(product);
 }
 
 function getRandomProducts(limit = 4) {
-    return [...productos]
-        .sort(() => 0.5 - Math.random())
-        .slice(0, limit);
+    return productsService.getRandomProducts(limit);
+}
+
+function getProductsByCategory(category) {
+    return productsService.getProductsByCategory(category);
+}
+
+function normalizeId(rawId) {
+    return productsService.normalizeId(rawId);
+}
+
+function getProductsSortedByPrice(sort) {
+    return productsService.getProductsSortedByPrice(sort);
+}
+
+function searchProductsByName(query) {
+    return productsService.searchProductsByName(query);
 }
 
 module.exports = {
     getAllProducts,
+    getSuggestedProducts,
+    getTopOrderedProducts,
     getProductById,
     getRelatedProducts,
-    getRandomProducts
+    getRandomProducts,
+    getProductsByCategory,
+    normalizeId,
+    getProductsSortedByPrice,
+    searchProductsByName
 };

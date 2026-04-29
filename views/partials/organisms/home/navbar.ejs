@@ -1,18 +1,21 @@
 <nav class="navbar">
+    <% const safeCartItemCount = Number.isFinite(Number(cartItemCount)) ? Number(cartItemCount) : 0; %>
     <div class="navbar-container">
         <a href="/home" class="navbar-logo">
             <span class="logo-icon">🍔</span>
             <span class="logo-text">Pediloo</span>
         </a>
         
-        <%- include('../../molecules/home/search-bar') %>
+        <%- include('../../molecules/home/search-bar', {
+            searchQuery: typeof searchQuery !== 'undefined' ? searchQuery : ''
+        }) %>
         
         <div class="navbar-actions">
             <%- include('../../molecules/home/nav-item', { 
                 link: '/cart', 
                 icon: '🛒', 
                 label: 'Carrito', 
-                badge: cartItemCount > 0 ? String(cartItemCount) : null 
+                badge: String(safeCartItemCount)
             }) %>
             <%- include('../../molecules/home/nav-item', { 
                 link: '/login', 

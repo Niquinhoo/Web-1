@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle || 'Pediloo' %></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles/base/reset.css">
+    <link rel="stylesheet" href="/styles/base/variables.css">
+    <link rel="stylesheet" href="/styles/base/typography.css">
+    <link rel="stylesheet" href="/styles/organisms/home/navbar.css">
+    <link rel="stylesheet" href="/styles/molecules/home/search-bar.css">
+    <link rel="stylesheet" href="/styles/molecules/home/nav-item.css">
+    <link rel="stylesheet" href="/styles/organisms/footer.css">
+
+    <% if (Array.isArray(extraStyles)) { %>
+        <% extraStyles.forEach((stylePath) => { %>
+            <link rel="stylesheet" href="<%= stylePath %>">
+        <% }) %>
+    <% } %>
+</head>
+<body class="<%= bodyClass || '' %>">
+    <%- include('../partials/organisms/home/navbar', {
+        cartItemCount: typeof cartItemCount !== 'undefined' ? cartItemCount : 0,
+        searchQuery: typeof searchQuery !== 'undefined' ? searchQuery : ''
+    }) %>
+
+    <main class="main-content">
+        <%- include(contentPartial, contentProps || {}) %>
+    </main>
+
+    <%- include('../partials/organisms/footer.ejs') %>
+</body>
+</html>
