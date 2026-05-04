@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.logo img {
+.logo img, .logo-img {
     height: 100%;
     width: auto;
     object-fit: contain;

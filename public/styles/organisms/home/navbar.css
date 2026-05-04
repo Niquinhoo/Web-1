@@ -42,6 +42,13 @@
     font-family: 'Outfit', sans-serif;
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
 .navbar-actions {
     display: flex;
     align-items: center;
