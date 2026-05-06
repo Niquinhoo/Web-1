@@ -2,8 +2,7 @@
     <% const safeCartItemCount = Number.isFinite(Number(cartItemCount)) ? Number(cartItemCount) : 0; %>
     <div class="navbar-container">
         <a href="/home" class="navbar-logo">
-            <span class="logo-icon">🍔</span>
-            <span class="logo-text">Pediloo</span>
+            <img src="/assets/logoheader.png" alt="Pediloo Logo" class="logo-img">
         </a>
         
         <%- include('../../molecules/home/search-bar', {

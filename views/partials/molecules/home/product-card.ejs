@@ -1,19 +1,18 @@
 <article class="product-card">
     <% const isOutOfStock = Number(product.stock) === 0; %>
-    <a href="/products/<%= product.id %>" class="product-card-link">
-        <div class="product-card-head">
-            <% if (isOutOfStock) { %>
-                <div class="stock-badge-wrapper">
-                    <%- include('../../atoms/home/badge', { text: 'Sin stock', type: 'out-of-stock' }) %>
-                </div>
-            <% } %>
-            <%- include('../../atoms/home/product-image', { src: product.src, alt: product.title }) %>
-        </div>
-    </a>
+    
+    <a href="/products/<%= product.id %>" class="product-card-stretched-link" aria-label="Ver <%= product.title %>"></a>
+    
+    <div class="product-card-head">
+        <% if (isOutOfStock) { %>
+            <div class="stock-badge-wrapper">
+                <%- include('../../atoms/home/badge', { text: 'Sin stock', type: 'out-of-stock' }) %>
+            </div>
+        <% } %>
+        <%- include('../../atoms/home/product-image', { src: product.src, alt: product.title }) %>
+    </div>
     <div class="product-card-body">
-        <a href="/products/<%= product.id %>" class="product-card-link">
-            <%- include('../../atoms/home/product-title', { title: product.title }) %>
-        </a>
+        <%- include('../../atoms/home/product-title', { title: product.title }) %>
         <div class="product-card-footer">
             <%- include('../../atoms/home/product-price', { price: product.price }) %>
             <form action="/cart/items" method="POST" class="product-card-action">
