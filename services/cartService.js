@@ -9,6 +9,7 @@ function ensureCart(session) {
 }
 
 function buildCartItem(cartLine) {
+    // Precio y validación de existencia obtenidos desde SQLite vía productsService
     const product = productsService.getProductById(cartLine.productId);
 
     if (!product) {
@@ -16,10 +17,11 @@ function buildCartItem(cartLine) {
     }
 
     const quantity = Number(cartLine.quantity) || 0;
+    // Precio real viene de la DB — nunca de la sesión
     const unitPrice = product.price;
 
     return {
-        productId: product.id,
+        productId: String(product.id),
         title: product.title,
         description: product.description,
         category: product.category,
@@ -54,6 +56,8 @@ function getCartDetail() {
 
 function addProductToCart(session, productId) {
     const cart = ensureCart(session);
+
+    // Valida que el producto existe en SQLite (vía productsService que usa DB)
     const product = productsService.getProductById(productId);
 
     if (!product) {
@@ -67,12 +71,14 @@ function addProductToCart(session, productId) {
         return false;
     }
 
-    const existingItem = cart.find((item) => item.productId === String(productId));
+    // Sesión guarda solo { productId (String), quantity } — sin datos sensibles ni precio
+    const idStr = String(product.id);
+    const existingItem = cart.find((item) => item.productId === idStr);
 
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        cart.push({ productId: String(productId), quantity: 1 });
+        cart.push({ productId: idStr, quantity: 1 });
     }
 
     return true;
@@ -80,7 +86,8 @@ function addProductToCart(session, productId) {
 
 function updateProductQuantity(session, productId, delta) {
     const cart = ensureCart(session);
-    const itemIndex = cart.findIndex((item) => item.productId === String(productId));
+    const idStr = String(productId);
+    const itemIndex = cart.findIndex((item) => item.productId === idStr);
 
     if (itemIndex === -1) {
         return false;
@@ -97,7 +104,8 @@ function updateProductQuantity(session, productId, delta) {
 
 function removeProductFromCart(session, productId) {
     const cart = ensureCart(session);
-    session.cart = cart.filter((item) => item.productId !== String(productId));
+    const idStr = String(productId);
+    session.cart = cart.filter((item) => item.productId !== idStr);
 }
 
 function clearCart(session) {
