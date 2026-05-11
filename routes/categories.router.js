@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { categorias } = require('../models/productModel');
 const { getProductsByCategory } = require('../controllers/productController');
+const { getCategories } = require('../services/catalogService');
 
 function getCartItemCount(session) {
     const cart = Array.isArray(session.cart) ? session.cart : [];
@@ -28,6 +28,7 @@ function normalizeCategoryValue(category) {
 router.get('/:category', (req, res) => {
     const categoryParam = formatCategoryName(req.params.category);
     const products = getProductsByCategory(categoryParam);
+    const categorias = getCategories();
     const matchedCategory = categorias.find(
         (item) => normalizeCategoryValue(item.name) === normalizeCategoryValue(categoryParam)
     );

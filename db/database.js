@@ -1,6 +1,7 @@
 const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
+const { ensureSeedData, ensureUsersTable } = require('./bootstrap');
 
 // Crea o abre la base de datos en la carpeta db
 const dbPath = path.join(__dirname, 'database.db');
@@ -11,5 +12,7 @@ const schemaPath = path.join(__dirname, 'schema.sql');
 const schema = fs.readFileSync(schemaPath, 'utf8');
 
 db.exec(schema);
+ensureUsersTable(db);
+ensureSeedData(db);
 
 module.exports = db;

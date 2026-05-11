@@ -64,10 +64,34 @@ function getProductsByCategory(category) {
 
 function normalizeId(rawId) {
     const value = String(rawId || '').trim();
-    if (!/^\d+$/.test(value)) return null;
+    if (!/^\d+$/.test(value)) {
+        return {
+            ok: false,
+            statusCode: 400
+        };
+    }
+
     const normalized = Number(value);
-    if (!Number.isInteger(normalized) || normalized <= 0) return null;
-    return String(normalized);
+    if (!Number.isInteger(normalized) || normalized <= 0) {
+        return {
+            ok: false,
+            statusCode: 400
+        };
+    }
+
+    const product = getProductById(normalized);
+    if (!product) {
+        return {
+            ok: false,
+            statusCode: 404
+        };
+    }
+
+    return {
+        ok: true,
+        id: String(normalized),
+        product
+    };
 }
 
 function getProductsSortedByPrice(sort) {

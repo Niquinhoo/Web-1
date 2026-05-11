@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { categorias } = require('../models/productModel');
 const {
-    getProductById,
     getRelatedProducts,
     getRandomProducts,
     normalizeId,
     getProductsSortedByPrice
 } = require('../controllers/productController');
+const { getCategories } = require('../services/catalogService');
 
 function getCartItemCount(session) {
     const cart = Array.isArray(session.cart) ? session.cart : [];
@@ -19,10 +18,12 @@ router.get('/', (req, res) => {
     const { sort } = req.query;
     const products = getProductsSortedByPrice(sort);
     const normalizedSort = String(sort || '').toLowerCase();
+    const categorias = getCategories();
 
     res.render('pages/product/products-list-page', {
         products,
         sort: normalizedSort === 'asc' || normalizedSort === 'desc' ? normalizedSort : '',
+        categorias,
         cartItemCount: getCartItemCount(req.session)
     });
 });
@@ -30,16 +31,25 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const normalizedId = normalizeId(req.params.id);
     const cartItemCount = getCartItemCount(req.session);
+    const categorias = getCategories();
 
-    if (!normalizedId) {
+    if (!normalizedId.ok && normalizedId.statusCode === 400) {
         return res.status(400).render('pages/400/400-page', {
             cartItemCount
         });
     }
 
-    const producto = getProductById(normalizedId);
+    if (!normalizedId.ok && normalizedId.statusCode === 404) {
+        const randomProducts = getRandomProducts(4);
+        return res.status(404).render('pages/product/product-not-found-page', {
+            randomProducts,
+            categorias,
+            cartItemCount
+        });
+    }
 
-    if (producto) {
+    if (normalizedId.ok) {
+        const producto = normalizedId.product;
         const relatedProducts = getRelatedProducts(producto);
         return res.render('pages/product/product-detail-page', {
             producto,
@@ -48,13 +58,6 @@ router.get('/:id', (req, res) => {
             cartItemCount
         });
     }
-
-    const randomProducts = getRandomProducts(4);
-    return res.status(404).render('pages/product/product-not-found-page', {
-        randomProducts,
-        categorias,
-        cartItemCount
-    });
 });
 
 module.exports = router;

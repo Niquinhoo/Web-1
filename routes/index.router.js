@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { publicidades, categorias } = require('../models/productModel');
 const { getSuggestedProducts, getTopOrderedProducts } = require('../controllers/productController');
+const { getCategories, getHomeBanners } = require('../services/catalogService');
 
 function getCartItemCount(session) {
     const cart = Array.isArray(session.cart) ? session.cart : [];
@@ -12,6 +12,8 @@ function getCartItemCount(session) {
 router.get('/', (req, res) => {
     const suggestedProducts = getSuggestedProducts(5);
     const topOrderedProducts = getTopOrderedProducts(10);
+    const categorias = getCategories();
+    const publicidades = getHomeBanners();
 
     res.render('pages/home/home-page', {
         suggestedProducts,
