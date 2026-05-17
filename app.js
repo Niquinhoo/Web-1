@@ -1,5 +1,5 @@
-// Importamos express para crear el servidor web
 const express = require('express');
+const path = require('path');
 
 // Inicializamos la aplicación
 const app = express();
@@ -11,17 +11,22 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 
 // Le indicamos a express en qué carpeta están nuestras vistas
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 
 // Servimos la carpeta 'styles' para que los archivos HTML/EJS puedan acceder a los CSS
-app.use('/styles', express.static('./styles'));
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
 
 // Servimos la carpeta 'assets' para que las imágenes puedan cargar
-app.use('/assets', express.static('./assets'));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // Middleware para procesar datos de formularios (POST)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Servir Favicon - Evita logs innecesarios de "Ruta no encontrada"
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, 'assets', 'favicon.png'));
+});
 
 // --- IMPORTACIÓN DE RUTAS ---
 const indexRouter = require('./routes/index.router');
@@ -52,9 +57,16 @@ app.use('/account', accountRouter);
 // Rutas de Productos
 app.use('/producto', productosRouter);
 
-// Fallback: Redirige cualquier ruta no definida (404) a la página de Login
+// Manejo de errores 404: 
+// Solo redirigimos a /login si no es una petición de un recurso estático (css, js, imagenes)
 app.use((req, res) => {
-    console.log(`Ruta no encontrada: ${req.originalUrl}. Redirigiendo a /login`);
+    const isAsset = req.url.startsWith('/styles') || req.url.startsWith('/assets') || req.url.includes('.');
+    
+    if (isAsset) {
+        return res.status(404).send('Not Found');
+    }
+
+    console.log(`Página no encontrada: ${req.originalUrl}. Redirigiendo a /login`);
     res.redirect('/login');
 });
 

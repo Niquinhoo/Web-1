@@ -51,6 +51,7 @@
 
 .nav-btn:hover {
     background-color: #ffffff;
+    color: #21b594;
     transition: all 0.2s ease;
 }
 
