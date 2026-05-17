@@ -3,3 +3,5 @@ node_modules/
 dist/
 .env
 stitch/
+.agents/
+skills-lock.json
