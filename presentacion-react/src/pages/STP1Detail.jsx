@@ -28,7 +28,7 @@ export default function STP1Detail() {
 
         {/* ── SECCIÓN 1: ARQUITECTURA MONOLÍTICA Y SSR ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">01.</span> Arquitectura Monolítica y SSR
           </h2>
           <TheoryBlock title="¿Qué es un monolito?">
@@ -43,7 +43,7 @@ export default function STP1Detail() {
 
         {/* ── SECCIÓN 2: PUNTO DE ENTRADA ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">02.</span> Punto de Entrada: app.js
           </h2>
           <TheoryBlock title="Configuración de Express con MVC">
@@ -96,7 +96,7 @@ app.use('/cart', cartRouter);`}
 
         {/* ── SECCIÓN 3: SISTEMA DE RUTAS ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">03.</span> Sistema de Rutas, Peticiones y Respuestas
           </h2>
           <TheoryBlock title="express.Router() y modularización">
@@ -184,7 +184,7 @@ router.post('/', (req, res) => {
 
         {/* ── SECCIÓN 4: MIDDLEWARES ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">04.</span> Middlewares en Acción
           </h2>
           <TheoryBlock title="¿Qué es un middleware?">
@@ -240,7 +240,7 @@ app.use((req, res) => {
 
         {/* ── SECCIÓN 5: FUENTE DE DATOS ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">05.</span> Fuente de Datos Compartida
           </h2>
           <TheoryBlock title="Del hardcode al modelo centralizado">
@@ -285,7 +285,7 @@ module.exports = { productos, publicidades, categorias, carrito };`}
 
         {/* ── SECCIÓN 6: SERVICIOS ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">06.</span> Servicios: Separación de Lógica
           </h2>
           <TheoryBlock title="Hacia el patrón MVC — Controlador y Modelo">
@@ -392,7 +392,7 @@ function getCartDetail() {
 
         {/* ── SECCIÓN 7: RESPUESTAS HTTP ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">07.</span> Emitiendo Respuestas
           </h2>
           <TheoryBlock title="Métodos de respuesta en Express">
@@ -401,16 +401,16 @@ function getCartDetail() {
           </TheoryBlock>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-5 bg-surface/40 border border-white/5 rounded-xl">
+            <div className="p-5 bg-surface/40 border border-gray-200 rounded-xl">
               <code className="text-primary text-sm">res.render()</code>
               <p className="text-xs text-textMuted mt-2">Usado en Home, Detalle, Cart, Login, Register para generar HTML con EJS</p>
             </div>
-            <div className="p-5 bg-surface/40 border border-white/5 rounded-xl">
+            <div className="p-5 bg-surface/40 border border-gray-200 rounded-xl">
               <code className="text-secondary text-sm">res.redirect()</code>
               <p className="text-xs text-textMuted mt-2">Usado en POST login/register para redirigir a /home, y en el fallback para enviar a /login</p>
             </div>
-            <div className="p-5 bg-surface/40 border border-white/5 rounded-xl">
-              <code className="text-accent text-sm">res.sendFile()</code>
+            <div className="p-5 bg-surface/40 border border-gray-200 rounded-xl">
+              <code className="text-tertiary text-sm">res.sendFile()</code>
               <p className="text-xs text-textMuted mt-2">Usado para servir el favicon desde /assets/favicon.png</p>
             </div>
           </div>
@@ -418,12 +418,12 @@ function getCartDetail() {
 
         {/* ── SECCIÓN 8: LIMITACIONES ── */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+          <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
             <span className="text-primary">08.</span> Limitaciones Honestas de STP1
           </h2>
-          <div className="p-6 bg-amber-950/30 border border-amber-500/20 rounded-xl">
-            <h4 className="text-amber-400 font-semibold mb-4">Lo que falta y se resuelve en STP2/STP3:</h4>
-            <ul className="space-y-2 text-sm text-amber-200/80">
+          <div className="p-6 bg-amber-50 border border-amber-200 rounded-xl">
+            <h4 className="text-amber-700 font-semibold mb-4">Lo que falta y se resuelve en STP2/STP3:</h4>
+            <ul className="space-y-2 text-sm text-amber-700">
               <li>❌ No hay base de datos → se agrega SQLite en STP3</li>
               <li>❌ No hay controllers/ formales → se introduce MVC completo en STP2</li>
               <li>❌ No hay autenticación real → login/register son mock</li>
@@ -433,9 +433,9 @@ function getCartDetail() {
               <li>❌ El buscador del navbar es solo visual, no funcional</li>
             </ul>
           </div>
-          <div className="mt-6 p-6 bg-emerald-950/30 border border-emerald-500/20 rounded-xl">
-            <h4 className="text-emerald-400 font-semibold mb-4">Lo que STP1 SÍ logra como fundación:</h4>
-            <ul className="space-y-2 text-sm text-emerald-200/80">
+          <div className="mt-6 p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+            <h4 className="text-emerald-700 font-semibold mb-4">Lo que STP1 SÍ logra como fundación:</h4>
+            <ul className="space-y-2 text-sm text-emerald-700">
               <li>✅ Estructura modularizada desde el inicio (rutas, servicios, datos, vistas, estilos)</li>
               <li>✅ Dataset compartido que evita hardcode repetido</li>
               <li>✅ Detalle de producto con comportamiento no trivial (fallback + relacionados)</li>

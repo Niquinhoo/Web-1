@@ -8,18 +8,18 @@ export default function STP3Detail() {
   return (
     <div className="min-h-screen bg-background text-textMain p-8 md:p-16 relative overflow-x-hidden">
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px]"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-tertiary/5 blur-[120px]"></div>
         <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full bg-green-500/5 blur-[120px]"></div>
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <Link to="/" className="inline-flex items-center text-accent hover:text-accent/80 mb-8 transition-colors">
+        <Link to="/" className="inline-flex items-center text-tertiary hover:text-tertiary/80 mb-8 transition-colors">
           <ArrowLeft className="w-5 h-5 mr-2" />
           Volver a la Presentación
         </Link>
 
         <header className="mb-16">
-          <span className="text-accent font-mono text-xl mb-2 block">Fase 3</span>
+          <span className="text-tertiary font-mono text-xl mb-2 block">Fase 3</span>
           <h1 className="text-5xl font-bold mb-4">STP3: SQLite y Persistencia</h1>
           <p className="text-xl text-textMuted">
             Migración de mock data a better-sqlite3 con schema.sql, bootstrap idempotente, transacciones ACID, bound parameters y 7 User Stories — contrastado con la teoría de Datos y Arquitectura por Capas.
@@ -380,13 +380,13 @@ module.exports = { getCategories, getHomeBanners };`}
             <p className="mt-2">«El objetivo no es agregar capas por agregar, sino acomodar el sistema para que la complejidad que viene no lo rompa.»</p>
           </TheoryBlock>
 
-          <div className="mt-6 font-mono text-sm bg-black/30 p-5 rounded-xl border border-white/5 text-textMuted">
-            <div className="text-white mb-3">Capas en STP3 vs Capas de la teoría:</div>
+          <div className="mt-6 font-mono text-sm bg-gray-100 p-5 rounded-xl border border-gray-200 text-textMuted">
+            <div className="text-textMain mb-3">Capas en STP3 vs Capas de la teoría:</div>
             <div className="space-y-1">
               <div>📖 Teoría: route → controller → <span className="text-orange-300">model (SQL)</span> → DB</div>
-              <div>💻 Nuestro: route → controller → <span className="text-accent">service (SQL)</span> → DB</div>
+              <div>💻 Nuestro: route → controller → <span className="text-tertiary">service (SQL)</span> → DB</div>
             </div>
-            <div className="mt-3 text-xs text-amber-300/80">
+            <div className="mt-3 text-xs text-amber-700">
               Nota: La cátedra sugiere NO usar services en STP3 ("son un concepto más avanzado"). Nuestro proyecto los mantiene de STP2 porque ya existían. El service cumple el rol de model+service combinado.
             </div>
           </div>
@@ -405,9 +405,9 @@ module.exports = { getCategories, getHomeBanners };`}
             <USGroup title="Preparación STP4" items={['US7 — Tabla users lista para auth']} color="purple" />
           </div>
 
-          <div className="mt-6 p-5 bg-emerald-950/30 border border-emerald-500/20 rounded-xl">
-            <h4 className="text-emerald-400 font-semibold mb-3">Validaciones clave cumplidas:</h4>
-            <ul className="text-sm text-emerald-200/80 space-y-1">
+          <div className="mt-6 p-5 bg-emerald-50 border border-emerald-200 rounded-xl">
+            <h4 className="text-emerald-700 font-semibold mb-3">Validaciones clave cumplidas:</h4>
+            <ul className="text-sm text-emerald-700 space-y-1">
               <li>✅ La base se crea sin errores al arrancar</li>
               <li>✅ Ninguna función del servicio usa JSON</li>
               <li>✅ Los controladores siguen funcionando sin cambios</li>
@@ -427,8 +427,8 @@ module.exports = { getCategories, getHomeBanners };`}
             <EvoCard phase="STP3" desc="SQLite real. prepare()/get()/all(). Transacciones ACID. Seed idempotente." color="green" />
           </div>
 
-          <div className="mt-6 p-5 bg-accent/10 border border-accent/20 rounded-xl">
-            <p className="text-accent font-semibold mb-2">Cita final de la cátedra:</p>
+          <div className="mt-6 p-5 bg-tertiary/[0.06] border border-tertiary/20 rounded-xl">
+            <p className="text-tertiary font-semibold mb-2">Cita final de la cátedra:</p>
             <p className="text-sm text-textMuted italic">«Este cambio no es menor: es el momento en que la aplicación deja de ser un ejercicio académico y empieza a comportarse como un producto que podría vivir en producción.»</p>
           </div>
         </Section>
@@ -440,8 +440,8 @@ module.exports = { getCategories, getHomeBanners };`}
 function Section({ num, title, children, isLast = false }) {
   return (
     <section className={isLast ? 'mb-8' : 'mb-16'}>
-      <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
-        <span className="text-accent">{num}.</span> {title}
+      <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
+        <span className="text-tertiary">{num}.</span> {title}
       </h2>
       {children}
     </section>
@@ -449,8 +449,8 @@ function Section({ num, title, children, isLast = false }) {
 }
 
 function USGroup({ title, items, color }) {
-  const bg = { blue: 'bg-blue-950/30 border-blue-500/20', green: 'bg-emerald-950/30 border-emerald-500/20', purple: 'bg-purple-950/30 border-purple-500/20' };
-  const text = { blue: 'text-blue-400', green: 'text-emerald-400', purple: 'text-purple-400' };
+  const bg = { blue: 'bg-blue-50 border-blue-200', green: 'bg-emerald-50 border-emerald-200', purple: 'bg-purple-50 border-purple-200' };
+  const text = { blue: 'text-blue-700', green: 'text-emerald-700', purple: 'text-purple-700' };
   return (
     <div className={`p-4 ${bg[color]} border rounded-xl`}>
       <h4 className={`${text[color]} font-semibold text-sm mb-2`}>{title}</h4>
@@ -462,8 +462,8 @@ function USGroup({ title, items, color }) {
 }
 
 function EvoCard({ phase, desc, color }) {
-  const bg = { blue: 'bg-blue-950/30 border-blue-500/20', purple: 'bg-purple-950/30 border-purple-500/20', green: 'bg-emerald-950/30 border-emerald-500/20' };
-  const text = { blue: 'text-blue-400', purple: 'text-purple-400', green: 'text-emerald-400' };
+  const bg = { blue: 'bg-blue-50 border-blue-200', purple: 'bg-purple-50 border-purple-200', green: 'bg-emerald-50 border-emerald-200' };
+  const text = { blue: 'text-blue-700', purple: 'text-purple-700', green: 'text-emerald-700' };
   return (
     <div className={`p-5 ${bg[color]} border rounded-xl`}>
       <h4 className={`${text[color]} font-bold text-lg mb-2`}>{phase}</h4>

@@ -43,8 +43,8 @@ export default function Presentation() {
     <div className="w-screen h-screen relative bg-background text-textMain overflow-hidden font-sans">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[120px]"></div>
-        <div className="absolute top-[60%] -right-[10%] w-[40%] h-[50%] rounded-full bg-secondary/10 blur-[120px]"></div>
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/[0.04] blur-[120px]"></div>
+        <div className="absolute top-[60%] -right-[10%] w-[40%] h-[50%] rounded-full bg-secondary/[0.04] blur-[120px]"></div>
       </div>
 
       {/* Main Content Area */}
@@ -62,21 +62,21 @@ export default function Presentation() {
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="p-3 rounded-full bg-surface/50 hover:bg-surface border border-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="p-3 rounded-full bg-white hover:bg-gray-100 border border-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={nextSlide}
           disabled={currentSlide === slides.length - 1}
-          className="p-3 rounded-full bg-surface/50 hover:bg-surface border border-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="p-3 rounded-full bg-white hover:bg-gray-100 border border-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
       
       {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 h-1 bg-surface w-full z-50">
+      <div className="absolute bottom-0 left-0 h-1 bg-gray-200 w-full z-50">
         <div 
           className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300 ease-out"
           style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}

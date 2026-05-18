@@ -8,7 +8,7 @@ export default function TimelineItem({ date, title, description, code, language 
       )}
       
       <div className="relative mr-8 mt-2">
-        <div className="w-12 h-12 rounded-full bg-surface border-2 border-primary flex items-center justify-center z-10 shadow-[0_0_15px_rgba(var(--color-primary),0.3)]">
+        <div className="w-12 h-12 rounded-full bg-white border-2 border-primary flex items-center justify-center z-10 shadow-md">
           <div className="w-4 h-4 rounded-full bg-primary" />
         </div>
       </div>
@@ -25,8 +25,8 @@ export default function TimelineItem({ date, title, description, code, language 
           <p className="text-textMuted mb-6 leading-relaxed whitespace-pre-line">{description}</p>
           
           {code && (
-            <div className="rounded-xl overflow-hidden border border-white/10 bg-black/50">
-              <div className="bg-black/80 px-4 py-2 text-xs font-mono text-textMuted border-b border-white/5 flex gap-2">
+            <div className="rounded-xl overflow-hidden border border-gray-700 bg-gray-900">
+              <div className="bg-gray-800 px-4 py-2 text-xs font-mono text-gray-400 border-b border-gray-700 flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/50"></div>

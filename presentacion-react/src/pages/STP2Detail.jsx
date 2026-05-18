@@ -36,9 +36,9 @@ export default function STP2Detail() {
             theory="«La meta no era solo mover archivos, sino dejar una base más mantenible» — US1 STP2. El patrón MVC separa datos, lógica y presentación."
             practice="STP2 introduce controllers/ y migra data/db.js → models/productModel.js. Las rutas ya no tocan datos directamente: delegan al controller, que delega al service, que consulta al model."
           />
-          <div className="mt-4 font-mono text-sm bg-black/30 p-5 rounded-xl border border-white/5 text-textMuted">
-            <div className="text-white mb-2">Flujo STP2:</div>
-            <div>Cliente → <span className="text-secondary">app.js</span> → <span className="text-blue-400">route</span> → <span className="text-purple-400">controller</span> → <span className="text-accent">service</span> → <span className="text-orange-300">model</span></div>
+          <div className="mt-4 font-mono text-sm bg-gray-100 p-5 rounded-xl border border-gray-200 text-textMuted">
+            <div className="text-textMain mb-2">Flujo STP2:</div>
+            <div>Cliente → <span className="text-secondary">app.js</span> → <span className="text-blue-400">route</span> → <span className="text-purple-400">controller</span> → <span className="text-tertiary">service</span> → <span className="text-orange-300">model</span></div>
             <div className="mt-1">Cliente ← <span className="text-green-400">render EJS</span> ← <span className="text-blue-400">route</span> ← datos preparados</div>
           </div>
         </Section>
@@ -374,7 +374,7 @@ app.use((error, req, res, next) => {
           </TheoryBlock>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 bg-surface/40 border border-white/5 rounded-xl">
+            <div className="p-5 bg-surface/40 border border-gray-200 rounded-xl">
               <span className="text-xs font-mono text-blue-400 uppercase tracking-wider block mb-2">Validaciones del registro</span>
               <ul className="text-sm text-textMuted space-y-1">
                 <li>• Campos no vacíos ni con espacios</li>
@@ -385,7 +385,7 @@ app.use((error, req, res, next) => {
                 <li>• Confirmación coincide</li>
               </ul>
             </div>
-            <div className="p-5 bg-surface/40 border border-white/5 rounded-xl">
+            <div className="p-5 bg-surface/40 border border-gray-200 rounded-xl">
               <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider block mb-2">Respuesta HTTP</span>
               <ul className="text-sm text-textMuted space-y-1">
                 <li>• <code className="text-red-400">422</code> si falla validación backend</li>
@@ -406,9 +406,9 @@ app.use((error, req, res, next) => {
             <USGroup title="Auth y Errores" items={['US3 — Validar registro (422)', 'US13 — Página 500', 'US15 — Servicio de productos']} color="amber" />
           </div>
 
-          <div className="mt-6 p-5 bg-violet-950/30 border border-violet-500/20 rounded-xl">
-            <h4 className="text-violet-400 font-semibold mb-3">Integraciones entre historias:</h4>
-            <ul className="text-sm text-violet-200/80 space-y-2">
+          <div className="mt-6 p-5 bg-violet-50 border border-violet-200 rounded-xl">
+            <h4 className="text-violet-700 font-semibold mb-3">Integraciones entre historias:</h4>
+            <ul className="text-sm text-violet-700 space-y-2">
               <li><strong>Catálogo + Detalle:</strong> US6→US9→US8 comparten cards, grid y productsService</li>
               <li><strong>Carrito persistente:</strong> US4→US11→US12→US16 — sesión + stock + badge + service</li>
               <li><strong>Errores HTTP:</strong> US2 (404) + US13 (500) + US17 (400) = semántica completa</li>
@@ -420,9 +420,9 @@ app.use((error, req, res, next) => {
         {/* ── 09: LIMITACIONES ── */}
         <Section num="09" title="Limitaciones Honestas de STP2" isLast={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 bg-amber-950/30 border border-amber-500/20 rounded-xl">
-              <h4 className="text-amber-400 font-semibold mb-4">Lo que falta → STP3:</h4>
-              <ul className="space-y-2 text-sm text-amber-200/80">
+            <div className="p-6 bg-amber-50 border border-amber-200 rounded-xl">
+              <h4 className="text-amber-700 font-semibold mb-4">Lo que falta → STP3:</h4>
+              <ul className="space-y-2 text-sm text-amber-700">
                 <li>❌ No hay base de datos (SQLite en STP3)</li>
                 <li>❌ Login/register son mock sin persistencia</li>
                 <li>❌ Sesión es efímera (se pierde al reiniciar)</li>
@@ -431,9 +431,9 @@ app.use((error, req, res, next) => {
                 <li>❌ No hay tests automatizados</li>
               </ul>
             </div>
-            <div className="p-6 bg-emerald-950/30 border border-emerald-500/20 rounded-xl">
-              <h4 className="text-emerald-400 font-semibold mb-4">Lo que STP2 SÍ logra:</h4>
-              <ul className="space-y-2 text-sm text-emerald-200/80">
+            <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <h4 className="text-emerald-700 font-semibold mb-4">Lo que STP2 SÍ logra:</h4>
+              <ul className="space-y-2 text-sm text-emerald-700">
                 <li>✅ MVC parcial pero consistente (routes→controllers→services→models)</li>
                 <li>✅ Carrito funcional con sesión real</li>
                 <li>✅ 400 + 404 + 500 con vistas dedicadas</li>
@@ -455,7 +455,7 @@ app.use((error, req, res, next) => {
 function Section({ num, title, children, isLast = false }) {
   return (
     <section className={isLast ? 'mb-8' : 'mb-16'}>
-      <h2 className="text-3xl font-bold mb-2 border-b border-white/10 pb-4">
+      <h2 className="text-3xl font-bold mb-2 border-b border-gray-200 pb-4">
         <span className="text-secondary">{num}.</span> {title}
       </h2>
       {children}
@@ -464,8 +464,8 @@ function Section({ num, title, children, isLast = false }) {
 }
 
 function USGroup({ title, items, color }) {
-  const bgMap = { blue: 'bg-blue-950/30 border-blue-500/20', purple: 'bg-purple-950/30 border-purple-500/20', green: 'bg-emerald-950/30 border-emerald-500/20', amber: 'bg-amber-950/30 border-amber-500/20' };
-  const textMap = { blue: 'text-blue-400', purple: 'text-purple-400', green: 'text-emerald-400', amber: 'text-amber-400' };
+  const bgMap = { blue: 'bg-blue-50 border-blue-200', purple: 'bg-purple-50 border-purple-200', green: 'bg-emerald-50 border-emerald-200', amber: 'bg-amber-50 border-amber-200' };
+  const textMap = { blue: 'text-blue-700', purple: 'text-purple-700', green: 'text-emerald-700', amber: 'text-amber-700' };
   return (
     <div className={`p-4 ${bgMap[color]} border rounded-xl`}>
       <h4 className={`${textMap[color]} font-semibold text-sm mb-2`}>{title}</h4>

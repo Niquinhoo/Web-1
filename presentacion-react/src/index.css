@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
-  --color-primary: #3b82f6;
-  --color-secondary: #8b5cf6;
-  --color-accent: #10b981;
-  --color-textMain: #f8fafc;
-  --color-textMuted: #94a3b8;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surfaceAlt: #F1F5F9;
+  --color-primary: #1E3A8A;
+  --color-secondary: #6D7698;
+  --color-tertiary: #6E2C00;
+  --color-textMain: #1E293B;
+  --color-textMuted: #6D7698;
 
   --font-sans: 'Inter', 'system-ui', 'sans-serif';
+  --font-display: 'Manrope', 'Inter', 'sans-serif';
   --font-mono: 'Fira Code', 'monospace';
 }
 
@@ -20,26 +22,25 @@ body {
 }
 
 .glass-panel {
-  @apply bg-surface/80 backdrop-blur-md border border-white/10 shadow-xl rounded-2xl;
+  @apply bg-white/90 backdrop-blur-md border border-gray-200/60 shadow-sm rounded-2xl;
 }
 
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#6D7698] to-tertiary;
 }
 
-/* Custom scrollbar for code blocks */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.25);
 }
