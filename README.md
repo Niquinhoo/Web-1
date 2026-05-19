@@ -10,13 +10,16 @@ graph TD
     A --> C(MVC-Web-1: Gestor de Tareas MVC)
     A --> D(Web-1-STP1: E-commerce Atomic Design)
     A --> E(Web-1-STP2: E-commerce MVC & Carrito)
+    A --> F(Web-1-STP3: E-commerce Persistente con SQLite)
 ```
+
 | Rama | Proyecto | Descripción | Tecnologías |
 | :--- | :--- | :--- | :--- |
 | [`master`](https://github.com/Niquinhoo/Web-1/tree/master) | Índice | Documentación general del repositorio. | Markdown |
 | [`MVC-Web-1`](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) | Task Manager | Aplicación de gestión de tareas aplicando el patrón MVC. | Express, EJS, Node.js |
 | [`Web-1-STP1`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) | E-commerce | Plataforma de comercio electrónico con arquitectura Atomic Design. | Express, EJS, CSS (Modular), Atomic Design |
 | [`Web-1-STP2`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP2) | E-commerce (S2) | Refactorización a MVC/SSR con gestión de carrito y checkout. | Express, EJS, Sessions |
+| [`Web-1-STP3`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP3) | E-commerce (S3) | Evolución a persistencia relacional SQL real de alto rendimiento. | Express, SQLite, better-sqlite3 |
 
 ---
 
@@ -45,6 +48,16 @@ Este proyecto es la evolución del STP1, migrando a una arquitectura de capas y 
     - Manejo global de errores (404, 500, 400).
     - Buscador funcional y filtros por categorías dinámicos.
 
+### 4. [E-commerce con Persistencia SQLite](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP3) (Rama: `Web-1-STP3`)
+La evolución a la capa de persistencia real utilizando **SQLite** y el driver de alto rendimiento `better-sqlite3`.
+- **Arquitectura:** Estructura en capas (Rutas -> Controladores -> Servicios -> Base de Datos) con inyección idempotente.
+- **Características:**
+    - Base de datos relacional persistente con 5 tablas integradas (`categories`, `products`, `users`, `orders`, `order_items`) mediante claves primarias y foráneas.
+    - Bootstrap de base de datos automatizado y migración segura de datos heredados con transacciones ACID.
+    - Seed idempotente de categorías y productos desde archivo JS al iniciar la app.
+    - Consultas precompiladas (*Prepared Statements*) con *Bound Parameters* para evitar inyecciones SQL.
+    - Desacoplamiento total de dependencias a archivos JSON locales.
+
 ---
 
 ## 🛠️ Cómo navegar por los proyectos
@@ -52,6 +65,9 @@ Este proyecto es la evolución del STP1, migrando a una arquitectura de capas y 
 Para ver el código de un proyecto específico, cambia de rama en tu terminal o en la interfaz de GitHub:
 
 ```bash
+# Para ver el E-commerce (Sprint 3)
+git checkout Web-1-STP3
+
 # Para ver el E-commerce (Sprint 2)
 git checkout Web-1-STP2
 
