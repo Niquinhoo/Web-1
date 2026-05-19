@@ -1,209 +1,141 @@
-# Web-1-STP1
+# Web-1 (STP3) — E-Commerce Server-Side con Express y SQLite
 
-Aplicacion web server-side construida con Node.js, Express y EJS. El proyecto modela una experiencia simple tipo e-commerce/comida con home, detalle de producto, carrito, login y registro, usando una estructura inspirada en Atomic Design para las vistas y los estilos.
+Aplicación web server-side rendering (SSR) construida con **Node.js**, **Express**, **EJS** y **SQLite** (`better-sqlite3`). El proyecto implementa un flujo completo de e-commerce con persistencia de datos real, validaciones backend, control de sesiones, y una interfaz de usuario modular diseñada bajo principios de **Atomic Design** tanto para vistas como para estilos.
 
-## Stack
+---
 
-- Node.js
-- Express `5.2.1`
-- Express Session para persistencia temporal del carrito
-- EJS `5.0.1`
-- Nodemon `3.1.14` como dependencia de desarrollo/ejecucion local
-- CSS plano organizado por capas (`base`, `atoms`, `molecules`, `organisms`, `templates`)
-- Datos mockeados en memoria desde archivos `.js`
+## 🛠️ Stack Tecnológico
 
-## Como correr el proyecto
+- **Runtime:** Node.js
+- **Framework Web:** Express `5.2.1`
+- **Motor de Plantillas:** EJS `5.0.1`
+- **Persistencia:** SQLite a través de `better-sqlite3` `^12.9.0`
+- **Manejo de Sesiones:** `express-session` `1.19.0` (empleado para persistir temporalmente el estado del carrito y sesiones)
+- **Desarrollo Local:** `nodemon` `3.1.14`
+- **Diseño de Interfaz:** CSS modular bajo arquitectura **Atomic Design**
 
-1. Instalar dependencias:
+---
 
-```bash
-npm install
-```
+## 🚀 Cómo Ejecutar el Proyecto
 
-2. Levantar el servidor:
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-```bash
-node app.js
-```
+2. **Ejecutar migraciones y semilla (opcional, se hace automáticamente al iniciar la app):**
+   ```bash
+   node migrate.js
+   ```
 
-Opcionalmente, para desarrollo:
+3. **Iniciar el servidor:**
+   - Modo normal:
+     ```bash
+     node app.js
+     ```
+   - Modo desarrollo (con recarga automática):
+     ```bash
+     npx nodemon app.js
+     ```
 
-```bash
-npx nodemon app.js
-```
+4. **Acceder a la aplicación:**
+   Abrir en el navegador [http://localhost:3000](http://localhost:3000)
 
-3. Abrir en el navegador:
+---
 
-```text
-http://localhost:3000
-```
+## 📂 Estructura General del Proyecto
 
-## Flujo general de la aplicacion
-
-El flujo principal del proyecto hoy funciona asi:
-
-1. `app.js` inicializa Express, configura EJS como motor de vistas, expone `/styles` y `/assets` como carpetas estaticas y registra las rutas.
-2. La home vive en `/`, `/index` y `/home`. Esa ruta toma datos desde `data/db.js` y `services/product.service.js`, y renderiza `views/pages/home/home-page.ejs`.
-3. Desde la grilla de productos se navega al detalle en `/producto/:id`.
-4. La ruta de detalle busca el producto por id:
-   - Si existe, renderiza la pagina de detalle con productos relacionados.
-   - Si no existe, renderiza una vista de producto no encontrado y muestra sugerencias aleatorias.
-5. La ruta `/cart` arma el carrito a partir de `req.session.cart`, combina esas lineas con los productos mock y calcula subtotales/totales en `controllers/cartController.js`.
-6. `/login` y `/register` muestran formularios server-side. Sus `POST` hoy no persisten datos: solo registran informacion en consola y redirigen a `/home`.
-7. Cualquier ruta no definida redirige a `/login`.
-
-## Flujo tecnico por capas
-
-### 1. Entrada de la app
-
-`app.js` es el punto de entrada. Ahi se define:
-
-- Puerto `3000`
-- View engine `ejs`
-- Carpeta de vistas `./views`
-- Middlewares `express.urlencoded()` y `express.json()`
-- Rutas principales
-- Fallback de rutas no encontradas
-
-### 2. Rutas
-
-Las rutas viven en `routes/` y reparten responsabilidades por seccion:
-
-- `index.router.js`: home
-- `productos.router.js`: detalle de producto y fallback de producto inexistente
-- `cart.router.js`: carrito
-- `login.router.js`: login
-- `register.router.js`: registro
-- `checkout.router.js`: checkout placeholder
-- `account.router.js`: account placeholder
-
-### 3. Datos
-
-Los datos estan centralizados en `data/db.js` y hoy son estaticos:
-
-- `productos`
-- `publicidades`
-- `categorias`
-No hay base de datos ni persistencia real. Todo el contenido se resuelve en memoria.
-
-### 4. Controladores
-
-La capa `controllers/` encapsula la logica de lectura y transformacion de datos:
-
-- `productController.js`
-  - obtiene todos los productos
-  - busca un producto por id
-  - calcula relacionados por categoria
-  - arma sugerencias aleatorias
-- `cartController.js`
-  - inicializa el carrito en sesion
-  - cruza lineas del carrito con productos
-  - calcula cantidad, precio unitario y subtotal
-  - arma el resumen final del carrito
-  - permite agregar, modificar y vaciar el carrito
-
-### 5. Renderizado de vistas
-
-Las vistas estan en `views/` y siguen una composicion por niveles:
-
-- `pages/`: paginas finales que se renderizan desde Express
-- `partials/templates/`: layouts principales
-- `partials/organisms/`: bloques grandes de interfaz
-- `partials/molecules/`: componentes intermedios
-- `partials/atoms/`: piezas chicas y reutilizables
-
-Ejemplos concretos:
-
-- `views/pages/home/home-page.ejs` delega en `partials/templates/home-layout.ejs`
-- `views/pages/product/product-detail-page.ejs` delega en `partials/templates/product-layout.ejs`
-- `views/pages/cart/cart-page.ejs` usa `partials/templates/cart-layout.ejs`
-- `views/pages/login/login-page.ejs` y `views/pages/register/register-page.ejs` usan `partials/templates/auth-temp.ejs`
-
-## Estructura del proyecto
+La estructura del repositorio refleja una clara separación de responsabilidades y sigue una arquitectura en capas:
 
 ```text
 .
-|-- app.js
-|-- package.json
-|-- controllers/
-|   |-- productController.js
-|   `-- cartController.js
-|-- routes/
-|   |-- index.router.js
-|   |-- productos.router.js
-|   |-- cart.router.js
-|   |-- login.router.js
-|   |-- register.router.js
-|   |-- checkout.router.js
-|   `-- account.router.js
-|-- models/
-|   `-- productModel.js
-|-- views/
-|   |-- pages/
-|   |-- partials/
-|   |   |-- templates/
-|   |   |-- organisms/
-|   |   |-- molecules/
-|   |   `-- atoms/
-|   `-- index.ejs
-|-- styles/
-|   |-- base/
-|   |-- atoms/
-|   |-- molecules/
-|   |-- organisms/
-|   `-- templates/
-|-- assets/
-|   |-- banners/
-|   |-- productos/
-|   `-- socialmedia/
-`-- documentacion/
+├── app.js                 # Punto de entrada principal y configuración de Express
+├── migrate.js             # Script auxiliar para ejecutar y diagnosticar migraciones de la DB
+├── package.json           # Definición de dependencias y metadata del proyecto
+├── controllers/           # Controladores: Capa delgada que maneja la lógica HTTP (req, res, render)
+│   ├── cartController.js
+│   └── productController.js
+├── data/                  # Datos semilla estáticos y configuraciones iniciales
+│   ├── homeContent.js
+│   └── seedData.js
+├── db/                    # Persistencia y base de datos
+│   ├── bootstrap.js       # Migraciones incrementales y carga idempotente de datos semilla
+│   ├── database.db        # Archivo de base de datos SQLite (generado automáticamente)
+│   ├── database.js        # Configuración de la conexión e inicialización (Punto Único de Entrada)
+│   └── schema.sql         # Esquema de tablas relacionales de la base de datos
+├── documentacion/         # Historias de usuario, especificaciones y guías de desarrollo
+├── public/                # Archivos estáticos servidos públicamente
+│   ├── scripts/           # Scripts JS del lado del cliente
+│   └── styles/            # Hojas de estilo estructuradas con Atomic Design (base, atoms, molecules, etc.)
+├── routes/                # Enrutadores que mapean URLs a los controladores correspondientes
+│   ├── account.router.js
+│   ├── cart.router.js
+│   ├── categories.router.js
+│   ├── checkout.router.js
+│   ├── index.router.js
+│   ├── login.router.js
+│   ├── productos.router.js
+│   ├── register.router.js
+│   └── search.router.js
+├── services/              # Capa de Negocio: Lógica pura y acceso a datos SQLite (libre de req/res)
+│   ├── cartService.js
+│   ├── catalogService.js
+│   └── productsService.js
+└── views/                 # Vistas dinámicas EJS modularizadas en componentes
+    ├── index.ejs          # Punto de entrada global de vistas
+    └── partials/          # Componentes de presentación organizados por Atomic Design
+        ├── head-favicons.ejs
+        ├── templates/     # Layouts estructurales (home-layout, cart-layout, etc.)
+        ├── organisms/     # Componentes complejos autónomos (navbar, grid de productos)
+        ├── molecules/     # Bloques de UI reutilizables medianos (tarjetas, banners, inputs)
+        └── atoms/         # Unidades mínimas de UI (botones, textos, badges de precio)
 ```
 
-## Como se relacionan las carpetas
+---
 
-- `routes/` recibe la request y decide que vista renderizar.
-- `controllers/` prepara la informacion que necesita la interfaz.
-- `models/` actua como fuente de datos mock.
-- `views/` define la estructura HTML con EJS.
-- `styles/` define la presentacion visual, tambien separada por Atomic Design.
-- `assets/` contiene imagenes, logos y recursos visuales.
-- `documentacion/` guarda historias de usuario y notas del proyecto.
+## 💾 Persistencia y Base de Datos (SQLite)
 
-## Flujo de navegacion actual
+La transición desde objetos mock en memoria (STP1) a persistencia SQL (STP3) se estructuró para garantizar robustez y consistencia:
 
-```text
-/login -> POST /login -> /home
-/register -> POST /register -> /home
-/home -> listado de productos -> /producto/:id
-/producto/:id -> detalle + relacionados
-/cart -> carrito en sesion con resumen y edicion de cantidades
-* -> cualquier ruta no definida -> /login
+- **Single Point of Entry (`db/database.js`):** Encapsula la conexión física a `database.db`. Garantiza la ejecución inicial del script de definición de esquemas (`schema.sql`).
+- **Esquema Relacional (`db/schema.sql`):** Define cinco tablas clave:
+  - `categories`: Clasificación de productos (tecnología, comida, etc.).
+  - `products`: Detalles del catálogo de productos con relaciones a categorías.
+  - `users`: Cuentas con campos para contraseñas de forma segura (`password_hash`).
+  - `orders` y `order_items`: Gestión relacional de compras completadas vinculando usuarios y productos con integridad referencial (claves foráneas).
+- **Proceso de Bootstrap (`db/bootstrap.js`):**
+  - **Migración de Esquema:** Detecta dinámicamente si la tabla `users` requiere modificaciones estructurales. Si se detecta una estructura legacy (como contraseñas en texto plano `password`), renombra la tabla anterior, crea la nueva tabla con los campos corregidos (`password_hash` y `created_at`), copia los registros y elimina la tabla legacy dentro de una **transacción SQL segura**.
+  - **Seed Idempotente:** Al arrancar por primera vez, verifica si las tablas `categories` o `products` están vacías y las puebla automáticamente a partir de los datos en `data/seedData.js`.
+
+---
+
+## 🔄 Flujo Técnico de Datos por Capas
+
+El ciclo de vida de una solicitud HTTP en la aplicación sigue un patrón estricto de capas:
+
+```mermaid
+graph TD
+    Client[Cliente / Navegador] -->|HTTP Request| Router[Router - routes/]
+    Router -->|Parsea Parámetros & Rutas| Controller[Controlador - controllers/]
+    Controller -->|Llama Métodos de Negocio| Service[Servicio - services/]
+    Service -->|Ejecuta SQL con better-sqlite3| Database[(Base de Datos - db/)]
+    Database -->|Retorna Filas/Resultados| Service
+    Service -->|Retorna Datos Limpios| Controller
+    Controller -->|Renderiza con Datos| Views[Vistas EJS - views/]
+    Views -->|HTML Generado| Client
 ```
 
-## Responsive y organizacion visual
+1. **Rutas (`routes/`):** Mapean los endpoints específicos (ej. `/producto/:id`) y derivan el control a funciones del controlador.
+2. **Controladores (`controllers/`):** Se encargan de validar la semántica de la petición, capturar los datos HTTP (como `req.params` o `req.body`), e invocar los servicios de negocio correspondientes. Finalmente, deciden si renderizar una plantilla EJS exitosa (`res.render`) o redirigir en caso de error.
+3. **Servicios (`services/`):** Contienen la lógica de negocio pura y consultas SQL.
+   - **`productsService.js`:** Realiza búsquedas por ID, paginaciones, filtrado de categorías y cálculo de productos sugeridos o relacionados directamente a través de consultas SQLite estructuradas.
+   - **`cartService.js`:** Gestiona la lógica de productos en el carrito.
+   - **`catalogService.js`:** Expone métodos para listar y categorizar el catálogo.
+4. **Vistas (`views/`):** Reciben objetos y variables de datos planos inyectados desde el controlador. EJS se encarga de resolver las plantillas, modularizadas en *Atoms*, *Molecules*, *Organisms* y *Templates*, devolviendo HTML listo al navegador.
 
-El proyecto tambien trabaja el responsive directamente sobre los estilos por componente. Los breakpoints que aparecen repetidos en la documentacion y las hojas de estilo estan orientados a:
+---
 
-- mobile alrededor de `600px - 640px`
-- tablet en `768px`
-- desktop intermedio en `900px`
+## 🚀 Control de Errores y Rutas Fallback
 
-Esto impacta especialmente en:
-
-- navbar
-- grilla de productos
-- detalle de producto
-- carrito
-
-## Estado actual y observaciones
-
-- El proyecto usa datos mockeados; no hay base de datos ni autenticacion real.
-- `login` y `register` simulan el flujo mediante redireccion.
-- `checkout.router.js` renderiza `pages/checkout/checkout-page`.
-- `account.router.js` renderiza `pages/account/account-page`.
-- Ambas rutas ya cuentan con vistas propias y estructura basada en Atomic Design.
-- En `package.json` no hay scripts de arranque definidos; hoy la forma directa de correr la app es `node app.js` o `npx nodemon app.js`.
-
-## Resumen
-
-Este proyecto implementa una aplicacion SSR simple con Express y EJS, organizada con una logica de componentes inspirada en Atomic Design. El backend actual se encarga de enrutar, preparar datos mock y renderizar vistas; el frontend se resuelve con EJS + CSS modularizado por niveles. La base esta pensada para seguir creciendo hacia persistencia real, autenticacion y nuevas pantallas como checkout y account.
+- **Error 404 (Recurso no encontrado):** Si una ruta no existe, un middleware fallback global intercepta la request y renderiza `pages/404/404-page.ejs`. Asimismo, si se busca un producto inexistente (`/producto/999`), el controlador de producto intercepta el resultado vacío, devuelve un estado `404` y renderiza una vista amigable de "Producto no encontrado" con sugerencias aleatorias.
+- **Error 500 (Error de Servidor):** Un middleware de error centralizado captura cualquier excepción no controlada en el backend, registra los detalles técnicos en la consola y sirve una vista limpia `pages/500/500-page.ejs` para evitar la exposición de trazas de código al cliente.
