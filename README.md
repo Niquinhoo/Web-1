@@ -8,25 +8,23 @@ El objetivo principal de este espacio es contrastar y justificar la arquitectura
 
 ## 📂 Estructura del Repositorio
 
-La raíz del repositorio está organizada de la siguiente manera:
-
 ```text
 .
-├── DocumentacionSTPX/     # Documentación técnica escrita de cada sprint
-│   ├── STP1/              # Defensa teórica y cobertura de User Stories de la Fase 1
-│   ├── STP2/              # Defensa técnica, conclusiones y User Stories de la Fase 2
-│   └── STP3/              # Defensa de persistencia SQLite, checklist y User Stories de la Fase 3
-├── presentacion-react/    # Código fuente de la presentación interactiva (React + Vite)
-│   ├── dist/              # Build estático de la presentación para producción
-│   ├── src/
-│   │   ├── components/    # Componentes dinámicos (TheoryBlock, ContrastBlock, TimelineItem)
-│   │   ├── pages/         # Vistas de detalle técnico (STP1Detail, STP2Detail, STP3Detail)
-│   │   ├── slides/        # Diapositivas secuenciales de la presentación
-│   │   └── App.jsx        # Configuración de rutas y layout global de la SPA
-│   ├── package.json       # Dependencias y scripts de la presentación
-│   └── vite.config.js     # Configuración del bundler Vite
-├── tasks/                 # Gestión de tareas pendientes y completadas
-│   └── todo.md            # Planificación y checklist de sprints
+├── public/                # Archivos públicos estáticos (favicon, icons)
+├── src/                   # Código fuente de la presentación interactiva (React + Vite)
+│   ├── assets/            # Imágenes y recursos (hero.png, svg)
+│   ├── components/        # Componentes dinámicos (TheoryBlock, ContrastBlock, TimelineItem, CodeBlock, Slide)
+│   ├── pages/             # Vistas de detalle técnico (STP1Detail, STP2Detail, STP3Detail, Presentation)
+│   ├── slides/            # Diapositivas secuenciales de la presentación
+│   ├── App.css            # Estilos globales de la aplicación
+│   ├── App.jsx            # Configuración de rutas y layout global de la SPA
+│   ├── index.css          # Estilos base y reseteo
+│   └── main.jsx           # Punto de entrada de React
+├── dist/                  # Build estático de la presentación para producción
+├── index.html             # HTML principal de la SPA
+├── package.json           # Dependencias y scripts de la presentación
+├── vite.config.js         # Configuración del bundler Vite
+├── eslint.config.js       # Configuración de ESLint
 └── README.md              # Este archivo descriptivo
 ```
 
@@ -59,7 +57,7 @@ A través de la documentación y los paneles de la presentación, se abordan los
 
 ## 🖥️ Flujo de la Presentación Interactiva
 
-La aplicación web SPA en `presentacion-react/` está diseñada para guiar la defensa del examen a través de diapositivas interactivas estructuradas con animaciones fluidas y soporte visual:
+La aplicación web SPA en `src/` está diseñada para guiar la defensa del examen a través de diapositivas interactivas estructuradas con animaciones fluidas y soporte visual:
 
 1. **TitleSlide:** Portada y presentación de los pilares de la defensa.
 2. **STP1Slide & Detail:** Muestra las tarjetas de características de la Fase 1 y abre un panel de contraste teórico-práctico de las vistas dinámicas.
@@ -69,25 +67,3 @@ La aplicación web SPA en `presentacion-react/` está diseñada para guiar la de
 6. **CodeEvolutionSlide:** Sección interactiva para visualizar código de antes (mockeado) vs. después (SQL precompilado) con resaltador de sintaxis.
 
 ---
-
-## 🚀 Cómo Ejecutar la Presentación en Local
-
-Para levantar la interfaz interactiva de la defensa, ejecuta los siguientes comandos en tu terminal:
-
-1. **Navegar a la carpeta del proyecto:**
-   ```bash
-   cd presentacion-react
-   ```
-
-2. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
-
-3. **Iniciar el servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Visualizar en el navegador:**
-   Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
