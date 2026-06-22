@@ -5,7 +5,9 @@ const products = [
         price: 1200,
         src: '/assets/productos/hamburguesasmash.png',
         category: 'Alimentos',
-        isTopSeller: 1
+        isTopSeller: 1,
+        stock: 50,
+        status: 'Activo'
     },
     {
         title: 'Pizza Napolitana',
@@ -13,7 +15,9 @@ const products = [
         price: 1500,
         src: '/assets/productos/pizzanapo.png',
         category: 'Alimentos',
-        isTopSeller: 1
+        isTopSeller: 1,
+        stock: 30,
+        status: 'Activo'
     },
     {
         title: 'Combo Coca-Cola',
@@ -21,7 +25,9 @@ const products = [
         price: 800,
         src: '/assets/productos/cocacolas.png',
         category: 'Bebidas',
-        isTopSeller: 0
+        isTopSeller: 0,
+        stock: 10,
+        status: 'Stock Bajo'
     },
     {
         title: 'Chocotorta Tradicional',
@@ -29,7 +35,9 @@ const products = [
         price: 600,
         src: '/assets/productos/chocotorta.png',
         category: 'Alimentos',
-        isTopSeller: 1
+        isTopSeller: 1,
+        stock: 0,
+        status: 'Sin Stock'
     },
     {
         title: 'Whiskey Premium',
@@ -37,7 +45,9 @@ const products = [
         price: 4500,
         src: '/assets/productos/whiskey.png',
         category: 'Bebidas',
-        isTopSeller: 0
+        isTopSeller: 0,
+        stock: 15,
+        status: 'Activo'
     }
 ];
 

@@ -49,6 +49,19 @@ function ensureUsersTable(db) {
     migrateUsers();
 }
 
+function ensureProductsTable(db) {
+    const columns = db.prepare('PRAGMA table_info(products)').all();
+    const hasStock = columns.some((column) => column.name === 'stock');
+    const hasStatus = columns.some((column) => column.name === 'status');
+
+    if (!hasStock) {
+        db.exec('ALTER TABLE products ADD COLUMN stock INTEGER DEFAULT 20');
+    }
+    if (!hasStatus) {
+        db.exec("ALTER TABLE products ADD COLUMN status TEXT DEFAULT 'Activo'");
+    }
+}
+
 function ensureSeedData(db) {
     const categoriesCount = db.prepare('SELECT COUNT(*) AS count FROM categories').get().count;
     if (categoriesCount === 0) {
@@ -68,7 +81,7 @@ function ensureSeedData(db) {
     const productsCount = db.prepare('SELECT COUNT(*) AS count FROM products').get().count;
     if (productsCount === 0) {
         const insertProduct = db.prepare(
-            'INSERT INTO products (title, description, price, src, category, isTopSeller) VALUES (?, ?, ?, ?, ?, ?)'
+            'INSERT INTO products (title, description, price, src, category, isTopSeller, stock, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
         );
 
         const seedProducts = db.transaction(() => {
@@ -79,7 +92,9 @@ function ensureSeedData(db) {
                     product.price,
                     product.src,
                     product.category,
-                    product.isTopSeller
+                    product.isTopSeller,
+                    product.stock !== undefined ? product.stock : 20,
+                    product.status !== undefined ? product.status : 'Activo'
                 );
             }
         });
@@ -90,5 +105,6 @@ function ensureSeedData(db) {
 
 module.exports = {
     ensureSeedData,
-    ensureUsersTable
+    ensureUsersTable,
+    ensureProductsTable
 };

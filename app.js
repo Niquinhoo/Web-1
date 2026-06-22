@@ -1,5 +1,6 @@
 // Importamos express para crear el servidor web
 const express = require('express');
+const cors = require('cors');
 const session = require('express-session');
 const path = require('path');
 
@@ -24,6 +25,13 @@ app.use('/styles', express.static(path.join(__dirname, 'public/styles')));
 // Servimos la carpeta 'assets' para que las imágenes puedan cargar
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')));
+
+// Habilitamos CORS para permitir peticiones del dashboard React (puerto 5173)
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 // Middleware para procesar datos de formularios (POST)
 app.use(express.urlencoded({ extended: false }));
@@ -54,7 +62,17 @@ const productosRouter = require('./routes/productos.router');
 const categoriesRouter = require('./routes/categories.router');
 const searchRouter = require('./routes/search.router');
 
-// --- CONEXIÓN DE RUTAS (Endpoints) ---
+// --- IMPORTACIÓN DE RUTAS DE API REST ---
+const apiProductsRouter = require('./routes/api.products.router');
+const apiCategoriesRouter = require('./routes/api.categories.router');
+const apiUploadRouter = require('./routes/api.upload.router');
+
+// --- RUTAS DE API REST (para el dashboard React) ---
+app.use('/api/products', apiProductsRouter);
+app.use('/api/categories', apiCategoriesRouter);
+app.use('/api/upload', apiUploadRouter);
+
+// --- CONEXIÓN DE RUTAS SSR (Endpoints) ---
 
 // Ruta principal (Legacy index)
 app.use('/', indexRouter);

@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS products (
     price REAL NOT NULL,
     src TEXT,
     category TEXT,
-    isTopSeller INTEGER DEFAULT 0
+    isTopSeller INTEGER DEFAULT 0,
+    stock INTEGER DEFAULT 20,
+    status TEXT DEFAULT 'Activo'
 );
 
 CREATE TABLE IF NOT EXISTS users (

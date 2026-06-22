@@ -6,7 +6,9 @@ function withFallbackImage(product) {
     return {
         ...product,
         src: product.src || PRODUCT_IMAGE_FALLBACK,
-        isTopSeller: Boolean(product.isTopSeller)
+        isTopSeller: Boolean(product.isTopSeller),
+        stock: product.stock !== undefined && product.stock !== null ? Number(product.stock) : 20,
+        status: product.status || 'Activo'
     };
 }
 
@@ -114,6 +116,52 @@ function searchProductsByName(query) {
         .map(withFallbackImage);
 }
 
+// ── Operaciones de escritura (API REST) ────────────────────────────────────
+
+function createProduct({ title, price, description = null, src = null, category = null, isTopSeller = 0, stock = null, status = null }) {
+    if (!title || price === undefined) {
+        throw new Error('Los campos "title" y "price" son obligatorios.');
+    }
+    const resolvedStock = stock !== null && stock !== undefined ? Number(stock) : 20;
+    const resolvedStatus = status || (resolvedStock === 0 ? 'Sin Stock' : (resolvedStock <= 12 ? 'Stock Bajo' : 'Activo'));
+
+    const stmt = db.prepare(
+        'INSERT INTO products (title, description, price, src, category, isTopSeller, stock, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    );
+    const result = stmt.run(String(title).trim(), description, Number(price), src, category, isTopSeller ? 1 : 0, resolvedStock, resolvedStatus);
+    return getProductById(result.lastInsertRowid);
+}
+
+function updateProduct(id, body) {
+    const existing = getProductById(id);
+    if (!existing) return undefined;
+
+    const { title, price, description, src, image, category, isTopSeller, stock, status } = body;
+
+    const newTitle       = title       !== undefined ? String(title).trim()   : existing.title;
+    const newPrice       = price       !== undefined ? Number(price)           : existing.price;
+    const newDescription = description !== undefined ? description             : existing.description;
+    const newSrc         = (src || image) !== undefined ? (src || image)       : existing.src;
+    const newCategory    = category    !== undefined ? category                : existing.category;
+    const newIsTopSeller = isTopSeller !== undefined ? (isTopSeller ? 1 : 0)  : existing.isTopSeller;
+    const newStock       = stock       !== undefined ? Number(stock)           : existing.stock;
+    const newStatus      = status      !== undefined ? status                  : 
+                           (stock !== undefined ? (newStock === 0 ? 'Sin Stock' : (newStock <= 12 ? 'Stock Bajo' : 'Activo')) : existing.status);
+
+    db.prepare(
+        'UPDATE products SET title = ?, price = ?, description = ?, src = ?, category = ?, isTopSeller = ?, stock = ?, status = ? WHERE id = ?'
+    ).run(newTitle, newPrice, newDescription, newSrc, newCategory, newIsTopSeller ? 1 : 0, newStock, newStatus, Number(id));
+
+    return getProductById(id);
+}
+
+function deleteProduct(id) {
+    const existing = getProductById(id);
+    if (!existing) return false;
+    db.prepare('DELETE FROM products WHERE id = ?').run(Number(id));
+    return true;
+}
+
 module.exports = {
     getAllProducts,
     getSuggestedProducts,
@@ -124,5 +172,8 @@ module.exports = {
     getProductsByCategory,
     normalizeId,
     getProductsSortedByPrice,
-    searchProductsByName
+    searchProductsByName,
+    createProduct,
+    updateProduct,
+    deleteProduct,
 };

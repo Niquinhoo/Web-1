@@ -139,3 +139,35 @@ graph TD
 
 - **Error 404 (Recurso no encontrado):** Si una ruta no existe, un middleware fallback global intercepta la request y renderiza `pages/404/404-page.ejs`. Asimismo, si se busca un producto inexistente (`/producto/999`), el controlador de producto intercepta el resultado vacío, devuelve un estado `404` y renderiza una vista amigable de "Producto no encontrado" con sugerencias aleatorias.
 - **Error 500 (Error de Servidor):** Un middleware de error centralizado captura cualquier excepción no controlada en el backend, registra los detalles técnicos en la consola y sirve una vista limpia `pages/500/500-page.ejs` para evitar la exposición de trazas de código al cliente.
+
+---
+
+## 🔌 API REST para Integración con Frontend (Dashboard React)
+
+El servidor Express ahora expone endpoints REST en formato JSON bajo el prefijo `/api` para habilitar el control del catálogo desde el panel administrativo desarrollado en **React** (puerto `5173`).
+
+### Configuración CORS
+Se ha incorporado la biblioteca `cors` configurada en `app.js` para permitir peticiones cruzadas de origen cruzado desde el puerto del dashboard:
+* **Orígenes permitidos:** `http://localhost:5173`, `http://127.0.0.1:5173`
+* **Métodos soportados:** `GET, POST, PUT, DELETE, OPTIONS`
+
+### Endpoints de la API
+
+#### 📦 Productos (`/api/products`)
+* **`GET /api/products`**: Retorna el listado completo de productos (soporta filtros `?sort=asc|desc` y búsquedas `?q=busqueda`).
+* **`GET /api/products/:id`**: Retorna el detalle de un producto específico.
+* **`POST /api/products`**: Crea un nuevo producto. Acepta `title`, `price` (obligatorios), `description`, `category`, `src`/`image` e `isTopSeller`.
+* **`PUT /api/products/:id`**: Actualiza los campos de un producto existente de forma parcial o total.
+* **`DELETE /api/products/:id`**: Elimina un producto. Retorna estado `204 No Content`.
+
+#### 🗂️ Categorías (`/api/categories`)
+* **`GET /api/categories`**: Retorna la lista completa de categorías.
+* **`GET /api/categories/:id`**: Retorna el detalle de una categoría específica.
+* **`POST /api/categories`**: Crea una nueva categoría. Acepta `name` (obligatorio) e `icon`.
+* **`PUT /api/categories/:id`**: Actualiza una categoría existente.
+* **`DELETE /api/categories/:id`**: Elimina una categoría. Retorna estado `204 No Content`.
+
+#### 📷 Carga de Archivos (`/api/upload`)
+* **`POST /api/upload`**: Recibe un archivo de imagen en el campo `image` (`multipart/form-data`). Guarda la imagen en la carpeta local `/assets/productos` y retorna la URL relativa en formato JSON: `{ "url": "/assets/productos/upload-nombre.png" }`.
+
+
