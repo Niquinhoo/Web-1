@@ -1,16 +1,56 @@
-# React + Vite
+# Lista de tareas de Walter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esqueleto visual de una Single Page Application realizado con React y Vite a partir de los wireframes provistos. Esta entrega reproduce la estructura solicitada y no incluye lógica para agregar, completar o eliminar tareas.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19 o superior
+- npm 10 o superior
 
-## React Compiler
+## Puesta en marcha
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+Vite mostrará en la terminal la dirección local de la aplicación.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Comandos
+
+```bash
+npm run dev      # Inicia el servidor de desarrollo
+npm run build    # Genera la versión de producción en dist/
+npm run preview  # Previsualiza la versión de producción
+npm run lint     # Revisa el código con ESLint
+```
+
+## Estructura
+
+```text
+Web-1/
+├── docs/
+│   └── paso-a-paso.md          Documentación de la resolución
+├── src/
+│   ├── App.jsx                 Componente principal y estructura HTML
+│   ├── App.css                 Estilos específicos de la aplicación
+│   ├── index.css               Estilos globales y normalización mínima
+│   └── main.jsx                Punto de entrada de React
+├── Ejercicio.md                Enunciado original
+├── Wireframe.png               Referencia visual
+├── WireframeLineamientos.png   Referencia visual anotada
+├── index.html                  Documento base de Vite
+├── package.json                Dependencias y comandos
+└── vite.config.js              Configuración de Vite
+```
+
+## Decisiones de alcance
+
+- Toda la interfaz está en `App.jsx`, tal como solicita el ejercicio.
+- Las tareas son contenido estático y aparecen en el mismo orden que el wireframe.
+- Los checkboxes completados usan HTML y CSS para tachar su texto.
+- Los botones están representados visualmente, pero no ejecutan acciones.
+- No se agregaron bibliotecas de estilos, componentes ni iconos.
+
+El detalle completo de la implementación está en [docs/paso-a-paso.md](docs/paso-a-paso.md).
+
