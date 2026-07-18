@@ -17,9 +17,17 @@ function TaskForm({ onAdd }) {
         name="new-task"
         type="text"
         value={value}
+        placeholder="Escribe una tarea…"
         onChange={(event) => setValue(event.target.value)}
       />
-      <button type="button" onClick={handleAdd}>ADD</button>
+      <button
+        className="add-button"
+        type="button"
+        aria-label="Agregar tarea"
+        onClick={handleAdd}
+      >
+        <span aria-hidden="true">✓</span>
+      </button>
     </div>
   )
 }

@@ -1,0 +1,220 @@
+$black: #222222;
+$black-50: rgba(34, 34, 34, 0.5);
+$black-10: rgba(34, 34, 34, 0.1);
+$white: #ffffff;
+$space: 8px;
+$radius: 4px;
+
+#root,
+.todo-app {
+  min-height: 100dvh;
+}
+
+.todo-app {
+  color: $black;
+  background: $white;
+}
+
+.app-shell {
+  width: min(calc(100% - 48px), 512px);
+  margin-inline: auto;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-top: $space * 4;
+  background: $white;
+}
+
+h1 {
+  margin: 0 0 $space * 3;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.task-form {
+  display: flex;
+  gap: $space;
+  padding: $space;
+  border-radius: $radius;
+  background: $black-10;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 48px;
+    padding-inline: $space;
+    border: 0;
+    background: transparent;
+    color: $black;
+    font-size: 24px;
+
+    &::placeholder {
+      color: $black-50;
+    }
+  }
+}
+
+.add-button,
+.delete-button {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid $black;
+  border-radius: $radius;
+  color: $black;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+
+  &:hover {
+    background: $black-10;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.add-button {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.divider {
+  margin: $space 0 0;
+  border: 0;
+  border-top: 2px solid $black-10;
+}
+
+.task-content {
+  padding-block: $space $space * 3;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.empty-message {
+  margin: $space * 3 0 0;
+  color: $black-50;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: $space;
+  min-height: 64px;
+  padding: $space;
+  border-radius: $radius;
+  background: $black-10;
+
+  input {
+    position: relative;
+    flex: 0 0 24px;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    border: 2px solid $black;
+    border-radius: $radius;
+    background: $white;
+    cursor: pointer;
+
+    &:checked {
+      background: $black;
+
+      &::after {
+        position: absolute;
+        inset: -3px 0 0 2px;
+        color: $white;
+        font-size: 20px;
+        font-weight: 500;
+        content: '✓';
+      }
+    }
+
+    &:checked + label {
+      color: $black-50;
+      text-decoration: line-through;
+    }
+  }
+
+  label {
+    flex: 1;
+    min-width: 0;
+    font-size: 24px;
+    line-height: 32px;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+}
+
+.trash-icon {
+  position: relative;
+  width: 14px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top: 0;
+
+  &::before {
+    position: absolute;
+    top: -5px;
+    left: -4px;
+    width: 18px;
+    border-top: 2px solid currentColor;
+    content: '';
+  }
+
+  &::after {
+    position: absolute;
+    top: -8px;
+    left: 3px;
+    width: 6px;
+    height: 3px;
+    border: 2px solid currentColor;
+    border-bottom: 0;
+    content: '';
+  }
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid $black;
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .add-button,
+  .delete-button {
+    transition: none;
+  }
+}
