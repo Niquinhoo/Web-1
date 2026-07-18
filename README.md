@@ -1,4 +1,4 @@
-# Lista de tareas de Walter
+# Lista de tareas de Nicolas
 
 Esqueleto visual de una Single Page Application realizado con React y Vite a partir de los wireframes provistos. Esta entrega reproduce la estructura solicitada y no incluye lógica para agregar, completar o eliminar tareas.
 
