@@ -1,56 +1,37 @@
-# Lista de tareas de Walter
+# Lista de tareas de Nicolás — Manos a la obra II
 
-Esqueleto visual de una Single Page Application realizado con React y Vite a partir de los wireframes provistos. Esta entrega reproduce la estructura solicitada y no incluye lógica para agregar, completar o eliminar tareas.
+SPA estática en React y Vite. La segunda entrega conserva la interfaz original y divide el componente único en componentes con responsabilidades concretas.
 
-## Requisitos
+## Uso
 
-- Node.js 20.19 o superior
-- npm 10 o superior
-
-## Puesta en marcha
+Requiere Node.js 20.19 o superior.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Vite mostrará en la terminal la dirección local de la aplicación.
-
-## Comandos
+Verificación:
 
 ```bash
-npm run dev      # Inicia el servidor de desarrollo
-npm run build    # Genera la versión de producción en dist/
-npm run preview  # Previsualiza la versión de producción
-npm run lint     # Revisa el código con ESLint
+npm run lint
+npm run build
 ```
 
 ## Estructura
 
 ```text
-Web-1/
-├── docs/
-│   └── paso-a-paso.md          Documentación de la resolución
-├── src/
-│   ├── App.jsx                 Componente principal y estructura HTML
-│   ├── App.css                 Estilos específicos de la aplicación
-│   ├── index.css               Estilos globales y normalización mínima
-│   └── main.jsx                Punto de entrada de React
-├── Ejercicio.md                Enunciado original
-├── Wireframe.png               Referencia visual
-├── WireframeLineamientos.png   Referencia visual anotada
-├── index.html                  Documento base de Vite
-├── package.json                Dependencias y comandos
-└── vite.config.js              Configuración de Vite
+src/
+├── components/
+│   ├── TaskForm/index.jsx
+│   ├── TaskItem/index.jsx
+│   └── TaskList/index.jsx
+├── views/
+│   └── TasksView/index.jsx
+├── App.css
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
-## Decisiones de alcance
-
-- Toda la interfaz está en `App.jsx`, tal como solicita el ejercicio.
-- Las tareas son contenido estático y aparecen en el mismo orden que el wireframe.
-- Los checkboxes completados usan HTML y CSS para tachar su texto.
-- Los botones están representados visualmente, pero no ejecutan acciones.
-- No se agregaron bibliotecas de estilos, componentes ni iconos.
-
-El detalle completo de la implementación está en [docs/paso-a-paso.md](docs/paso-a-paso.md).
-
+La resolución, el contraste entre las fuentes y la refutación razonada están en [docs/paso-a-paso.md](docs/paso-a-paso.md).

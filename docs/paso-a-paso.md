@@ -1,51 +1,48 @@
-# Paso a paso de la resolución
+# Manos a la obra II: proceso, teoría y refutación
 
-## Análisis del ejercicio
+## 1. Punto de partida y alcance
 
-Se leyó el enunciado y se compararon `Wireframe.png` y `WireframeLineamientos.png`. De esa revisión surgieron los elementos obligatorios: título, campo para una tarea nueva, botón `ADD` y lista en orden cronológico inverso. Cada fila debía incluir checkbox, descripción y botón para eliminar.
+La primera entrega tenía toda la interfaz en `App.jsx`: título, formulario y seis filas de tareas repetidas manualmente. El enunciado de esta segunda entrega pide mejorar esa arquitectura mediante componentes y Atomic Design, sin sumar funcionalidades.
 
-También se respetaron las restricciones principales: una sola aplicación React, un único componente principal, etiquetas HTML estándar, CSS sin bibliotecas externas y ausencia de lógica de negocio.
+Por eso se mantuvieron el contenido, el orden, los estados iniciales y la apariencia. Los botones continúan sin lógica para agregar o borrar tareas.
 
-## Creación del proyecto
+## 2. Planificación de componentes
 
-Se preparó la estructura mínima equivalente a una aplicación React creada con Vite:
+| Pieza | Nivel usado | Responsabilidad |
+|---|---|---|
+| `TaskForm` | Molécula | Agrupa etiqueta, campo y botón para crear una tarea. |
+| `TaskItem` | Molécula | Representa una tarea mediante checkbox, texto y botón de borrado. |
+| `TaskList` | Organismo | Recibe la colección y genera un `TaskItem` por tarea. |
+| `TasksView` | Vista/página | Compone el título, el formulario y la lista con datos representativos. |
+| `App` | Raíz | Monta la única vista de la SPA. |
 
-1. `index.html` define el nodo `#root` y carga `src/main.jsx`.
-2. `src/main.jsx` monta el componente `App` con `createRoot`.
-3. `vite.config.js` habilita el plugin oficial de React.
-4. `package.json` conserva únicamente React, Vite y las herramientas de lint necesarias.
+No se crearon componentes `Button`, `Input`, `Label`, `Title` o `DeleteIcon`. En esta pantalla cada uno tendría una sola utilización conceptual y no aportaría comportamiento, variantes ni reutilización. Los elementos JSX nativos ya expresan esas unidades de forma más directa.
 
-## Construcción de la estructura
+## 3. Implementación
 
-Todo el contenido visual se escribió en `src/App.jsx`, sin extraer componentes y sin crear estados, eventos ni colecciones procesadas con JavaScript.
+1. Se recuperó la base React/Vite de la primera entrega.
+2. Se extrajeron el formulario y la fila repetible de tarea.
+3. Las seis tareas se trasladaron a un array de objetos con `id`, `label` y `completed`.
+4. `TaskList` usa `map()` y una `key` estable basada en `id` para producir las filas.
+5. `TasksView` reúne la estructura completa y `App` queda como punto de composición mínimo.
+6. Cada componente vive en una carpeta PascalCase con `index.jsx`, siguiendo la estructura solicitada.
 
-Se utilizaron elementos semánticos y estándar:
+El flujo de datos es unidireccional: `TasksView` entrega `tasks` a `TaskList`; este pasa las propiedades de cada objeto a `TaskItem`. Ningún componente modifica datos externos durante el renderizado.
 
-- `main` para el contenido principal.
-- `h1` para el encabezado.
-- `form`, `label`, `input` y `button` para el área de carga.
-- `ul` y `li` para la lista de tareas.
-- `input type="checkbox"` para representar el estado de cada tarea.
 
-Los botones usan `type="button"` para evitar envíos accidentales. El campo de texto tiene una etiqueta accesible oculta visualmente y cada botón de borrado posee un nombre descriptivo mediante `aria-label`.
+## 4. Refutación razonada
 
-## Aplicación de estilos
+La afirmación fuerte de que una interfaz correctamente atómica debe convertir todo elemento mínimo en componente y obligar a los niveles altos a depender de componentes inferiores no se sostiene como regla universal.
 
-Los estilos globales se ubicaron en `src/index.css` y los estilos de la pantalla en `src/App.css`.
+1. **Ser mínimo no vuelve reutilizable a un elemento.** Un `Title` que sólo retorna `<h1>` duplica la abstracción que ya ofrece JSX. No reduce código ni concentra una decisión compartida.
+2. **La clasificación no siempre es objetiva.** El texto interno incluye una `card` entre los átomos, mientras las definiciones externas llaman átomo sólo a lo que no puede dividirse. Una card normalmente contiene texto, imagen o acciones; por esa regla sería molécula u organismo.
+3. **La jerarquía química no coincide necesariamente con las dependencias del producto.** `TaskItem` puede componerse correctamente con HTML nativo. Forzarlo a importar `Checkbox`, `Text` y `DeleteButton` no mejora por sí mismo su pureza, accesibilidad o mantenimiento.
+4. **El beneficio depende de la escala.** Las propias lecturas externas destacan equipos y proyectos grandes. En esta SPA pequeña, una taxonomía completa de cinco niveles costaría más de recorrer y mantener que la estructura que ordena.
+5. **React no exige Atomic Design.** Lo que React sí necesita aquí son componentes puros, props claras y claves estables. Atomic Design es una metodología de diseño y organización, no una condición técnica del framework.
 
-Para reproducir el wireframe se definieron:
+Por lo tanto, la conclusión no es descartar Atomic Design, sino refutar su aplicación rígida. Resulta útil como vocabulario para descubrir límites de responsabilidad; deja de ser útil cuando la categoría se convierte en el objetivo y produce componentes sin una razón de cambio propia.
 
-1. Un contenedor central de 508 px.
-2. Una grilla de dos columnas para el campo y el botón `ADD`.
-3. Bordes rectos de 2 px y una paleta monocromática.
-4. Una lista vertical con separación uniforme.
-5. Filas con tres columnas para checkbox, texto y borrado.
-6. El tachado mediante el selector CSS `input:checked + label`.
-7. Estados de foco visibles para navegación con teclado.
-
-El icono de papelera se dibujó con bordes CSS porque el ejercicio no permite incorporar una biblioteca externa.
-
-## Verificación
+## 5. Verificación
 
 La entrega se comprueba con:
 
@@ -54,9 +51,4 @@ npm run lint
 npm run build
 ```
 
-Además, la pantalla se contrasta visualmente con los dos wireframes en un navegador desktop. Los controles deben ocupar su posición esperada, las dos tareas completadas deben verse tachadas y no debe existir ninguna interacción de dominio.
-
-## Próxima iteración
-
-La lógica para agregar, completar, ordenar o eliminar tareas queda deliberadamente fuera de esta entrega. Se incorporará cuando el siguiente ejercicio lo solicite.
-
+El criterio visual es que se conserve la pantalla de la primera entrega: título, formulario, seis tareas, dos tareas inicialmente marcadas y tachado asociado al checkbox.
