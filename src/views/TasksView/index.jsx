@@ -1,21 +1,27 @@
+import { useState } from 'react'
 import TaskForm from '../../components/TaskForm'
 import TaskList from '../../components/TaskList'
-
-const tasks = [
-  { id: 'task-n', label: 'Tarea N' },
-  { id: 'task-n-1', label: 'Tarea N-1' },
-  { id: 'task-n-2', label: 'Completada Tarea N-2', completed: true },
-  { id: 'task-k', label: 'Tarea K' },
-  { id: 'task-2', label: 'Tarea 2' },
-  { id: 'task-1', label: 'Completada Tarea 1', completed: true },
-]
+import { addTask, removeTask, toggleTask } from '../../tasks'
 
 function TasksView() {
+  const [tasks, setTasks] = useState([])
+
+  const handleAdd = (label) => {
+    if (!label.trim()) return false
+
+    setTasks((currentTasks) => addTask(currentTasks, label))
+    return true
+  }
+
   return (
     <main className="todo-app">
       <h1>LISTA DE TAREAS DE NICOLÁS</h1>
-      <TaskForm />
-      <TaskList tasks={tasks} />
+      <TaskForm onAdd={handleAdd} />
+      <TaskList
+        tasks={tasks}
+        onRemove={(id) => setTasks((currentTasks) => removeTask(currentTasks, id))}
+        onToggle={(id) => setTasks((currentTasks) => toggleTask(currentTasks, id))}
+      />
     </main>
   )
 }

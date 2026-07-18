@@ -1,54 +1,90 @@
-# Manos a la obra II: proceso, teoría y refutación
+# Manos a la obra III: paso a paso
 
-## 1. Punto de partida y alcance
+## 1. Objetivo
 
-La primera entrega tenía toda la interfaz en `App.jsx`: título, formulario y seis filas de tareas repetidas manualmente. El enunciado de esta segunda entrega pide mejorar esa arquitectura mediante componentes y Atomic Design, sin sumar funcionalidades.
+La tercera entrega convierte la interfaz estática de la lista de tareas en una SPA funcional. El alcance se limita a las historias del ejercicio:
 
-Por eso se mantuvieron el contenido, el orden, los estados iniciales y la apariencia. Los botones continúan sin lógica para agregar o borrar tareas.
+- escribir una tarea;
+- guardarla únicamente al presionar `ADD`;
+- mostrar las tareas nuevas primero;
+- completar o desmarcar una tarea;
+- eliminar una tarea;
+- mostrar un aviso cuando no existen tareas.
 
-## 2. Planificación de componentes
+No se agregó persistencia, edición, filtros ni otras funciones que el enunciado no solicita.
 
-| Pieza | Nivel usado | Responsabilidad |
-|---|---|---|
-| `TaskForm` | Molécula | Agrupa etiqueta, campo y botón para crear una tarea. |
-| `TaskItem` | Molécula | Representa una tarea mediante checkbox, texto y botón de borrado. |
-| `TaskList` | Organismo | Recibe la colección y genera un `TaskItem` por tarea. |
-| `TasksView` | Vista/página | Compone el título, el formulario y la lista con datos representativos. |
-| `App` | Raíz | Monta la única vista de la SPA. |
+## 2. Estado y datos
 
-No se crearon componentes `Button`, `Input`, `Label`, `Title` o `DeleteIcon`. En esta pantalla cada uno tendría una sola utilización conceptual y no aportaría comportamiento, variantes ni reutilización. Los elementos JSX nativos ya expresan esas unidades de forma más directa.
+`TasksView` mantiene el array de tareas mediante `useState`. La aplicación comienza con una lista vacía para mostrar el aviso inicial.
 
-## 3. Implementación
+Cada tarea tiene esta forma:
 
-1. Se recuperó la base React/Vite de la primera entrega.
-2. Se extrajeron el formulario y la fila repetible de tarea.
-3. Las seis tareas se trasladaron a un array de objetos con `id`, `label` y `completed`.
-4. `TaskList` usa `map()` y una `key` estable basada en `id` para producir las filas.
-5. `TasksView` reúne la estructura completa y `App` queda como punto de composición mínimo.
-6. Cada componente vive en una carpeta PascalCase con `index.jsx`, siguiendo la estructura solicitada.
+```js
+{
+  id: crypto.randomUUID(),
+  label: 'Descripción de la tarea',
+  completed: false,
+}
+```
 
-El flujo de datos es unidireccional: `TasksView` entrega `tasks` a `TaskList`; este pasa las propiedades de cada objeto a `TaskItem`. Ningún componente modifica datos externos durante el renderizado.
+El identificador se genera con la API nativa `crypto.randomUUID()`, por lo que no fue necesario instalar una dependencia.
 
+## 3. Flujo de interacción
 
-## 4. Refutación razonada
+### Escribir y agregar
 
-La afirmación fuerte de que una interfaz correctamente atómica debe convertir todo elemento mínimo en componente y obligar a los niveles altos a depender de componentes inferiores no se sostiene como regla universal.
+1. `TaskForm` controla el contenido del campo con `useState`.
+2. El texto se conserva mientras la persona escribe.
+3. El botón `ADD` llama a `onAdd`.
+4. `TasksView` rechaza textos vacíos o compuestos sólo por espacios.
+5. La tarea se agrega al inicio del array y el campo se limpia.
 
-1. **Ser mínimo no vuelve reutilizable a un elemento.** Un `Title` que sólo retorna `<h1>` duplica la abstracción que ya ofrece JSX. No reduce código ni concentra una decisión compartida.
-2. **La clasificación no siempre es objetiva.** El texto interno incluye una `card` entre los átomos, mientras las definiciones externas llaman átomo sólo a lo que no puede dividirse. Una card normalmente contiene texto, imagen o acciones; por esa regla sería molécula u organismo.
-3. **La jerarquía química no coincide necesariamente con las dependencias del producto.** `TaskItem` puede componerse correctamente con HTML nativo. Forzarlo a importar `Checkbox`, `Text` y `DeleteButton` no mejora por sí mismo su pureza, accesibilidad o mantenimiento.
-4. **El beneficio depende de la escala.** Las propias lecturas externas destacan equipos y proyectos grandes. En esta SPA pequeña, una taxonomía completa de cinco niveles costaría más de recorrer y mantener que la estructura que ordena.
-5. **React no exige Atomic Design.** Lo que React sí necesita aquí son componentes puros, props claras y claves estables. Atomic Design es una metodología de diseño y organización, no una condición técnica del framework.
+El botón es de tipo `button`; así la tarea se guarda al presionarlo, tal como pide la historia, y no mediante el envío automático de un formulario.
 
-Por lo tanto, la conclusión no es descartar Atomic Design, sino refutar su aplicación rígida. Resulta útil como vocabulario para descubrir límites de responsabilidad; deja de ser útil cuando la categoría se convierte en el objetivo y produce componentes sin una razón de cambio propia.
+### Orden cronológico inverso
+
+`addTask` antepone la tarea nueva con `[newTask, ...tasks]`. Por eso la última tarea creada siempre aparece arriba sin ordenar nuevamente la colección.
+
+### Completar
+
+Al cambiar el checkbox, `TaskItem` envía el identificador a `onToggle`. `toggleTask` crea un nuevo array e invierte únicamente el valor `completed` de la tarea elegida. El CSS aplica el tachado cuando el checkbox está marcado.
+
+### Eliminar
+
+El botón del tacho envía el identificador a `onRemove`. `removeTask` usa `filter` para devolver la lista sin esa tarea.
+
+### Lista vacía
+
+`TaskList` comprueba la longitud del array. Si no hay tareas, muestra `No hay tareas en la lista.` en lugar de renderizar la lista.
+
+## 4. Responsabilidades de los archivos
+
+| Archivo | Responsabilidad |
+|---|---|
+| `views/TasksView/index.jsx` | Mantiene el estado y conecta todas las acciones. |
+| `components/TaskForm/index.jsx` | Controla el campo y solicita agregar una tarea. |
+| `components/TaskList/index.jsx` | Muestra el estado vacío o la colección. |
+| `components/TaskItem/index.jsx` | Renderiza una tarea y sus controles. |
+| `tasks.js` | Contiene las operaciones puras de agregar, completar y eliminar. |
+| `tasks.test.js` | Comprueba las tres operaciones principales. |
+
+El flujo de datos sigue siendo unidireccional: `TasksView` entrega datos y callbacks a los componentes; las modificaciones regresan mediante esos callbacks y actualizan el estado central.
 
 ## 5. Verificación
 
-La entrega se comprueba con:
+La prueba automatizada comprueba que una tarea nueva:
+
+- se inserte antes que las anteriores;
+- elimine espacios exteriores del texto;
+- pueda marcarse como completada;
+- pueda eliminarse.
+
+La entrega completa se valida con:
 
 ```bash
 npm run lint
+npm test
 npm run build
 ```
 
-El criterio visual es que se conserve la pantalla de la primera entrega: título, formulario, seis tareas, dos tareas inicialmente marcadas y tachado asociado al checkbox.
+También se puede ejecutar `npm run dev` y recorrer manualmente las historias del ejercicio desde el navegador.

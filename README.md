@@ -1,6 +1,6 @@
-# Lista de tareas de Nicolás — Manos a la obra II
+# Lista de tareas de Nicolás — Manos a la obra III
 
-SPA estática en React y Vite. La segunda entrega conserva la interfaz original y divide el componente único en componentes con responsabilidades concretas.
+SPA en React y Vite que permite escribir, agregar, completar y eliminar tareas. Las tareas nuevas aparecen primero y, cuando la lista está vacía, se muestra un aviso.
 
 ## Uso
 
@@ -15,6 +15,7 @@ Verificación:
 
 ```bash
 npm run lint
+npm test
 npm run build
 ```
 
@@ -31,7 +32,18 @@ src/
 ├── App.css
 ├── App.jsx
 ├── index.css
-└── main.jsx
+├── main.jsx
+├── tasks.js
+└── tasks.test.js
 ```
 
-La resolución, el contraste entre las fuentes y la refutación razonada están en [docs/paso-a-paso.md](docs/paso-a-paso.md).
+## Funcionalidades
+
+- El campo de texto permite escribir una tarea.
+- El botón `ADD` guarda la tarea y limpia el campo.
+- Las tareas se muestran en orden cronológico inverso.
+- El checkbox marca o desmarca una tarea como completada.
+- El botón del tacho elimina la tarea.
+- La lista vacía muestra un mensaje informativo.
+
+El desarrollo completo está documentado en [docs/paso-a-paso.md](docs/paso-a-paso.md).

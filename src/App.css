@@ -55,6 +55,11 @@ h1 {
   list-style: none;
 }
 
+.empty-message {
+  margin: 0;
+  text-align: center;
+}
+
 .task-item {
   display: grid;
   grid-template-columns: 24px 1fr 34px;
