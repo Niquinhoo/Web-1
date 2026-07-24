@@ -14,6 +14,48 @@ function getAllProducts() {
     return db.prepare('SELECT * FROM products').all().map(withFallbackImage);
 }
 
+function createProduct(productData) {
+    const result = db.prepare(`
+        INSERT INTO products (title, description, price, src, category, isTopSeller)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+        productData.title,
+        productData.description,
+        productData.price,
+        productData.src,
+        productData.category,
+        productData.isTopSeller ? 1 : 0
+    );
+
+    return getProductById(result.lastInsertRowid);
+}
+
+function updateProduct(productId, productData) {
+    db.prepare(`
+        UPDATE products
+        SET title = ?, description = ?, price = ?, src = ?, category = ?, isTopSeller = ?
+        WHERE id = ?
+    `).run(
+        productData.title,
+        productData.description,
+        productData.price,
+        productData.src,
+        productData.category,
+        productData.isTopSeller ? 1 : 0,
+        productId
+    );
+
+    return getProductById(productId);
+}
+
+function deleteProduct(productId) {
+    return db.prepare('DELETE FROM products WHERE id = ?').run(productId).changes > 0;
+}
+
+function countProducts() {
+    return db.prepare('SELECT COUNT(*) AS total FROM products').get().total;
+}
+
 function getSuggestedProducts(limit = 5) {
     return db.prepare('SELECT * FROM products LIMIT ?').all(limit).map(withFallbackImage);
 }
@@ -116,6 +158,10 @@ function searchProductsByName(query) {
 
 module.exports = {
     getAllProducts,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    countProducts,
     getSuggestedProducts,
     getTopOrderedProducts,
     getProductById,
