@@ -1,6 +1,7 @@
 const express = require('express');
 const productsApiController = require('../controllers/api/productsApiController');
 const categoriesApiController = require('../controllers/api/categoriesApiController');
+const statsApiController = require('../controllers/api/statsApiController');
 
 const router = express.Router();
 
@@ -15,6 +16,8 @@ router.get('/categories/:id', categoriesApiController.getById);
 router.post('/categories', categoriesApiController.create);
 router.put('/categories/:id', categoriesApiController.update);
 router.delete('/categories/:id', categoriesApiController.remove);
+
+router.get('/stats', statsApiController.getStats);
 
 router.use((req, res) => {
     res.status(404).json({ error: 'Ruta API no encontrada' });

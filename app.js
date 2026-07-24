@@ -90,14 +90,17 @@ app.use((req, res) => {
 
 // Manejador global de errores internos (500)
 app.use((error, req, res, next) => {
-    console.error(`[500] Error interno en ${req.method} ${req.originalUrl}:`, error.message);
+    const isApiRequest = req.originalUrl.startsWith('/api');
+    const isInvalidJson = error.type === 'entity.parse.failed';
+    const statusCode = isApiRequest && isInvalidJson ? 400 : 500;
+
+    console.error(`[${statusCode}] Error interno en ${req.method} ${req.originalUrl}:`, error.message);
 
     if (res.headersSent) {
         return next(error);
     }
 
-    if (req.originalUrl.startsWith('/api')) {
-        const statusCode = error.type === 'entity.parse.failed' ? 400 : 500;
+    if (isApiRequest) {
         const message = statusCode === 400 ? 'JSON inválido' : 'Error interno del servidor';
         return res.status(statusCode).json({ error: message });
     }
