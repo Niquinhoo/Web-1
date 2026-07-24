@@ -4,7 +4,9 @@ const path = require('path');
 const { ensureSeedData, ensureUsersTable } = require('./bootstrap');
 
 // Crea o abre la base de datos en la carpeta db
-const dbPath = path.join(__dirname, 'database.db');
+const dbPath = process.env.DATABASE_PATH
+    ? path.resolve(process.env.DATABASE_PATH)
+    : path.join(__dirname, 'database.db');
 const db = new Database(dbPath);
 
 // Lee el archivo schema.sql y ejecuta sus instrucciones para crear las tablas si no existen

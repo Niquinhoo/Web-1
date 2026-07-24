@@ -1,6 +1,7 @@
 // Importamos express para crear el servidor web
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const path = require('path');
 
 // Inicializamos la aplicación
@@ -53,10 +54,13 @@ const accountRouter = require('./routes/account.router');
 const productosRouter = require('./routes/productos.router');
 const categoriesRouter = require('./routes/categories.router');
 const searchRouter = require('./routes/search.router');
+const apiRouter = require('./routes/api.router');
 
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 
 // Ruta principal (Legacy index)
+app.use('/api', cors(), apiRouter);
+
 app.use('/', indexRouter);
 
 // Rutas de Atomic Design
@@ -92,11 +96,21 @@ app.use((error, req, res, next) => {
         return next(error);
     }
 
+    if (req.originalUrl.startsWith('/api')) {
+        const statusCode = error.type === 'entity.parse.failed' ? 400 : 500;
+        const message = statusCode === 400 ? 'JSON inválido' : 'Error interno del servidor';
+        return res.status(statusCode).json({ error: message });
+    }
+
     return res.status(500).render('pages/500/500-page');
 });
 
 // --- INICIO DEL SERVIDOR ---
 // Ponemos a escuchar a la aplicación en el puerto asignado
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
