@@ -1,5 +1,11 @@
 # Web-1 (STP3) — E-Commerce Server-Side con Express y SQLite
 
+## Contexto de la rama
+
+`Web-1-STP3` es la tercera etapa del e-commerce y toma como base `Web-1-STP2`. Reemplaza los datos mock por persistencia real en SQLite con `better-sqlite3`, esquema relacional, bootstrap, migraciones y seed idempotente.
+
+El estado actual de esta rama también contiene endpoints de catálogo, columnas de stock/estado y carga local de imágenes con `multer`, incorporados en su último desarrollo. La API REST consolidada de productos, categorías y estadísticas se encuentra en `Web-1-STP4`.
+
 Aplicación web server-side rendering (SSR) construida con **Node.js**, **Express**, **EJS** y **SQLite** (`better-sqlite3`). El proyecto implementa un flujo completo de e-commerce con persistencia de datos real, validaciones backend, control de sesiones, y una interfaz de usuario modular diseñada bajo principios de **Atomic Design** tanto para vistas como para estilos.
 
 ---
