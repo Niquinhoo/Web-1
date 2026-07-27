@@ -73,6 +73,10 @@ app.use('/api', cors({
     credentials: true
 }), apiRouter);
 
+app.get('/', (req, res) => {
+    res.json({ service: 'pediloo-api', status: 'ok' });
+});
+
 app.use('/', indexRouter);
 
 // Rutas de Atomic Design
