@@ -60,8 +60,16 @@ const apiRouter = require('./routes/api.router');
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 
 // Ruta principal (Legacy index)
+const allowedOrigins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173,https://pediloo-front.vercel.app')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
 app.use('/api', cors({
-    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) return callback(null, origin || false);
+        return callback(new Error('Origen no permitido por CORS'));
+    },
     credentials: true
 }), apiRouter);
 
