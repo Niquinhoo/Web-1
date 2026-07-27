@@ -1,5 +1,13 @@
 # Web-1 Express Defensa & Resumen
 
+## Contexto de la rama
+
+`Web-1-Express-Resumen` no es el servidor principal del e-commerce. Es la rama de documentación y presentación para la defensa del proyecto Web-1.
+
+Su objetivo es explicar la evolución de las ramas `Web-1-STP1`, `Web-1-STP2`, `Web-1-STP3` y `Web-1-STP4`, contrastando las decisiones implementadas con los conceptos de MVC, arquitectura por capas, sesiones, SQLite, transacciones y bootstrap.
+
+El código de esta rama corresponde a una presentación interactiva construida con React y Vite; para ejecutar el backend del e-commerce se debe cambiar a `Web-1-STP4`.
+
 Este repositorio centraliza la documentación escrita y la presentación interactiva diseñada para la defensa final del proyecto **Web-1** (e-commerce desarrollado en Node.js, Express y SQLite). 
 
 El objetivo principal de este espacio es contrastar y justificar la arquitectura e implementación práctica construida durante los sprints (**STP1**, **STP2** y **STP3**) frente a los lineamientos teóricos y académicos dictados por la cátedra (patrón MVC, arquitectura por capas, persistencia de estado HTTP, bases de datos relacionales embebidas, transacciones ACID y bootstrap de esquemas).
