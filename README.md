@@ -1,5 +1,11 @@
 # Lista de tareas de Nicolas
 
+## Contexto de la rama
+
+`Web-1-MalO1` es la primera entrega del gestor de tareas React + Vite. Se concentra en reproducir visualmente los wireframes y la estructura inicial de la SPA; todavía no incluye lógica para agregar, completar o eliminar tareas.
+
+Es la base de `Web-1-MalO2`, `Web-1-MalO3` y `Web-1-MalO4`, y pertenece a una línea de trabajo independiente del e-commerce `Web-1-STP1`–`Web-1-STP4`.
+
 Esqueleto visual de una Single Page Application realizado con React y Vite a partir de los wireframes provistos. Esta entrega reproduce la estructura solicitada y no incluye lógica para agregar, completar o eliminar tareas.
 
 ## Requisitos
