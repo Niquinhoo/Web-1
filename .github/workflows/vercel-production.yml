@@ -1,0 +1,20 @@
+name: Deploy API to Vercel
+
+on:
+  push:
+    branches: [Web-1-STP4-API-S5]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
