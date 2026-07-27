@@ -1,4 +1,10 @@
-# Web-1 (STP3) — E-Commerce Server-Side con Express y SQLite
+# Web-1 (STP4) — E-Commerce SSR + API REST con Express y SQLite
+
+## Contexto de la rama
+
+`Web-1-STP4` es la etapa actual del e-commerce y se construye sobre la persistencia de `Web-1-STP3`. El backend mantiene el frontend SSR con EJS y agrega una segunda salida para clientes externos: una API REST JSON bajo `/api`.
+
+Incluye `express.json()`, CORS, CRUD de productos y categorías, `/api/stats`, validación de cuerpos e IDs, respuestas HTTP consistentes, control de errores JSON y pruebas integradas. Los controladores API reutilizan los servicios existentes y no duplican SQL.
 
 Aplicación web server-side rendering (SSR) construida con **Node.js**, **Express**, **EJS** y **SQLite** (`better-sqlite3`). El proyecto implementa un flujo completo de e-commerce con persistencia de datos real, validaciones backend, control de sesiones, y una interfaz de usuario modular diseñada bajo principios de **Atomic Design** tanto para vistas como para estilos.
 
