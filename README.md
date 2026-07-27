@@ -1,79 +1,96 @@
 # Trabajos Prácticos - Web 1 (2026)
 
-Este repositorio centraliza todos los proyectos y trabajos prácticos realizados durante la cursada de **Web 1 - 2026**. Para mantener la organización, cada proyecto principal se encuentra en su propia **rama**.
+Este repositorio reúne los trabajos prácticos y proyectos desarrollados durante la cursada de **Web 1 - 2026**. Cada línea de trabajo vive en su propia rama; las ramas no representan todas el mismo proyecto.
 
-## 🌲 Estructura de Ramas
+## Mapa de ramas
 
 ```mermaid
 graph TD
-    A[Repo: Web-1] --> B(master: Indice y Documentación)
-    A --> C(MVC-Web-1: Gestor de Tareas MVC)
-    A --> D(Web-1-STP1: E-commerce Atomic Design)
-    A --> E(Web-1-STP2: E-commerce MVC & Carrito)
-    A --> F(Web-1-STP3: E-commerce Persistente con SQLite)
+    A[Web-1] --> B[master: índice]
+    A --> C[MVC-Web-1: gestor MVC]
+    A --> D[Web-1-STP1: e-commerce inicial]
+    D --> E[Web-1-STP2: capas y sesiones]
+    E --> F[Web-1-STP3: SQLite]
+    F --> G[Web-1-STP4: API REST]
+    A --> H[Web-1-MalO5: prototipo React]
+    H --> I[Web-1-MalO1: UI de tareas]
+    I --> J[Web-1-MalO2: componentes]
+    J --> K[Web-1-MalO3: interacción]
+    K --> L[Web-1-MalO4: SCSS y diseño]
+    A --> M[Web-1-Express-Resumen: defensa]
 ```
 
-| Rama | Proyecto | Descripción | Tecnologías |
-| :--- | :--- | :--- | :--- |
-| [`master`](https://github.com/Niquinhoo/Web-1/tree/master) | Índice | Documentación general del repositorio. | Markdown |
-| [`MVC-Web-1`](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) | Task Manager | Aplicación de gestión de tareas aplicando el patrón MVC. | Express, EJS, Node.js |
-| [`Web-1-STP1`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) | E-commerce | Plataforma de comercio electrónico con arquitectura Atomic Design. | Express, EJS, CSS (Modular), Atomic Design |
-| [`Web-1-STP2`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP2) | E-commerce (S2) | Refactorización a MVC/SSR con gestión de carrito y checkout. | Express, EJS, Sessions |
-| [`Web-1-STP3`](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP3) | E-commerce (S3) | Evolución a persistencia relacional SQL real de alto rendimiento. | Express, SQLite, better-sqlite3 |
+| Rama | Qué contiene | Estado o propósito |
+|---|---|---|
+| `master` | Este índice | Navegación y documentación general |
+| `MVC-Web-1` | TaskManager con Express y EJS | Ejercicio independiente de MVC |
+| `Web-1-STP1` | E-commerce SSR con datos mock | Primera etapa visual y funcional |
+| `Web-1-STP2` | E-commerce con rutas, controladores, servicios y sesiones | Arquitectura en capas y carrito |
+| `Web-1-STP3` | E-commerce con SQLite y `better-sqlite3` | Persistencia, bootstrap y migraciones |
+| `Web-1-STP4` | E-commerce SSR + API REST JSON | Estado actual del backend |
+| `Web-1-MalO5` | Base React + Vite | Prototipo inicial de la línea de tareas |
+| `Web-1-MalO1` | UI inicial de lista de tareas | Primera entrega visual |
+| `Web-1-MalO2` | UI dividida en componentes | Segunda entrega |
+| `Web-1-MalO3` | Lista de tareas interactiva | Alta, completado y eliminación |
+| `Web-1-MalO4` | Tareas con SCSS y sistema visual | Cuarta entrega frontend |
+| `Web-1-Express-Resumen` | Presentación y documentación | Material para la defensa |
 
----
+## Línea principal: e-commerce
 
-## 🚀 Proyectos Distribuidos
+### `Web-1-STP1` — prototipo inicial
 
-### 1. [Gestor de Tareas](https://github.com/Niquinhoo/Web-1/tree/MVC-Web-1) (Rama: `MVC-Web-1`)
-Una implementación limpia del patrón **Modelo-Vista-Controlador**. 
-- **Estructura:** Separación clara entre lógica de datos (`models`), lógica de negocio (`controllers`) y presentación (`views`).
-- **Funcionalidad:** Listado y detalle de tareas pendientes.
+Primera versión server-side con Express y EJS. Define las pantallas de home, catálogo, detalle de producto, carrito, login y registro, junto con la organización visual basada en Atomic Design. Usa datos mock en memoria.
 
-### 2. [E-commerce Premium](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP1) (Rama: `Web-1-STP1`)
-Un proyecto avanzado que utiliza **Atomic Design** para una interfaz altamente modular y escalable.
-- **Arquitectura:** Componentes divididos en Átomos, Moléculas, Organismos y Plantillas.
-- **Características:** 
-    - Flujo de compra completo (Carrito, Checkout).
-    - Sistema de autenticación (Login/Register).
-    - Catálogo dinámico de productos y categorías.
-    - Documentación basada en User Stories.
+### `Web-1-STP2` — arquitectura en capas
 
-### 3. [E-commerce MVC & Carrito](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP2) (Rama: `Web-1-STP2`)
-Este proyecto es la evolución del STP1, migrando a una arquitectura de capas y añadiendo funcionalidades críticas de negocio.
-- **Arquitectura:** Refactorización de componentes Atomic Design a una estructura de carpetas `routes`, `controllers`, `services` y `views`.
-- **Características:** 
-    - Manejo de carrito de compras persistente en la sesión del servidor.
-    - Flujo de checkout y confirmación de compra.
-    - Manejo global de errores (404, 500, 400).
-    - Buscador funcional y filtros por categorías dinámicos.
+Evolución de STP1 que separa rutas, controladores y servicios. Incorpora `express-session` para conservar el carrito, validación backend, búsqueda, filtros por categoría y manejo de errores SSR.
 
-### 4. [E-commerce con Persistencia SQLite](https://github.com/Niquinhoo/Web-1/tree/Web-1-STP3) (Rama: `Web-1-STP3`)
-La evolución a la capa de persistencia real utilizando **SQLite** y el driver de alto rendimiento `better-sqlite3`.
-- **Arquitectura:** Estructura en capas (Rutas -> Controladores -> Servicios -> Base de Datos) con inyección idempotente.
-- **Características:**
-    - Base de datos relacional persistente con 5 tablas integradas (`categories`, `products`, `users`, `orders`, `order_items`) mediante claves primarias y foráneas.
-    - Bootstrap de base de datos automatizado y migración segura de datos heredados con transacciones ACID.
-    - Seed idempotente de categorías y productos desde archivo JS al iniciar la app.
-    - Consultas precompiladas (*Prepared Statements*) con *Bound Parameters* para evitar inyecciones SQL.
-    - Desacoplamiento total de dependencias a archivos JSON locales.
+### `Web-1-STP3` — persistencia SQLite
 
----
+Reemplaza los datos mock por una base SQLite real. Incluye esquema relacional, bootstrap, migraciones de usuarios, seed idempotente, prepared statements y tablas para categorías, productos, usuarios y órdenes. Su estado también contiene endpoints de catálogo, stock/estado y carga local de imágenes.
 
-## 🛠️ Cómo navegar por los proyectos
+### `Web-1-STP4` — API REST actual
 
-Para ver el código de un proyecto específico, cambia de rama en tu terminal o en la interfaz de GitHub:
+Mantiene el SSR de STP3 y agrega una salida JSON para clientes externos:
+
+- `GET`, `POST`, `PUT` y `DELETE` de `/api/products`;
+- `GET`, `POST`, `PUT` y `DELETE` de `/api/categories`;
+- `GET /api/stats` con totales de productos y categorías;
+- `express.json()`, CORS, validaciones y errores JSON;
+- servicios reutilizados sin duplicar SQL;
+- pruebas integradas con SQLite temporal.
+
+Es la rama que corresponde al estado actual del Sprint 4 y prepara el dashboard administrativo del Sprint 5.
+
+## Línea de tareas React: `Web-1-MalO5` → `Web-1-MalO4`
+
+Esta línea es independiente del e-commerce y trabaja un gestor de tareas frontend con React y Vite:
+
+- `Web-1-MalO5`: prototipo base generado con React + Vite.
+- `Web-1-MalO1`: reproducción visual de los wireframes, sin lógica de tareas.
+- `Web-1-MalO2`: división del componente inicial en componentes con responsabilidades concretas.
+- `Web-1-MalO3`: permite escribir, agregar, completar y eliminar tareas.
+- `Web-1-MalO4`: agrega SCSS, tema claro, Flexbox, layout líquido y encabezado fijo.
+
+## Ramas independientes
+
+### `MVC-Web-1`
+
+Gestor de tareas simple construido con Node.js, Express y EJS para practicar el patrón Modelo–Vista–Controlador. No forma parte de la evolución del e-commerce.
+
+### `Web-1-Express-Resumen`
+
+Presentación interactiva y documentación para la defensa del proyecto Web-1. Resume las decisiones de MVC, arquitectura por capas, sesiones, SQLite, transacciones y bootstrap; no es el servidor principal.
+
+## Cómo navegar
+
+Para cambiar de proyecto:
 
 ```bash
-# Para ver el E-commerce (Sprint 3)
-git checkout Web-1-STP3
-
-# Para ver el E-commerce (Sprint 2)
-git checkout Web-1-STP2
-
-# Para ver el E-commerce (Sprint 1)
-git checkout Web-1-STP1
-
-# Para ver el Gestor de Tareas
-git checkout MVC-Web-1
+git switch Web-1-STP4
+git switch Web-1-STP3
+git switch Web-1-MalO4
+git switch MVC-Web-1
 ```
+
+Cada rama contiene su propio README con el contexto y el propósito específico de esa línea de trabajo.
