@@ -1,5 +1,11 @@
 # Lista de tareas de Nicolás — Manos a la obra IV
 
+## Contexto de la rama
+
+`Web-1-MalO4` es la cuarta entrega del gestor de tareas y la versión más completa de esta línea. Conserva la funcionalidad de `Web-1-MalO3` y agrega SCSS, sistema de diseño, tema claro, Flexbox, layout líquido y encabezado fijo.
+
+Esta rama sigue siendo un frontend React independiente del backend e-commerce `Web-1-STP1`–`Web-1-STP4`.
+
 SPA en React, Vite y SCSS para crear, completar y eliminar tareas. La interfaz implementa el sistema de diseño de la cuarta entrega con tema light, Flexbox, layout líquido y encabezado fijo durante el scroll.
 
 ## Uso
