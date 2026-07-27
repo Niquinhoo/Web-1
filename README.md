@@ -1,5 +1,11 @@
 # React + Vite
 
+## Contexto de la rama
+
+`Web-1-MalO5` es el prototipo inicial de la línea de entregas **Manos a la obra**. Es una base React + Vite generada para comenzar el gestor de tareas y antecede a `Web-1-MalO1`.
+
+No es una rama del backend e-commerce ni de los sprints `STP1`–`STP4`; contiene únicamente el punto de partida del frontend de tareas.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
