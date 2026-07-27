@@ -1,5 +1,11 @@
 # Lista de tareas de Nicolás — Manos a la obra III
 
+## Contexto de la rama
+
+`Web-1-MalO3` es la tercera entrega del gestor de tareas. Agrega la lógica de frontend para escribir, agregar, completar y eliminar tareas, además del orden de nuevas tareas y el estado vacío.
+
+Es la evolución funcional de `Web-1-MalO2`; la siguiente mejora visual y de estilos se encuentra en `Web-1-MalO4`.
+
 SPA en React y Vite que permite escribir, agregar, completar y eliminar tareas. Las tareas nuevas aparecen primero y, cuando la lista está vacía, se muestra un aviso.
 
 ## Uso
