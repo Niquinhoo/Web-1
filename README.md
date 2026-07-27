@@ -1,5 +1,11 @@
 # Web-1 (STP2) — Arquitectura en Capas y Gestión de Estado
 
+## Contexto de la rama
+
+`Web-1-STP2` es la segunda etapa del e-commerce y evoluciona `Web-1-STP1` hacia una arquitectura en capas. Introduce rutas, controladores delgados, servicios de negocio, sesiones para el carrito y manejo semántico de errores.
+
+Esta rama todavía trabaja con datos mock/en memoria. La persistencia real se incorpora en `Web-1-STP3`, mientras que la API REST formal se incorpora en `Web-1-STP4`.
+
 Aplicación web server-side rendering (SSR) construida con **Node.js**, **Express**, **EJS** y **Express-Session**. En esta segunda fase del desarrollo (STP2), se implementa la separación formal de responsabilidades dividiendo la lógica en controladores delgados (*Slim Controllers*) y servicios de negocio (*Services*), además de incorporar la gestión del carrito mediante sesiones y un control riguroso de errores semánticos en el backend.
 
 ---
