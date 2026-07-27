@@ -9,6 +9,10 @@ const authApiController = require('../controllers/api/authApiController');
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.json({ service: 'pediloo-api', status: 'ok' });
+});
+
 router.get('/products', productsApiController.getAll);
 router.get('/products/:id', productsApiController.getById);
 router.post('/products', productsApiController.create);
