@@ -1,5 +1,7 @@
 # Web-1 (STP4) — E-Commerce SSR + API REST con Express y SQLite
 
+La extensión `Web-1-STP4-API-S5` agrega stock, búsqueda y orden de productos, usuarios, autenticación, carrito de sesión y pedidos JSON. React consume estas rutas bajo `/api`; el frontend SSR EJS continúa funcionando.
+
 ## Contexto de la rama
 
 `Web-1-STP4` es la etapa actual del e-commerce y se construye sobre la persistencia de `Web-1-STP3`. El backend mantiene el frontend SSR con EJS y agrega una segunda salida para clientes externos: una API REST JSON bajo `/api`.

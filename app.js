@@ -34,7 +34,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'lax'
     }
 }));
 app.use((req, res, next) => {
@@ -59,7 +60,10 @@ const apiRouter = require('./routes/api.router');
 // --- CONEXIÓN DE RUTAS (Endpoints) ---
 
 // Ruta principal (Legacy index)
-app.use('/api', cors(), apiRouter);
+app.use('/api', cors({
+    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
+    credentials: true
+}), apiRouter);
 
 app.use('/', indexRouter);
 
@@ -92,7 +96,7 @@ app.use((req, res) => {
 app.use((error, req, res, next) => {
     const isApiRequest = req.originalUrl.startsWith('/api');
     const isInvalidJson = error.type === 'entity.parse.failed';
-    const statusCode = isApiRequest && isInvalidJson ? 400 : 500;
+    const statusCode = isApiRequest && isInvalidJson ? 400 : (error.statusCode || 500);
 
     console.error(`[${statusCode}] Error interno en ${req.method} ${req.originalUrl}:`, error.message);
 
@@ -101,7 +105,7 @@ app.use((error, req, res, next) => {
     }
 
     if (isApiRequest) {
-        const message = statusCode === 400 ? 'JSON inválido' : 'Error interno del servidor';
+        const message = isInvalidJson ? 'JSON inválido' : (error.statusCode ? error.message : 'Error interno del servidor');
         return res.status(statusCode).json({ error: message });
     }
 

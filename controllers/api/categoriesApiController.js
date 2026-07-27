@@ -9,7 +9,7 @@ function validateBody(body) {
         return 'El campo name es obligatorio';
     }
 
-    if (!['main', 'other'].includes(body.type)) {
+    if (body.type !== undefined && !['main', 'other'].includes(body.type)) {
         return 'El campo type debe ser main u other';
     }
 
@@ -20,11 +20,11 @@ function validateBody(body) {
     return null;
 }
 
-function normalizeBody(body) {
+function normalizeBody(body, defaultType = 'other') {
     return {
         name: body.name.trim(),
         icon: body.icon === undefined ? null : body.icon,
-        type: body.type
+        type: body.type ?? defaultType
     };
 }
 
@@ -69,7 +69,7 @@ function update(req, res) {
     const bodyError = validateBody(req.body);
     if (bodyError) return res.status(400).json({ error: bodyError });
 
-    const value = normalizeBody(req.body);
+    const value = normalizeBody(req.body, category.category.type);
     const duplicate = catalogService.getCategoryByName(value.name);
     if (duplicate && duplicate.id !== category.id) {
         return res.status(409).json({ error: 'La categoría ya existe' });

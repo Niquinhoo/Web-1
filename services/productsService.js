@@ -2,11 +2,20 @@ const db = require('../db/database');
 
 const PRODUCT_IMAGE_FALLBACK = '/assets/productos/proximamente.png';
 
+function statusFromStock(stock) {
+    if (stock === 0) return 'Sin Stock';
+    if (stock <= 12) return 'Stock Bajo';
+    return 'Activo';
+}
+
 function withFallbackImage(product) {
+    const stock = Number(product.stock ?? 20);
     return {
         ...product,
         src: product.src || PRODUCT_IMAGE_FALLBACK,
-        isTopSeller: Boolean(product.isTopSeller)
+        isTopSeller: Boolean(product.isTopSeller),
+        stock,
+        status: statusFromStock(stock)
     };
 }
 
@@ -16,15 +25,16 @@ function getAllProducts() {
 
 function createProduct(productData) {
     const result = db.prepare(`
-        INSERT INTO products (title, description, price, src, category, isTopSeller)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO products (title, description, price, src, category, isTopSeller, stock)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `).run(
         productData.title,
         productData.description,
         productData.price,
         productData.src,
         productData.category,
-        productData.isTopSeller ? 1 : 0
+        productData.isTopSeller ? 1 : 0,
+        productData.stock
     );
 
     return getProductById(result.lastInsertRowid);
@@ -33,7 +43,7 @@ function createProduct(productData) {
 function updateProduct(productId, productData) {
     db.prepare(`
         UPDATE products
-        SET title = ?, description = ?, price = ?, src = ?, category = ?, isTopSeller = ?
+        SET title = ?, description = ?, price = ?, src = ?, category = ?, isTopSeller = ?, stock = ?
         WHERE id = ?
     `).run(
         productData.title,
@@ -42,6 +52,7 @@ function updateProduct(productId, productData) {
         productData.src,
         productData.category,
         productData.isTopSeller ? 1 : 0,
+        productData.stock,
         productId
     );
 

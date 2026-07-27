@@ -76,6 +76,7 @@ function addProductToCart(session, productId) {
     const existingItem = cart.find((item) => item.productId === idStr);
 
     if (existingItem) {
+        if (Number.isFinite(productStock) && existingItem.quantity >= productStock) return false;
         existingItem.quantity += 1;
     } else {
         cart.push({ productId: idStr, quantity: 1 });
@@ -91,6 +92,11 @@ function updateProductQuantity(session, productId, delta) {
 
     if (itemIndex === -1) {
         return false;
+    }
+
+    if (delta > 0) {
+        const product = productsService.getProductById(productId);
+        if (!product || cart[itemIndex].quantity >= product.stock) return false;
     }
 
     cart[itemIndex].quantity += delta;

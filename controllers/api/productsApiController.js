@@ -30,10 +30,14 @@ function invalidBody(body) {
         return 'El campo isTopSeller debe ser booleano';
     }
 
+    if (body.stock !== undefined && (!Number.isInteger(body.stock) || body.stock < 0)) {
+        return 'El campo stock debe ser un entero mayor o igual a cero';
+    }
+
     return null;
 }
 
-function normalizeProductBody(body) {
+function normalizeProductBody(body, current = {}) {
     const category = catalogService.getCategoryByName(body.category.trim());
 
     if (!category) {
@@ -47,7 +51,8 @@ function normalizeProductBody(body) {
             price: body.price,
             src: body.src === undefined ? null : body.src,
             category: category.name,
-            isTopSeller: body.isTopSeller === true
+            isTopSeller: body.isTopSeller === undefined ? Boolean(current.isTopSeller) : body.isTopSeller,
+            stock: body.stock ?? current.stock ?? 20
         }
     };
 }
@@ -66,6 +71,12 @@ function findProduct(req, res) {
 }
 
 function getAll(req, res) {
+    if (typeof req.query.q === 'string' && req.query.q.trim()) {
+        return res.json(productsService.searchProductsByName(req.query.q));
+    }
+    if (req.query.sort === 'asc' || req.query.sort === 'desc') {
+        return res.json(productsService.getProductsSortedByPrice(req.query.sort));
+    }
     return res.json(productsService.getAllProducts());
 }
 
@@ -91,7 +102,7 @@ function update(req, res) {
     const bodyError = invalidBody(req.body);
     if (bodyError) return res.status(400).json({ error: bodyError });
 
-    const normalized = normalizeProductBody(req.body);
+    const normalized = normalizeProductBody(req.body, product.product);
     if (normalized.error) return res.status(400).json({ error: normalized.error });
 
     return res.json(productsService.updateProduct(product.id, normalized.value));

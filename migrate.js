@@ -1,7 +1,7 @@
 const db = require('./db/database');
-const { ensureSeedData, ensureUsersTable } = require('./db/bootstrap');
+const { ensureSchema, ensureSeedData } = require('./db/bootstrap');
 
-ensureUsersTable(db);
+ensureSchema(db);
 ensureSeedData(db);
 
 const categoriesCount = db.prepare('SELECT COUNT(*) AS count FROM categories').get().count;
