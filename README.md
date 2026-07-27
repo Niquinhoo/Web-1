@@ -1,5 +1,11 @@
 # TaskManager MVC
 
+## Contexto de la rama
+
+`MVC-Web-1` es un proyecto independiente del e-commerce. Contiene un gestor de tareas pequeño para practicar el patrón Modelo–Vista–Controlador con Node.js, Express y EJS.
+
+Esta rama sirve como ejercicio satélite de arquitectura MVC: separa rutas, controladores, modelos y vistas. No forma parte de la evolución `Web-1-STP1` → `Web-1-STP4`; para ver el e-commerce se debe cambiar a una de esas ramas.
+
 Aplicación web simple construida con Node.js, Express y EJS para mostrar una lista de tareas usando el patrón MVC.
 
 ## Stack
