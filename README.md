@@ -1,5 +1,11 @@
 # Web-1-STP1
 
+## Contexto de la rama
+
+`Web-1-STP1` es la primera etapa del proyecto e-commerce. Contiene el prototipo visual y funcional inicial con Express, EJS, datos mock en memoria y una interfaz organizada con Atomic Design.
+
+Esta rama establece las pantallas base —home, detalle, carrito, login y registro— sobre las que se construyen `Web-1-STP2`, `Web-1-STP3` y `Web-1-STP4`. Todavía no incluye la arquitectura de servicios, persistencia SQLite ni la API REST.
+
 Aplicacion web server-side construida con Node.js, Express y EJS. El proyecto modela una experiencia simple tipo e-commerce/comida con home, detalle de producto, carrito, login y registro, usando una estructura inspirada en Atomic Design para las vistas y los estilos.
 
 ## Stack
