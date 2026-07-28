@@ -6,6 +6,9 @@ const path = require('path');
 
 // Inicializamos la aplicación
 const app = express();
+const isProduction = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
+
+app.set('trust proxy', 1);
 
 // Definimos el puerto donde va a correr el servidor
 const PORT = 3000;
@@ -35,7 +38,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        sameSite: 'lax'
+        sameSite: isProduction ? 'none' : 'lax',
+        secure: isProduction
     }
 }));
 app.use((req, res, next) => {
