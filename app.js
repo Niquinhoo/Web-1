@@ -1,6 +1,6 @@
 // Importamos express para crear el servidor web
 const express = require('express');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const cors = require('cors');
 const path = require('path');
 
@@ -32,15 +32,13 @@ app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')));
 // Middleware para procesar datos de formularios (POST)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(session({
-    secret: 'web-1-cart-session',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        httpOnly: true,
-        sameSite: isProduction ? 'none' : 'lax',
-        secure: isProduction
-    }
+app.use(cookieSession({
+    name: 'pediloo.session',
+    keys: [process.env.SESSION_SECRET || 'web-1-cart-session'],
+    httpOnly: true,
+    sameSite: isProduction ? 'none' : 'lax',
+    secure: isProduction,
+    maxAge: 7 * 24 * 60 * 60 * 1000
 }));
 app.use((req, res, next) => {
     const cart = Array.isArray(req.session.cart) ? req.session.cart : [];

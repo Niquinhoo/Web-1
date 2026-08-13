@@ -19,7 +19,8 @@ function register(req, res) {
 }
 
 function logout(req, res) {
-    req.session.destroy(() => res.status(204).end());
+    req.session = null;
+    return res.status(204).end();
 }
 
 module.exports = { login, logout, me, register };

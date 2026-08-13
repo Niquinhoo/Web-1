@@ -51,6 +51,70 @@ function ensureUsersTable(db) {
     `);
 }
 
+function ensureOrdersForeignKeys(db) {
+    const userForeignKey = db.prepare('PRAGMA foreign_key_list(orders)').all()
+        .find((foreignKey) => foreignKey.from === 'user_id');
+
+    if (!userForeignKey || userForeignKey.table === 'users') return;
+
+    const foreignKeysEnabled = db.pragma('foreign_keys', { simple: true });
+    db.pragma('foreign_keys = OFF');
+
+    try {
+        db.transaction(() => {
+            db.exec(`
+                ALTER TABLE order_items RENAME TO order_items_legacy_fk;
+                ALTER TABLE orders RENAME TO orders_legacy_fk;
+
+                CREATE TABLE orders (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    status TEXT NOT NULL DEFAULT 'Recibido',
+                    subtotal REAL NOT NULL DEFAULT 0,
+                    discount_code TEXT,
+                    discount_percent REAL NOT NULL DEFAULT 0,
+                    discount_amount REAL NOT NULL DEFAULT 0,
+                    total REAL NOT NULL,
+                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY(user_id) REFERENCES users(id)
+                );
+
+                INSERT INTO orders (
+                    id, user_id, status, subtotal, discount_code,
+                    discount_percent, discount_amount, total, created_at
+                )
+                SELECT
+                    id,
+                    CASE WHEN user_id IS NULL OR EXISTS (
+                        SELECT 1 FROM users WHERE users.id = orders_legacy_fk.user_id
+                    ) THEN user_id ELSE NULL END,
+                    status, subtotal, discount_code,
+                    discount_percent, discount_amount, total, created_at
+                FROM orders_legacy_fk;
+
+                CREATE TABLE order_items (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    order_id INTEGER,
+                    product_id INTEGER,
+                    quantity INTEGER NOT NULL,
+                    price REAL NOT NULL,
+                    FOREIGN KEY(order_id) REFERENCES orders(id),
+                    FOREIGN KEY(product_id) REFERENCES products(id)
+                );
+
+                INSERT INTO order_items (id, order_id, product_id, quantity, price)
+                SELECT id, order_id, product_id, quantity, price
+                FROM order_items_legacy_fk;
+
+                DROP TABLE order_items_legacy_fk;
+                DROP TABLE orders_legacy_fk;
+            `);
+        })();
+    } finally {
+        if (foreignKeysEnabled) db.pragma('foreign_keys = ON');
+    }
+}
+
 function ensureSchema(db) {
     addColumn(db, 'products', 'stock INTEGER NOT NULL DEFAULT 20');
     ensureUsersTable(db);
@@ -59,6 +123,7 @@ function ensureSchema(db) {
     addColumn(db, 'orders', 'discount_code TEXT');
     addColumn(db, 'orders', 'discount_percent REAL NOT NULL DEFAULT 0');
     addColumn(db, 'orders', 'discount_amount REAL NOT NULL DEFAULT 0');
+    ensureOrdersForeignKeys(db);
 }
 
 function hashPassword(password) {
@@ -150,5 +215,6 @@ function ensureSeedData(db) {
 module.exports = {
     ensureSchema,
     ensureSeedData,
-    ensureUsersTable
+    ensureUsersTable,
+    ensureOrdersForeignKeys
 };

@@ -7,17 +7,44 @@ const test = require('node:test');
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'web1-api-test-'));
 process.env.DATABASE_PATH = path.join(tempDir, 'database.db');
 
-const app = require('../app');
+const LegacyDatabase = require('better-sqlite3');
+const legacyDb = new LegacyDatabase(process.env.DATABASE_PATH);
+legacyDb.exec(`
+    PRAGMA foreign_keys = ON;
+    CREATE TABLE users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+    );
+    CREATE TABLE orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        total REAL NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id)
+    );
+    CREATE TABLE order_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER NOT NULL,
+        price REAL NOT NULL,
+        FOREIGN KEY(order_id) REFERENCES orders(id),
+        FOREIGN KEY(product_id) REFERENCES products(id)
+    );
+`);
+legacyDb.close();
+
+let app = require('../app');
 const db = require('../db/database');
 
 let server;
 let baseUrl;
-let cookie;
+const cookies = new Map();
 
 test.before(async () => {
-    server = await new Promise((resolve) => {
-        const instance = app.listen(0, () => resolve(instance));
-    });
+    server = await listen(app);
     baseUrl = `http://127.0.0.1:${server.address().port}`;
 });
 
@@ -27,16 +54,40 @@ test.after(() => {
     fs.rmSync(tempDir, { recursive: true, force: true });
 });
 
+function listen(application) {
+    return new Promise((resolve) => {
+        const instance = application.listen(0, () => resolve(instance));
+    });
+}
+
+async function restartApi() {
+    await new Promise((resolve) => server.close(resolve));
+    delete require.cache[require.resolve('../app')];
+    app = require('../app');
+    server = await listen(app);
+    baseUrl = `http://127.0.0.1:${server.address().port}`;
+}
+
 async function request(url, options = {}) {
+    const cookieHeader = [...cookies.entries()].map(([name, value]) => `${name}=${value}`).join('; ');
     const headers = {
         Origin: 'http://localhost:5173',
         ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-        ...(cookie ? { Cookie: cookie } : {}),
+        ...(cookieHeader ? { Cookie: cookieHeader } : {}),
         ...(options.headers || {})
     };
     const response = await fetch(`${baseUrl}${url}`, { ...options, headers });
-    const setCookie = response.headers.get('set-cookie');
-    if (setCookie) cookie = setCookie.split(';')[0];
+    const setCookies = typeof response.headers.getSetCookie === 'function'
+        ? response.headers.getSetCookie()
+        : [response.headers.get('set-cookie')].filter(Boolean);
+    for (const setCookie of setCookies) {
+        const [pair] = setCookie.split(';');
+        const separator = pair.indexOf('=');
+        const name = pair.slice(0, separator);
+        const value = pair.slice(separator + 1);
+        if (value) cookies.set(name, value);
+        else cookies.delete(name);
+    }
     const text = await response.text();
 
     return {
@@ -46,6 +97,10 @@ async function request(url, options = {}) {
 }
 
 test('API REST integra catálogo, usuarios, carrito, pedidos y estadísticas', async () => {
+    const orderUserForeignKey = db.prepare('PRAGMA foreign_key_list(orders)').all()
+        .find((foreignKey) => foreignKey.from === 'user_id');
+    assert.equal(orderUserForeignKey.table, 'users');
+
     const preflight = await request('/api/products', {
         method: 'OPTIONS',
         headers: { 'Access-Control-Request-Method': 'POST' }
@@ -151,11 +206,17 @@ test('API REST integra catálogo, usuarios, carrito, pedidos y estadísticas', a
     });
     assert.equal(added.response.status, 201);
     assert.equal(added.body.summary.totalItems, 1);
+    assert.ok(cookies.has('pediloo.session'));
+    assert.ok(cookies.has('pediloo.session.sig'));
     const increased = await request(`/api/cart/items/${products.body[0].id}`, {
         method: 'PUT',
         body: JSON.stringify({ delta: 1 })
     });
     assert.equal(increased.body.summary.totalItems, 2);
+
+    await restartApi();
+    const cartAfterRestart = await request('/api/cart');
+    assert.equal(cartAfterRestart.body.summary.totalItems, 2);
 
     const order = await request('/api/orders', {
         method: 'POST',
@@ -173,6 +234,13 @@ test('API REST integra catálogo, usuarios, carrito, pedidos y estadísticas', a
     assert.equal(movedOrder.body.status, 'En proceso');
     const emptyCart = await request('/api/cart');
     assert.equal(emptyCart.body.summary.totalItems, 0);
+
+    const rejectedEmptyOrder = await request('/api/orders', {
+        method: 'POST',
+        body: JSON.stringify({})
+    });
+    assert.equal(rejectedEmptyOrder.response.status, 400);
+    assert.equal(rejectedEmptyOrder.body.error, 'El carrito está vacío');
 
     const stats = await request('/api/stats');
     assert.equal(stats.body.totalProducts, 30);
